@@ -130,6 +130,7 @@ Zusätzlich wurden die projekteigenen Gates gegengeprüft und bestätigt:
   mit Docker-Zugriff; Healthcheck-Status, Ausgabe „Seite aus dem Container" und Image-Größe
   nachreichen. **Owner/Action:** Umgebung mit Docker-Zugriff bereitstellen (Agent in die
   `docker`-Gruppe aufnehmen oder Docker-Endpunkt) — **CEO/Infrastruktur**.
+  Nachverfolgung: **MARAA-7** (Follow-up zu MARAA-6).
 - **Konsequenz:** Das Goal-Kriterium „fertiger Docker-Container" ist damit **nicht abgenommen**.
 
 ### F-6 — Rechtsseiten sind Entwürfe (Livegang-Sperre) — *kritisch für Livegang*
@@ -240,7 +241,7 @@ Firefox. Offen bzw. mangelhaft:
 
 | Priorität | Punkt | Owner |
 |---|---|---|
-| **Blocker** | F-5 Docker-Build/-Run/-Healthcheck/-Größe nicht verifizierbar → Goal-Kriterium „fertiger Docker-Container" nicht abgenommen | Umgebung mit Docker-Zugriff (CEO/Infrastruktur) |
+| **Blocker** | F-5 Docker-Build/-Run/-Healthcheck/-Größe nicht verifizierbar → Goal-Kriterium „fertiger Docker-Container" nicht abgenommen (Follow-up **MARAA-7**) | Umgebung mit Docker-Zugriff (CEO/Infrastruktur) |
 | **Kritisch (Livegang)** | F-6 Rechtstexte ohne anwaltliche Freigabe; offene Kundenpunkte OP-1…OP-13 | Kunde + CEO |
 | **Mittel** | F-2 Banner-Links < 24 px (WCAG 2.2 AA 2.5.8) | Frontend Developer (MARAA-5) |
 | **Mittel** | F-3 Mobiler LCP 2,1–2,3 s > Ziel 2,0 s (unter Blocker 2,5 s) | Produktionsmessung; ggf. MARAA-5 |

@@ -1,0 +1,186 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://ivo-mertsch.de/#website",
+    "url": "https://ivo-mertsch.de/",
+    "name": "Ivo Mertsch",
+    "alternateName": "Ivo Mertsch Design",
+    "description": "Handwerk aus Leidenschaft aus Schwörstadt: fugenlose Bäder, fugenlose Böden, Innenausbau und Fassadengestaltung.",
+    "inLanguage": "de-DE",
+    "publisher": { "@id": "https://ivo-mertsch.de/#business" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
+    "@id": "https://ivo-mertsch.de/#business",
+    "name": "Ivo Mertsch",
+    "alternateName": "Ivo Mertsch Design",
+    "slogan": "Handwerk aus Leidenschaft",
+    "description": "Aus Leidenschaft wenn's ans Eingemachte geht. Dabei stehen wir Ihnen als starker Begleiter in Sachen Beratung, Planung und Abwicklung für Ihr Projekt zur Seite.",
+    "url": "https://ivo-mertsch.de/",
+    "telephone": "+491742164071",
+    "email": "info@ivo-mertsch.de",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Niederdossenbach 1",
+      "postalCode": "79739",
+      "addressLocality": "Schwörstadt",
+      "addressRegion": "Baden",
+      "addressCountry": "DE"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Schwörstadt" },
+      { "@type": "AdministrativeArea", "name": "Landkreis Waldshut" }
+    ],
+    "founder": {
+      "@type": "Person",
+      "name": "Ivo Marco Mertsch"
+    },
+    "sameAs": [
+      "https://www.instagram.com/ivomertsch_hal/"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Leistungen",
+      "itemListElement": [
+        { "@id": "https://ivo-mertsch.de/leistungen/fugenlose-b%C3%A4der/#service" },
+        { "@id": "https://ivo-mertsch.de/leistungen/fugenlose-b%C3%B6den/#service" },
+        { "@id": "https://ivo-mertsch.de/leistungen/innenausbau/#service" },
+        { "@id": "https://ivo-mertsch.de/leistungen/fassaden/#service" }
+      ]
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": "https://ivo-mertsch.de/leistungen/fugenlose-b%C3%A4der/#service",
+    "name": "Fugenlose Bäder",
+    "serviceType": "Fugenlose Bäder aus 2K-Beschichtung",
+    "description": "2K-Beschichtung für Nassbereiche und Böden — fugenlos und hygienisch.",
+    "url": "https://ivo-mertsch.de/leistungen/fugenlose-bäder/",
+    "provider": { "@id": "https://ivo-mertsch.de/#business" },
+    "areaServed": [
+      { "@type": "City", "name": "Schwörstadt" },
+      { "@type": "AdministrativeArea", "name": "Landkreis Waldshut" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": "https://ivo-mertsch.de/leistungen/fugenlose-b%C3%B6den/#service",
+    "name": "Fugenlose Böden",
+    "serviceType": "Fugenlose Bodenbeschichtung",
+    "description": "Fugenlose Böden in matt, seidenglänzend oder glänzend — für Innenräume, Garagen, Balkone und den Außenbereich.",
+    "url": "https://ivo-mertsch.de/leistungen/fugenlose-böden/",
+    "provider": { "@id": "https://ivo-mertsch.de/#business" },
+    "areaServed": [
+      { "@type": "City", "name": "Schwörstadt" },
+      { "@type": "AdministrativeArea", "name": "Landkreis Waldshut" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": "https://ivo-mertsch.de/leistungen/innenausbau/#service",
+    "name": "Innenausbau",
+    "serviceType": "Innenausbau",
+    "description": "Renovierung, Sanierung, Neubau und Modernisierung — ein Ansprechpartner für alle Bereiche.",
+    "url": "https://ivo-mertsch.de/leistungen/innenausbau/",
+    "provider": { "@id": "https://ivo-mertsch.de/#business" },
+    "areaServed": [
+      { "@type": "City", "name": "Schwörstadt" },
+      { "@type": "AdministrativeArea", "name": "Landkreis Waldshut" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": "https://ivo-mertsch.de/leistungen/fassaden/#service",
+    "name": "Fassadengestaltung",
+    "serviceType": "Fassaden-Neugestaltung mit und ohne Dämmung",
+    "description": "Neugestaltung mit oder ohne Dämmung, Anstriche im Denkmalschutz oder für langanhaltend schöne Fassaden.",
+    "url": "https://ivo-mertsch.de/leistungen/fassaden/",
+    "provider": { "@id": "https://ivo-mertsch.de/#business" },
+    "areaServed": [
+      { "@type": "City", "name": "Schwörstadt" },
+      { "@type": "AdministrativeArea", "name": "Landkreis Waldshut" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://ivo-mertsch.de/leistungen/#breadcrumb",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://ivo-mertsch.de/" },
+      { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://ivo-mertsch.de/leistungen/" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://ivo-mertsch.de/leistungen/fugenlose-b%C3%A4der/#breadcrumb",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://ivo-mertsch.de/" },
+      { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://ivo-mertsch.de/leistungen/" },
+      { "@type": "ListItem", "position": 3, "name": "Fugenlose Bäder", "item": "https://ivo-mertsch.de/leistungen/fugenlose-bäder/" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://ivo-mertsch.de/leistungen/fugenlose-b%C3%B6den/#breadcrumb",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://ivo-mertsch.de/" },
+      { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://ivo-mertsch.de/leistungen/" },
+      { "@type": "ListItem", "position": 3, "name": "Fugenlose Böden", "item": "https://ivo-mertsch.de/leistungen/fugenlose-böden/" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://ivo-mertsch.de/leistungen/innenausbau/#breadcrumb",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://ivo-mertsch.de/" },
+      { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://ivo-mertsch.de/leistungen/" },
+      { "@type": "ListItem", "position": 3, "name": "Innenausbau", "item": "https://ivo-mertsch.de/leistungen/innenausbau/" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://ivo-mertsch.de/leistungen/fassaden/#breadcrumb",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://ivo-mertsch.de/" },
+      { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://ivo-mertsch.de/leistungen/" },
+      { "@type": "ListItem", "position": 3, "name": "Fassaden", "item": "https://ivo-mertsch.de/leistungen/fassaden/" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://ivo-mertsch.de/%C3%BCber-uns/#breadcrumb",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://ivo-mertsch.de/" },
+      { "@type": "ListItem", "position": 2, "name": "Über uns", "item": "https://ivo-mertsch.de/über-uns/" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://ivo-mertsch.de/bewertungen/#breadcrumb",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://ivo-mertsch.de/" },
+      { "@type": "ListItem", "position": 2, "name": "Bewertungen", "item": "https://ivo-mertsch.de/bewertungen/" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://ivo-mertsch.de/kontakt/#breadcrumb",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://ivo-mertsch.de/" },
+      { "@type": "ListItem", "position": 2, "name": "Kontakt", "item": "https://ivo-mertsch.de/kontakt/" }
+    ]
+  }
+]

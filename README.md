@@ -26,6 +26,9 @@ Docker-Container.
 | `docs/contracts/consent.schema.json` | Datenvertrag des Consent-Datensatzes (`localStorage`) |
 | `docs/contracts/reviews.example.json` | Fixtures inkl. Negativfällen |
 | `tests/contracts/verify-contracts.cjs` | Prüftor: validiert die Schemas und alle Fixtures |
+| `docs/design/konzept.md` | Design-Richtung, Farbwelt, Typografie, Bildsprache, 30 Prüfpunkte (MARAA-4) |
+| `docs/design/tokens.json` | Kanonische Design-Tokens inkl. berechnetem Kontrast-Audit (MARAA-4) |
+| `docs/design/komponenten.md` | Komponenten-Spezifikation: Zustände, Props, A11y (MARAA-4) |
 
 ```bash
 node tests/contracts/verify-contracts.cjs   # 14/14 bestanden, Exit 0

@@ -391,10 +391,13 @@ existiert, muss sie per Tastatur schließbar sein (sonst weglassen).
 
 **Zweck.** Google-Bewertungen zeigen — oder ehrlich sagen, dass keine vorliegen (ADR §5.4).
 
-**Aufbau.** `<section aria-labelledby>` mit: `<h2>Bewertungen</h2>`; **Sortierhinweis**
-(`sortierung_hinweis` aus dem Dokument, z. B. „Sortiert nach Relevanz, wie von Google
-geliefert"); Liste aus `ReviewCard`; **Attribution-Mark** (§8.4); **Prüfhinweis**
-(„So prüft Google Reviews", Text von MARAA-3).
+**Aufbau.** `<section aria-labelledby>` mit: `<h2>` (A: „Bewertungen", B: „Bewertungen");
+**Sortierhinweis** (`sortierung_hinweis` aus dem Dokument — Text:
+`[MARAA-3: bewertungen.md #Sortierungs-Hinweis]`); Liste aus `ReviewCard`;
+**Attribution-Mark** (§8.4, Text: `[MARAA-3: bewertungen.md #Attributions-Zeile]`);
+**Aktualisierungs-Hinweis** (`aktualisiert_am`, TT.MM.JJJJ, ohne gültiges Datum
+ausgeblendet); **Prüfhinweis** („Wie Google Bewertungen prüft",
+`[MARAA-3: bewertungen.md #Hinweis]`).
 
 **Props.** `document` (normalisiertes `reviewsDocument`), `gate` (`"content"` | `"section"`),
 `googleReviewUrl`.
@@ -470,9 +473,9 @@ zugänglicher Name „(öffnet Google in neuem Tab)").
 
 ### 8.3 EmptyState (Leerzustand)
 
-**Aufbau.** Gleiche Sektion, gleiche `<h2>`: ein sachlicher Satz, der den Zustand benennt
-(Text von MARAA-3), und **ein** primärer CTA **„Jetzt bei Google bewerten"** →
-`googleReviewUrl`.
+**Aufbau.** Gleiche Sektion, gleiche `<h2>` („Bewertungen"): der sachliche Satz, der den
+Zustand benennt (`[MARAA-3: bewertungen.md #Leerzustand-Text]`), und **ein** primärer CTA
+**„Jetzt bei Google bewerten"** → `googleReviewUrl`.
 
 **Regeln (unveränderlich, ADR §5.4).** Keine Sterne, keine erfundenen Initialen, kein
 „Bald verfügbar", **keine Attribution** (es werden keine Google-Inhalte gezeigt). Ist
@@ -494,7 +497,7 @@ Namen.
 | Variante | Darstellung | Einsatz |
 |---|---|---|
 | **Logo** (bevorzugt) | Google-Maps-Logo, Mindesthöhe **16 px**, Mindestfreiraum um das Logo (Faktor gemäß Policy), **kein** Verzerren, **kein** Umfärben | wenn Platz es erlaubt (ab `lg`, oder wenn die Sektion breit steht) |
-| **Text** | `<span translate="no">Google Maps</span>` — Wortlaut nicht übersetzen, nicht lokalisieren, nicht abkürzen | wenn der Raum beengt ist (mobil) oder das Logo nicht vorliegt |
+| **Text** | `<span>Bewertungen von <span translate="no">Google Maps</span></span>` — Wortlaut nicht übersetzen, nicht lokalisieren, nicht abkürzen. Verbindlicher Text: `[MARAA-3: bewertungen.md #Attributions-Zeile]` | wenn der Raum beengt ist (mobil) oder das Logo nicht vorliegt |
 
 **Regeln.**
 
@@ -618,12 +621,13 @@ im Label (Text „(Pflichtfeld)"), nicht nur `required`. Hilfetext via `aria-des
 ### 10.1 ConsentBanner (Erstbanner)
 
 **Aufbau.** Am unteren Rand, `role="dialog"` `aria-modal="false"` **oder** besser eine
-`<section role="region" aria-label="Cookie-Einstellungen">`, die den Inhalt **nicht**
+`<section role="region" aria-label="Datenschutz-Einstellungen">`, die den Inhalt **nicht**
 verdeckt (kein Modal, kein Scrim, kein Fokusfang): Aussage-Satz, dann **gleich große,
-gleich gewichtete** Schaltflächen: „Alle akzeptieren", „Alle ablehnen", „Einstellungen".
-Darunter ein Link auf die Datenschutzerklärung.
+gleich gewichtete** Schaltflächen `Alle akzeptieren` und `Nur notwendige` sowie die
+sekundäre `Einstellungen`. Darunter Links auf Datenschutzerklärung und Impressum.
+Verbindlicher Wortlaut: `[MARAA-3: micro-ux-consent.md #Consent-Banner]`.
 
-**Regeln (kein Dark Pattern, ADR §4.4).** „Alle ablehnen" hat dieselbe Größe, denselben
+**Regeln (kein Dark Pattern, ADR §4.4).** „Nur notwendige" hat dieselbe Größe, denselben
 Kontrast und dieselbe Positionsebene wie „Alle akzeptieren". Kein Countdown, keine
 Vorauswahl nicht-essenzieller Kategorien, kein „weiter ohne Auswahl"-X, das alles
 akzeptiert.
@@ -652,17 +656,18 @@ gewichtet; ab `md` Buttons in einer ruhigen Reihe, Banner max. 720 px.
 ### 10.2 ConsentDialog (Einstellungen, granular)
 
 **Aufbau.** Echter Dialog: `role="dialog"`, `aria-modal="true"`, benannter Titel
-(„Cookie-Einstellungen"), Fokusfalle, `Escape` schließt, Fokus zurück auf den Auslöser.
-Inhalt: Tabelle/Liste der drei Kategorien mit **Toggle** und Erläuterung; `essenziell`
-ohne Toggle, als „Immer aktiv" gekennzeichnet. Footer: „Alle akzeptieren" / „Alle
-ablehnen" / „Auswahl speichern". Zeigt zusätzlich den aktuellen Consent-Datensatz als
-menschenlesbaren Text (Version, Zeitstempel, Methode, Textfassung) — Nachweis des Widerrufs.
+(„Datenschutz-Einstellungen"), Fokusfalle, `Escape` schließt, Fokus zurück auf den
+Auslöser. Inhalt: die drei Kategorien mit **Toggle** und Erläuterung; `essenziell`
+ohne Toggle, als „Technisch notwendig / lässt sich nicht abschalten" gekennzeichnet.
+Footer: `Alle akzeptieren` / `Nur notwendige` / `Auswahl speichern`. Zeigt zusätzlich den
+aktuellen Consent-Datensatz als menschenlesbaren Text (Version, Zeitstempel, Methode,
+Textfassung) — Nachweis des Widerrufs. Texte: `[MARAA-3: micro-ux-consent.md #Consent-Banner]`.
 
 **Zustände.**
 
 | S1 closed | S2 hover | S3 focus | S4 active | S5/disabled | S6 busy | S7 |
 |---|---|---|---|---|---|---|
-| nicht im DOM | Toggle-/Button-Hover | Fokusfalle aktiv, Ring sichtbar | Press | `essenziell`-Toggle ist `disabled` **und** als „Immer aktiv" beschriftet (nicht einfach nur grau) | — | Toggle-Zustand `on`/`off` trägt `aria-checked` **plus** Schalterposition **plus** Textlabel „An/Aus" |
+| nicht im DOM | Toggle-/Button-Hover | Fokusfalle aktiv, Ring sichtbar | Press | `essenziell`-Toggle ist `disabled` **und** als „Technisch notwendig — lässt sich nicht abschalten" beschriftet (nicht einfach nur grau) | — | Toggle-Zustand `on`/`off` trägt `aria-checked` **plus** Schalterposition **plus** Textlabel „An/Aus" |
 
 **A11y.** Toggles sind `role="switch"` mit `aria-checked`; jede Kategorie hat einen
 zugänglichen Namen und eine Beschreibung (`aria-describedby`). Der Dialog schließt mit
@@ -856,22 +861,28 @@ Bewertungen.
 | Lead | was das ist, für wen | 1–2 Sätze, 44ch | — |
 | Body | Detail | auf 62ch begrenzt | — |
 | Button | was konkret passiert | 2–4 Wörter, Verb zuerst | „Beratung anfragen", „Jetzt bei Google bewerten" |
-| Meta/Attribution | Herkunft, Rechtliches | `tx`, `tabular-nums` | „Google Maps", Datum |
+| Meta/Attribution | Herkunft, Rechtliches | `tx`, `tabular-nums` | „Bewertungen von Google Maps", Datum |
 
 ### 15.2 Platzhalterstrategie (kein erfundenes Faktum im Entwurf)
 
 Es gibt **keinen** blinden Lorem-Ipsum-Text in der Spezifikation. Jeder Text ist entweder
-echt (aus `content/*`) oder ein **sauberer, benannter Slot**:
+echt (aus `content/*`) oder ein **sauberer, benannter Slot**. Das Content-Pack (MARAA-3)
+liegt vor; die Spec verweist auf die konkreten Abschnitte:
 
-- `[content/start.md #H1-A]` — H1 Startseite (Empfehlung A).
-- `[MARAA-3: micro-ux-consent.md #banner]` — Bannertexte, Labels, Fehlermeldungen.
-- `[MARAA-3: bewertungen.md #leerzustand]` — Satz des Leerzustands, CTA-Text.
-- `[MARAA-3: bewertungen.md #pruefhinweis]` — „So prüft Google Reviews".
-- `[content/site.json #email]` — Ziel-E-Mail (offener Kundenpunkt).
-- `[env GOOGLE_REVIEW_URL]` — Ziel des CTA „Jetzt bei Google bewerten".
+- `[content/start.md #H1]` — H1 Startseite (Empfehlung: Variante A).
+- `[content/start.md #Section 2]` — Texte und Alt-Texte der vier Leistungs-Karten.
+- `[content/micro-ux-consent.md #Formular]` · `#Fehlertexte` · `#Zustände` — Labels,
+  Hilfetexte, Fehlermeldungen, Zustandstexte.
+- `[content/micro-ux-consent.md #Consent-Banner]` — Bannertexte, Titel, Buttons,
+  Kategorie-Beschreibungen, Fußzeilen- und Speicherhinweis.
+- `[content/bewertungen.md #Leerzustand-Text]` · `#Attributions-Zeile` ·
+  `#Sortierungs-Hinweis` · `#Hinweis` — Bewertungs-Sektion in beiden Zuständen.
+- `[content/site.json #email]` — Ziel-E-Mail (offener Kundenpunkt OP-1).
+- `[env GOOGLE_REVIEW_URL]` — Ziel des CTA „Jetzt bei Google bewerten" (offener Punkt OP-2).
 
 Ein Slot darf **nie** still durch Beispieltext ersetzt werden. Fehlt ein Slot, greift die
-jeweils definierte Leer-/Fallback-Regel (z. B. CTA ausgeblendet, wenn URL leer).
+jeweils definierte Leer-/Fallback-Regel (z. B. CTA ausgeblendet, wenn URL leer;
+Aktualisierungszeile ausgeblendet, wenn kein gültiges Datum).
 
 ### 15.3 Verbotene Muster (Signale, dass nichts gesagt wurde)
 

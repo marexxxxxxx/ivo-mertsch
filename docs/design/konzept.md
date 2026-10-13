@@ -432,8 +432,10 @@ behaupten, was erst der Build beweist.
    CEO-Vorgabe um (Attribution-Mark in zwei Varianten, Logo und Text, `translate="no"`,
    Mindesthöhe, Mindestfreiraum). Der **sichtbare Wortlaut** ist damit „Google Maps",
    nicht die im GOAL genannte Formulierung „Quelle: Google". Das ist die aktuellere
-   Places-Policy (ADR §10.1 / die CEO-Entscheidung vom 2026-10-13). Bestätigung erbeten,
-   damit MARAA-3 (Content) den Text nicht später ändert.
+   Places-Policy (ADR §10.1 / die CEO-Entscheidung vom 2026-10-13). Das Content-Pack
+   (MARAA-3, `content/bewertungen.md`) verwendet bereits „Bewertungen von Google Maps";
+   Design und Content sind damit deckungsgleich. Bestätigung erbeten, damit der Wortlaut
+   nicht später geändert wird.
 2. **Sektion-Gating vs. ADR §5.5.** Die ADR erlaubt Autor/Sterne/Datum/Text vor Consent
    als Own-Origin-Inhalt; die CEO-Vorgabe sagt „die Sektion selbst bleibt consent-gated".
    Die Spec löst das über ein `gate`-Prop: Default `content` (ADR-konform: eigene Inhalte

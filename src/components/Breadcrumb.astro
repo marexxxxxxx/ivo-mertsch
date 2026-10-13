@@ -1,0 +1,26 @@
+---
+import type { Crumb } from "../lib/pages";
+
+interface Props {
+  items: Crumb[];
+}
+
+const { items } = Astro.props;
+const lastIndex = items.length - 1;
+---
+
+<nav class="pf-breadcrumb" aria-label="Brotkrumen">
+  <ol>
+    {
+      items.map((item, index) => (
+        <li>
+          {index === lastIndex ? (
+            <span aria-current="page">{item.label}</span>
+          ) : (
+            <a href={item.href}>{item.label}</a>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>

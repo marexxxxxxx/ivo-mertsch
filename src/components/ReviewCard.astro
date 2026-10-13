@@ -1,0 +1,83 @@
+---
+/**
+ * ReviewCard (komponenten.md §8.2). Der Link zur Einzelbewertung ist KEINE
+ * consent-pflichtige Ressource und wird immer gerendert, wenn vorhanden
+ * (ADR §5.5, Google-Attributionspflicht). Google-Avatare laufen ueber ein
+ * Consent-Gate; vor Zustimmung stehen lokale Initialen.
+ */
+import type { NormalizedReview } from "../lib/reviews";
+import { REVIEWS_COPY } from "../lib/copy";
+
+interface Props {
+  review: NormalizedReview;
+}
+
+const { review } = Astro.props;
+
+function initials(name: string): string {
+  const parts = name.split(/\s+/).filter((part) => part.length > 0);
+  const first = parts[0]?.charAt(0) ?? "";
+  const second = parts.length > 1 ? (parts[parts.length - 1]?.charAt(0) ?? "") : "";
+  return (first + second).toUpperCase() || "?";
+}
+
+function formatDatum(datum: string): string {
+  const parsed = new Date(`${datum}T00:00:00Z`);
+  if (Number.isNaN(parsed.getTime())) return datum;
+  return parsed.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" });
+}
+
+const fallbackInitials = initials(review.autor);
+const slotId = `avatar-${review.id ?? review.review_time}`;
+const starsOn = "★".repeat(review.sterne);
+const starsOff = "☆".repeat(5 - review.sterne);
+---
+
+<li class="pf-review">
+  <div class="pf-review__head">
+    {
+      review.avatar_status === "google" && (
+        <>
+          <span
+            class="pf-review__avatar"
+            data-consent-slot={slotId}
+            data-consent-fallback={fallbackInitials}
+            aria-hidden="true"
+          >
+            {fallbackInitials}
+          </span>
+          <template data-consent-gate="externe_medien" data-consent-slot-target={slotId}>
+            <img src={review.avatar_url ?? ""} alt="" width="40" height="40" loading="lazy" decoding="async" />
+          </template>
+        </>
+      )
+    }
+    {
+      review.avatar_status === "initials" && (
+        <span class="pf-review__avatar" aria-hidden="true">
+          {fallbackInitials}
+        </span>
+      )
+    }
+    <div>
+      <p class="pf-review__autor">{review.autor}</p>
+      <time class="pf-review__datum" datetime={review.datum}>{formatDatum(review.datum)}</time>
+    </div>
+  </div>
+
+  <p class="pf-review__stars" role="img" aria-label={`${review.sterne} von 5 Sternen`}>
+    <span aria-hidden="true">{starsOn}{starsOff}</span>
+    <span class="pf-review__stars-num">{review.sterne}/5</span>
+  </p>
+
+  <p class="pf-review__text">{review.text}</p>
+
+  {
+    review.profil_link && (
+      <a class="pf-review__link" href={review.profil_link} target="_blank" rel="noopener noreferrer">
+        {REVIEWS_COPY.reviewLink}
+        <span class="pf-visually-hidden"> (öffnet Google in neuem Tab)</span>
+      </a>
+    )
+  }
+</li>

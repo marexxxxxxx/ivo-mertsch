@@ -1,0 +1,39 @@
+---
+import { Picture } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  title: string;
+  href: string;
+  linkLabel: string;
+  body: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  wide?: boolean;
+  finishes?: boolean;
+}
+
+const { title, href, linkLabel, body, image, imageAlt, wide = false, finishes = false } = Astro.props;
+---
+
+<article class={wide ? "pf-card pf-card--wide" : "pf-card"}>
+  <div class="pf-card__media">
+    <Picture
+      src={image}
+      alt={imageAlt}
+      formats={["avif", "webp"]}
+      fallbackFormat="webp"
+      widths={wide ? [400, 800, 1200] : [400, 800]}
+      sizes={wide ? "(min-width: 768px) 60vw, 100vw" : "(min-width: 768px) 33vw, 100vw"}
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <h3>{title}</h3>
+  <p>{body}</p>
+  {finishes && <div class="pf-finish" aria-hidden="true" />}
+  <a class="pf-card__link" href={href}>
+    {linkLabel}
+    <span class="pf-arrow" aria-hidden="true">→</span>
+  </a>
+</article>

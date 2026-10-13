@@ -1,0 +1,102 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import ServiceCard from "../../components/ServiceCard.astro";
+import CtaBand from "../../components/CtaBand.astro";
+import Button from "../../components/Button.astro";
+import { IMAGES } from "../../lib/images";
+import { ROUTES } from "../../lib/pages";
+import { findSchemaNode, getSite, type SchemaOrgNode } from "../../lib/content";
+import { CTA_COPY } from "../../lib/copy";
+
+export const prerender = true;
+
+const site = getSite();
+const breadcrumb = findSchemaNode((node) => node["@id"] === "https://ivo-mertsch.de/leistungen/#breadcrumb");
+const schema = [breadcrumb].filter((node): node is SchemaOrgNode => node !== null);
+
+const services = [
+  {
+    route: ROUTES.baeder,
+    title: "Fugenlose Bäder",
+    body: "Die 2K-Beschichtung für Nassbereiche und Böden — fugenlos, hygienisch.",
+    linkLabel: "Zu den fugenlosen Bädern",
+    image: IMAGES.foto8,
+    wide: false,
+  },
+  {
+    route: ROUTES.boeden,
+    title: "Fugenlose Böden",
+    body: "Matt, seidenglänzend oder glänzend — für Innenräume, Garagen, Balkone und den Außenbereich.",
+    linkLabel: "Zu fugenlosen Böden",
+    image: IMAGES.foto11,
+    wide: false,
+  },
+  {
+    route: ROUTES.innenausbau,
+    title: "Innenausbau",
+    body: "Renovierung, Sanierung, Neubau, Modernisierung — ein Ansprechpartner für alle Bereiche.",
+    linkLabel: "Zum Innenausbau",
+    image: IMAGES.foto6,
+    wide: false,
+  },
+  {
+    route: ROUTES.fassaden,
+    title: "Fassaden",
+    body: "Neugestaltung mit oder ohne Dämmung, Anstriche im Denkmalschutz.",
+    linkLabel: "Zur Fassadengestaltung",
+    image: IMAGES.foto7,
+    wide: false,
+  },
+];
+---
+
+<BaseLayout seo={ROUTES.leistungen} schema={schema}>
+  <div class="pf-container">
+    <Breadcrumb items={[{ label: "Start", href: ROUTES.home.path }, { label: "Leistungen", href: ROUTES.leistungen.path }]} />
+  </div>
+
+  <section class="pf-section">
+    <div class="pf-container">
+      <h1>Eine Fläche, die hält — als Bad, Boden, Innenausbau oder Fassade.</h1>
+      <p class="pf-lead pf-mt-7">
+        Fugenlose Bäder, fugenlose Böden, Innenausbau und Fassadengestaltung — aus Schwörstadt,
+        für Schwörstadt und die Region um den Landkreis Waldshut.
+      </p>
+      <p class="pf-mt-7">
+        Vier Leistungen, ein Ansprechpartner. Sie müssen Ihr Projekt nicht auf mehrere Gewerke verteilen —
+        Beratung, Planung und Abwicklung bekommen Sie aus einer Hand.
+      </p>
+    </div>
+  </section>
+
+  <section class="pf-section pf-section--sunken" aria-labelledby="leistungen-titel">
+    <div class="pf-container">
+      <SectionHeading title="Die vier Leistungen" id="leistungen-titel" />
+      <div class="pf-grid--services pf-mt-7">
+        {
+          services.map((service) => (
+            <ServiceCard
+              title={service.title}
+              body={service.body}
+              href={service.route.path}
+              linkLabel={service.linkLabel}
+              image={service.image.src}
+              imageAlt={service.image.alt}
+              wide={service.wide}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand heading="Ihr Vorhaben passt in keine Schublade? Dann schildern Sie es im Gespräch.">
+    <Button href={`${ROUTES.kontakt.path}#formular`} variant="primary">{CTA_COPY.primary}</Button>
+    <Button href={`tel:${site.kontakt.telefon_tel}`} variant="secondary">
+      Anrufen: <span class="pf-ways__value">{site.kontakt.telefon_anzeige}</span>
+    </Button>
+    <Button href={site.kontakt.whatsapp_url} variant="tertiary" external>WhatsApp schreiben</Button>
+  </CtaBand>
+</BaseLayout>

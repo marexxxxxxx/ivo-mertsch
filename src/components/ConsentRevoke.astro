@@ -1,0 +1,21 @@
+---
+/**
+ * Floating-Revoke-Button (komponenten.md §10.3) — nur < lg.
+ * Er ist kein Ersatz fuer den Footer-Eintrag, nur ein schnellerer Zugang mit
+ * identischem zugaenglichem Namen. Sichtbarkeit: ausgeblendet, solange der Banner
+ * sichtbar ist oder der Footer im Viewport liegt (Client-Script setzt data-*).
+ */
+import { CONSENT_COPY } from "../lib/copy";
+---
+
+<button
+  class="pf-btn pf-btn--secondary pf-floating-consent"
+  type="button"
+  id="pf-consent-floating"
+  data-consent-action="open-settings"
+  data-consent-from="footer"
+  data-consent-floating
+>
+  <span aria-hidden="true">⚙</span>
+  {CONSENT_COPY.footerEntry}
+</button>

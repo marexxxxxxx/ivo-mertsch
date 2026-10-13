@@ -1,0 +1,207 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import { ROUTES } from "../lib/pages";
+import { getSite } from "../lib/content";
+
+export const prerender = true;
+
+const site = getSite();
+---
+
+<BaseLayout seo={ROUTES.datenschutz}>
+  <div class="pf-container">
+    <Breadcrumb items={[{ label: "Start", href: ROUTES.home.path }, { label: "Datenschutzerklärung", href: ROUTES.datenschutz.path }]} />
+  </div>
+
+  <section class="pf-section">
+    <div class="pf-container pf-prose">
+      <h1>Datenschutzerklärung</h1>
+
+      <div class="pf-notice pf-mt-7">
+        <p>
+          <strong>Prüfvermerk (Abnahmekriterium):</strong> Diese Datenschutzerklärung ist ein Entwurf für
+          die neue Website. Sie beschreibt die tatsächlich implementierte Consent-Architektur und den
+          Kontaktweg. Sie muss vor Livegang von einem Rechtsanwalt bzw. einem IT-Recht-Dienstleister des
+          Kunden final geprüft und freigegeben werden. Stand des Entwurfs: 2026-10-13.
+        </p>
+      </div>
+
+      <h2>1. Verantwortlicher</h2>
+      <p>Verantwortlich für die Verarbeitung personenbezogener Daten auf dieser Website ist:</p>
+      <address>
+        Ivo Marco Mertsch
+        <br />
+        Ivo Mertsch Design
+        <br />
+        Niederdossenbach 1
+        <br />
+        79739 Schwörstadt
+        <br />
+        Deutschland
+        <br />
+        Telefon: {site.kontakt.telefon_anzeige}
+        <br />
+        E-Mail: <a href={`mailto:${site.kontakt.email}`}>{site.kontakt.email}</a>
+      </address>
+      <p>
+        Offener Kundenpunkt OP-3: Die Datenschutzerklärung des Alt-Auftritts nannte als Verantwortlichen
+        eine dritte Person. Für die neue Seite ist der tatsächliche Verantwortliche zu bestätigen.
+      </p>
+
+      <h2>2. Ihre Rechte</h2>
+      <p>Ihnen stehen gegenüber dem Verantwortlichen folgende Rechte zu:</p>
+      <ul>
+        <li>Auskunft über die verarbeiteten Daten (Art. 15 DSGVO),</li>
+        <li>Berichtigung unrichtiger Daten (Art. 16 DSGVO),</li>
+        <li>Löschung (Art. 17 DSGVO),</li>
+        <li>Einschränkung der Verarbeitung (Art. 18 DSGVO),</li>
+        <li>Widerspruch gegen die Verarbeitung (Art. 21 DSGVO),</li>
+        <li>Datenübertragbarkeit (Art. 20 DSGVO),</li>
+        <li>Widerruf einer erteilten Einwilligung mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO).</li>
+      </ul>
+      <p>Zur Ausübung können Sie sich jederzeit an die oben genannten Kontaktdaten wenden.</p>
+      <p>
+        <strong>Beschwerderecht (Art. 77 DSGVO).</strong> Zuständige Aufsichtsbehörde ist der
+        Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg,
+        Lautenschlagerstraße 20, 70173 Stuttgart.
+      </p>
+
+      <h2>3. Hosting und Server-Logs</h2>
+      <p>
+        Die Website wird in einem eigenen Container betrieben. Beim Aufruf der Seite erhebt und speichert
+        der ausliefernde Server automatisch: IP-Adresse des anfragenden Geräts, Datum und Uhrzeit des
+        Zugriffs, die aufgerufene Seite bzw. Datei, die zuvor besuchte Seite (Referrer), Browsertyp und
+        -version sowie Betriebssystem. Diese Daten werden nicht mit anderen personenbezogenen Daten
+        zusammengeführt. Rechtsgrundlage ist das berechtigte Interesse an einem sicheren, stabilen und
+        fehlerfreien Betrieb (Art. 6 Abs. 1 lit. f DSGVO).
+      </p>
+      <p>
+        <strong>Speicherdauer:</strong> Die Server-Logs werden nach kurzer Frist automatisch gelöscht
+        (üblich sind 7–14 Tage), sofern kein Sicherheitsvorfall eine längere Aufbewahrung erfordert.
+      </p>
+      <p>
+        <strong>Empfänger / Auftragsverarbeitung:</strong> Offener Kundenpunkt: Hosting-Anbieter und
+        Log-Aufbewahrungsfrist sind zu benennen. Die Alt-Seite nannte die Strato AG — ob dieser Anbieter
+        bleibt, ist offen; es wird nicht geraten.
+      </p>
+
+      <h2>4. Consent-Management (Einwilligung vor dem Laden externer Inhalte)</h2>
+      <p>
+        Die Website verwendet keine Cookies und lädt keine Inhalte von fremden Servern, bevor Sie
+        eingewilligt haben.
+      </p>
+      <p>
+        <strong>Wie die Auswahl gespeichert wird.</strong> Ihre Entscheidung wird ausschließlich lokal in
+        Ihrem Browser gespeichert (Schlüssel <code>pixelforge.consent.v1</code> im <code>localStorage</code>).
+        Diese Angabe wird nicht an einen Server und nicht an Dritte übertragen. Rechtsgrundlage ist
+        § 25 Abs. 2 Nr. 2 TDDDG.
+      </p>
+      <table>
+        <caption>Kategorien</caption>
+        <thead>
+          <tr><th scope="col">Kategorie</th><th scope="col">Zweck</th><th scope="col">Zustand</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Technisch notwendig</th><td>Auslieferung der Seite, Speicherung Ihrer Auswahl</td><td>immer aktiv, nicht abwählbar</td></tr>
+          <tr><th scope="row">Statistik</th><td>Anonyme Auswertung der Seitennutzung</td><td>zurzeit kein Werkzeug im Einsatz; Kategorie vorbereitet</td></tr>
+          <tr><th scope="row">Externe Medien</th><td>Nachladen fremder Inhalte, z. B. Google-Avatare in Bewertungen</td><td>nur nach Ihrer Zustimmung</td></tr>
+        </tbody>
+      </table>
+      <p>
+        <strong>Widerruf.</strong> Sie können Ihre Auswahl jederzeit über den Eintrag
+        „Cookie-Einstellungen" im Fuß jeder Seite ändern. Nach einem Widerruf werden bereits nachgeladene
+        externe Inhalte aus der Seite entfernt. Der Nachweis Ihrer Einwilligung bleibt lokal erhalten,
+        statt gelöscht zu werden.
+      </p>
+      <p>
+        <strong>Keine Drittanbieter vor der Einwilligung.</strong> Vor Ihrer Zustimmung findet keine
+        Verbindung zu Google oder anderen Dritten statt. Es werden keine Cookies gesetzt und keine
+        Analyse-Daten übertragen.
+      </p>
+
+      <h2>5. Kontaktaufnahme</h2>
+      <p>
+        <strong>a) Über das Formular.</strong> Das Formular übermittelt Ihre Angaben serverseitig an den
+        Verantwortlichen. Erhoben werden: Name, E-Mail-Adresse, Nachricht und — wenn Sie es angeben — eine
+        Telefonnummer. Es gibt kein Adressfeld, kein Betrefffeld und keine Newsletter-Anmeldung. Das
+        Formular selbst ist nicht einwilligungspflichtig (kein Tracking, kein Cookie). Rechtsgrundlage ist
+        die Bearbeitung Ihrer Anfrage (Art. 6 Abs. 1 lit. b DSGVO bei Vertragsbezug, sonst
+        Art. 6 Abs. 1 lit. f DSGVO). Spam-Schutz erfolgt serverseitig ohne Drittanbieter (verstecktes
+        Feld, Zeitprüfung, Ratenbegrenzung).
+      </p>
+      <p>
+        <strong>b) Über einen E-Mail-Link.</strong> Nutzen Sie einen <code>mailto:</code>-Link oder den
+        mailto-Fallback des Formulars, öffnet sich Ihr E-Mail-Programm. Die von Ihnen gesendeten Daten
+        verarbeiten wir zur Bearbeitung Ihres Anliegens.
+      </p>
+      <p>
+        <strong>Speicherdauer.</strong> Ihre Anfrage wird gelöscht, sobald sie erledigt ist und keine
+        gesetzlichen Aufbewahrungspflichten entgegenstehen.
+      </p>
+
+      <h2>6. Google-Bewertungen</h2>
+      <p>Die Website zeigt Bewertungen aus Google Maps.</p>
+      <ul>
+        <li>
+          Stammen die Bewertungen aus der Google Places API, werden sie über den eigenen Server bezogen und
+          zwischengespeichert (maximal 30 Tage, danach erneut geladen). Dabei wird das Minimum der von
+          Google bereitgestellten Felder verarbeitet.
+        </li>
+        <li>
+          Autor der Bewertung, Sterne-Zahl, Datum und Text werden von unserem Server ausgeliefert — dafür
+          ist keine Verbindung Ihres Browsers zu Google nötig.
+        </li>
+        <li>
+          Ein Profilbild (Avatar), das Google selbst hostet, wird erst geladen, wenn Sie die Kategorie
+          „Externe Medien" freigegeben haben. Andernfalls zeigen wir lokale Initialen.
+        </li>
+        <li>
+          Der Link auf eine Einzelbewertung bei Google erscheint immer. Ein Link ruft keine fremde
+          Ressource ab, sondern wird erst durch Ihren Klick geöffnet.
+        </li>
+        <li>Attribution: „Bewertungen von Google Maps".</li>
+      </ul>
+      <p>
+        Liegen keine Bewertungen vor (aktueller Stand), zeigen wir keinen Inhalt von Google. Dann wird auch
+        keine Attribution angezeigt, weil kein Google-Inhalt dargestellt wird.
+      </p>
+
+      <h2>7. Instagram</h2>
+      <p>
+        Die Website enthält einen einfachen Link auf unser Instagram-Profil. Es handelt sich nicht um ein
+        eingebettetes Plugin. Beim Besuch unserer Website werden keine Daten an Instagram übertragen. Erst
+        mit Ihrem Klick verlassen Sie unsere Seite; ab dann gilt die Datenschutzerklärung von Meta
+        Platforms Ireland Ltd., 4 Grand Canal Square, Grand Canal Harbour, Dublin 2, Irland.
+      </p>
+
+      <h2>8. Schriftarten (Webfonts)</h2>
+      <p>
+        Wir verwenden ausschließlich lokal auf unserem eigenen Server gehostete Schriftarten. Es findet
+        keine Verbindung zu Servern von Drittanbietern (z. B. Google Fonts) statt, auch nicht nach einer
+        Einwilligung. Rechtsgrundlage ist das berechtigte Interesse an einer einheitlichen, technisch
+        einwandfreien Darstellung (Art. 6 Abs. 1 lit. f DSGVO).
+      </p>
+
+      <h2>9. Keine Statistik, kein Tracking, keine Werbung</h2>
+      <p>
+        Es sind keine Analyse- oder Werbewerkzeuge im Einsatz. Die Statistik-Kategorie im
+        Einwilligungsdialog ist vorbereitet, aber ohne Funktion. Sollte künftig ein cookieloses
+        Statistikwerkzeug hinzukommen, wird diese Erklärung vorher ergänzt und die Kategorie aktiv.
+      </p>
+
+      <h2>10. Keine Weitergabe an Dritte</h2>
+      <p>
+        Eine Übermittlung Ihrer Daten in Drittländer außerhalb der EU/des EWR findet nicht statt, außer Sie
+        rufen durch einen eigenen Klick einen externen Dienst auf (z. B. Instagram, Google Maps). Ein
+        Verkauf von Daten findet nicht statt.
+      </p>
+
+      <h2>11. Änderungen</h2>
+      <p>
+        Diese Datenschutzerklärung kann angepasst werden, wenn sich die Verarbeitung ändert. Es gilt die
+        jeweils auf der Website veröffentlichte Fassung.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

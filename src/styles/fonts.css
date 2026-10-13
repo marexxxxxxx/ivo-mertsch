@@ -1,0 +1,33 @@
+/* ============================================================================
+   Selbst gehostete Schriften (SIL OFL 1.1).
+   Quelle: @fontsource-variable-Pakete (node_modules) — die woff2-Dateien werden
+   beim Build in dist/assets kopiert. Es gibt KEINEN Request an Google Fonts,
+   auch nicht nach Zustimmung (ADR 0001 §7.4).
+   Die family-Namen entsprechen exakt den Token-Stacks aus docs/design/tokens.css
+   ("Fraunces", "Instrument Sans"), damit die Typografierollen greifen.
+   Variablen-Achsen: Fraunces wght 100-900, Instrument Sans wght 400-700.
+   Subset: latin (deckt Deutsch inkl. Umlaute und ß ab) zur Einhaltung des
+   Font-Budgets von <= 120 KB.
+   ========================================================================== */
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("../../node_modules/@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2")
+    format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+    U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 700;
+  src: url("../../node_modules/@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2")
+    format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+    U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}

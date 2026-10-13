@@ -1,0 +1,94 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import Hero from "../components/Hero.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import CtaBand from "../components/CtaBand.astro";
+import Button from "../components/Button.astro";
+import { IMAGES } from "../lib/images";
+import { ROUTES } from "../lib/pages";
+import { findSchemaNode, getSite, type SchemaOrgNode } from "../lib/content";
+
+export const prerender = true;
+
+const site = getSite();
+const breadcrumb = findSchemaNode((node) => node["@id"] === "https://ivo-mertsch.de/%C3%BCber-uns/#breadcrumb");
+const schema = [breadcrumb].filter((node): node is SchemaOrgNode => node !== null);
+---
+
+<BaseLayout seo={ROUTES.ueberUns} schema={schema}>
+  <div class="pf-container">
+    <Breadcrumb items={[{ label: "Start", href: ROUTES.home.path }, { label: "Über uns", href: ROUTES.ueberUns.path }]} />
+  </div>
+
+  <Hero
+    eyebrow="Über uns"
+    title="Ein Handwerk aus Leidenschaft — mit einem Ansprechpartner bis zur Abnahme."
+    lead="Ivo Mertsch, Niederdossenbach 1 in Schwörstadt — Handwerk aus Leidenschaft, für Schwörstadt, den Landkreis Waldshut und die Region Baden."
+    image={IMAGES.foto3.src}
+    imageAlt={IMAGES.foto3.alt}
+    priority
+  >
+    <Button href={`${ROUTES.kontakt.path}#formular`} variant="primary">Gespräch anfragen</Button>
+    <Button href={`tel:${site.kontakt.telefon_tel}`} variant="secondary">
+      Anrufen: <span class="pf-ways__value">{site.kontakt.telefon_anzeige}</span>
+    </Button>
+    <Button href={site.instagram.url} variant="tertiary" external>Instagram ansehen</Button>
+  </Hero>
+
+  <section class="pf-section pf-section--sunken" aria-labelledby="wer">
+    <div class="pf-container pf-prose">
+      <h2 id="wer">Wer hier arbeitet</h2>
+      <p>
+        Ivo Mertsch führt „Ivo Mertsch Design" als Einzelunternehmen. Angenommen wird das Projekt von
+        derselben Person, die es plant und ausführt — Beratung, Planung und Abwicklung liegen bei einem
+        Ansprechpartner.
+      </p>
+
+      <h2 id="originalsatz">Der Originalsatz</h2>
+      <blockquote>
+        <p>
+          „Aus Leidenschaft wenn's ans Eingemachte geht. Dabei stehen wir Ihnen als starker Begleiter in
+          Sachen: Beratung, Planung und Abwicklung für Ihr Projekt zur Seite."
+        </p>
+      </blockquote>
+      <p>
+        Dieser Satz bleibt. Er ist der Kern der Positionierung und funktioniert als Unterzeile über allen
+        drei Arbeits-Schritten.
+      </p>
+
+      <h2 id="was-bleibt">Was hier bleibt</h2>
+      <p>
+        Handwerk, das vor Ort entsteht: aus Sachkenntnis, Erfahrung am Bau und der Bereitschaft, auch die
+        unangenehmen Teile zu übernehmen.
+      </p>
+    </div>
+  </section>
+
+  <section class="pf-section" aria-labelledby="schritte">
+    <div class="pf-container">
+      <SectionHeading title="So arbeite ich" id="schritte" />
+      <ol class="pf-steps pf-mt-7">
+        <li>
+          <h3>Beratung</h3>
+          <p>Wir sehen uns die Situation vor Ort an und besprechen, was möglich ist.</p>
+        </li>
+        <li>
+          <h3>Planung</h3>
+          <p>Sie wissen vorher, was passiert, in welcher Reihenfolge und mit welchen Materialien.</p>
+        </li>
+        <li>
+          <h3>Abwicklung</h3>
+          <p>Ich führe die Arbeit aus — ein Ansprechpartner bis zur Abnahme.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <CtaBand heading="Lernen Sie mich im Gespräch kennen.">
+    <Button href={`${ROUTES.kontakt.path}#formular`} variant="primary">Gespräch anfragen</Button>
+    <Button href={`tel:${site.kontakt.telefon_tel}`} variant="secondary">
+      Anrufen: <span class="pf-ways__value">{site.kontakt.telefon_anzeige}</span>
+    </Button>
+  </CtaBand>
+</BaseLayout>

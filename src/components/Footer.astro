@@ -1,0 +1,82 @@
+---
+/** Footer (komponenten.md §11) — invertierte Flaeche, themenunabhaengig dunkel. */
+import { CONSENT_COPY } from "../lib/copy";
+import { ROUTES } from "../lib/pages";
+import type { SiteConfig } from "../lib/content";
+
+interface Props {
+  site: SiteConfig;
+}
+
+const { site } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="pf-footer pf-invert">
+  <div class="pf-container">
+    <div class="pf-footer__grid">
+      <div>
+        <h2>Adresse</h2>
+        <address>
+          {site.firma.anzeige_name}
+          <br />
+          {site.adresse.strasse}
+          <br />
+          {site.adresse.plz}
+          {" "}
+          {site.adresse.ort}
+          <br />
+          {site.adresse.land}
+        </address>
+      </div>
+
+      <div>
+        <h2>Kontakt</h2>
+        <ul>
+          <li>
+            <a href={`tel:${site.kontakt.telefon_tel}`}>
+              Anrufen: <span class="pf-ways__value">{site.kontakt.telefon_anzeige}</span>
+            </a>
+          </li>
+          <li>
+            <a href={site.kontakt.whatsapp_url} target="_blank" rel="noopener noreferrer">
+              WhatsApp schreiben
+              <span class="pf-visually-hidden"> (öffnet einen externen Dienst)</span>
+            </a>
+          </li>
+          <li>
+            <a href={`mailto:${site.kontakt.email}`}>E-Mail schreiben</a>
+          </li>
+          <li>
+            <a href={site.instagram.url} target="_blank" rel="noopener noreferrer">
+              Instagram ansehen
+              <span class="pf-visually-hidden"> (öffnet einen externen Dienst)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2>Rechtliches</h2>
+        <ul>
+          <li><a href={ROUTES.impressum.path}>Impressum</a></li>
+          <li><a href={ROUTES.datenschutz.path}>Datenschutzerklärung</a></li>
+          <li>
+            <button
+              class="pf-footer__link"
+              type="button"
+              data-consent-action="open-settings"
+              data-consent-from="footer"
+            >
+              {CONSENT_COPY.footerEntry}
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="pf-footer__bottom">
+      © {year} {site.firma.anzeige_name} · {site.firma.claim}
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,113 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import { ROUTES } from "../lib/pages";
+import { getSite } from "../lib/content";
+
+export const prerender = true;
+
+const site = getSite();
+---
+
+<BaseLayout seo={ROUTES.impressum} noindex={false}>
+  <div class="pf-container">
+    <Breadcrumb items={[{ label: "Start", href: ROUTES.home.path }, { label: "Impressum", href: ROUTES.impressum.path }]} />
+  </div>
+
+  <section class="pf-section">
+    <div class="pf-container pf-prose">
+      <h1>Impressum</h1>
+
+      <div class="pf-notice pf-mt-7">
+        <p>
+          <strong>Prüfvermerk (Abnahmekriterium):</strong> Dieses Impressum ist ein Entwurf, inhaltlich
+          aus dem bestehenden Auftritt übernommen. Es muss vor Livegang von einem Rechtsanwalt bzw. einem
+          IT-Recht-Dienstleister des Kunden final geprüft und freigegeben werden. Ohne diese Freigabe darf
+          die Seite nicht öffentlich erreichbar sein.
+        </p>
+      </div>
+
+      <h2>Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</h2>
+
+      <h3>Diensteanbieter</h3>
+      <address>
+        Ivo Marco Mertsch
+        <br />
+        Ivo Mertsch Design
+        <br />
+        Niederdossenbach 1
+        <br />
+        79739 Schwörstadt
+        <br />
+        Deutschland
+      </address>
+
+      <h3>Kontakt</h3>
+      <ul>
+        <li>E-Mail: <a href={`mailto:${site.kontakt.email}`}>{site.kontakt.email}</a></li>
+        <li>Telefon: <a href={`tel:${site.kontakt.telefon_tel}`}>{site.kontakt.telefon_anzeige}</a></li>
+      </ul>
+      <p>
+        Offener Kundenpunkt OP-1: Der Alt-Auftritt nennt drei verschiedene E-Mail-Adressen. Hier muss die
+        korrekte, erreichbare Adresse stehen; der Wert kommt zentral aus content/site.json.
+      </p>
+
+      <h3>Registereintrag</h3>
+      <p>Es besteht keine Registereintragung.</p>
+
+      <h3>Umsatzsteuer-Identifikationsnummer / Wirtschafts-Identifikationsnummer</h3>
+      <p>
+        Eine Umsatzsteuer-Identifikationsnummer (USt-IdNr.) oder Wirtschafts-Identifikationsnummer
+        (W-IdNr.) ist nicht vorhanden. Offener Kundenpunkt OP-4: Diese Angabe ist vor Livegang zu
+        bestätigen.
+      </p>
+
+      <h3>Aufsichtsbehörde</h3>
+      <p>Eine zuständige Aufsichtsbehörde ist für die ausgeübte Tätigkeit nicht erforderlich.</p>
+
+      <h3>Berufsrechtliche Angaben (Handwerksbetrieb)</h3>
+      <ul>
+        <li>Berufsbezeichnung: Handwerksbetrieb</li>
+        <li>Zuständige Kammer: Handwerkskammer Freiburg, Bismarckallee 6, 79098 Freiburg</li>
+        <li>Staat der Verleihung der Berufsbezeichnung: Deutschland</li>
+        <li>
+          Berufsrechtliche Regelungen: Handwerksordnung (HwO), einsehbar unter
+          <a href="https://www.gesetze-im-internet.de/hwo/BJNR014110953.html" target="_blank" rel="noopener noreferrer">
+             gesetze-im-internet.de/hwo
+            <span class="pf-visually-hidden"> (öffnet einen externen Dienst)</span>
+          </a>
+        </li>
+      </ul>
+
+      <h3>Hinweis zur Abwicklung/Liquidation</h3>
+      <p>Das Unternehmen befindet sich nicht in Abwicklung oder Liquidation.</p>
+
+      <h3>Verbraucherschlichtung</h3>
+      <p>Es besteht keine Bereitschaft zur Teilnahme an einem Verbraucherschlichtungsverfahren.</p>
+
+      <h2>Streitschlichtung / EU-Plattform</h2>
+      <p>
+        Offener Kundenpunkt OP-4: Die EU-Plattform zur Online-Streitbeilegung (OS) wurde zum 20.07.2025
+        eingestellt; ein entsprechender Standardhinweis entfällt. Ob ein Hinweis nach dem
+        Verbraucherstreitbeilegungsgesetz (VSBG) erforderlich ist, klärt der Rechtsprüfer.
+      </p>
+
+      <h2>Bildnachweise</h2>
+      <p>
+        Bilder und Logo stammen aus dem bestehenden Auftritt des Diensteanbieters (foto3, foto6, foto7,
+        foto8, foto9, foto10, foto11, logo_ivo). Die Nutzungsrechte klärt offener Kundenpunkt OP-6. Ein
+        gesonderter Bildnachweis wird ergänzt, sobald externe Quellen verwendet werden — derzeit sind
+        keine geplant.
+      </p>
+
+      <h2>Technische Umsetzung</h2>
+      <ul>
+        <li>Verantwortlich für Inhalt und Betrieb: der Diensteanbieter (oben).</li>
+        <li>
+          Realisierung (Design/Umsetzung): Nennung der ausführenden Agentur nur, wenn der Kunde sie im
+          Impressum wünscht — keine Angabe erfinden.
+        </li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

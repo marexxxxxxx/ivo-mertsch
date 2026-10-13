@@ -1,0 +1,79 @@
+---
+/**
+ * Consent-Dialog mit granularer Auswahl (komponenten.md §10.2).
+ * role="dialog", aria-modal, benannter Titel, Fokusfalle und Escape im Client-
+ * Script (src/scripts/consent-client.ts). Der Dialog wird asynchron geoeffnet und
+ * blockiert den LCP nicht.
+ */
+import { CONSENT_COPY } from "../lib/copy";
+---
+
+<div class="pf-consent-dialog" id="pf-consent-dialog" hidden>
+  <div class="pf-consent-dialog__scrim" aria-hidden="true"></div>
+  <div
+    class="pf-consent-dialog__panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="pf-consent-title"
+  >
+    <h2 id="pf-consent-title">{CONSENT_COPY.title}</h2>
+    <p>{CONSENT_COPY.intro}</p>
+
+    <div class="pf-consent-dialog__cats">
+      <div class="pf-consent-cat">
+        <div class="pf-consent-cat__head">
+          <h3 id="pf-cat-essenziell">{CONSENT_COPY.categories.essenziell.title}</h3>
+          <span class="pf-consent-cat__locked">Technisch notwendig — lässt sich nicht abschalten</span>
+        </div>
+        <p id="pf-cat-essenziell-desc">{CONSENT_COPY.categories.essenziell.description}</p>
+      </div>
+
+      <div class="pf-consent-cat">
+        <div class="pf-consent-cat__head">
+          <h3 id="pf-cat-statistik">{CONSENT_COPY.categories.statistik.title}</h3>
+          <label class="pf-consent-switch">
+            <input type="checkbox" data-consent-category="statistik" aria-describedby="pf-cat-statistik-desc" />
+            <span class="pf-consent-switch__track" aria-hidden="true"></span>
+            <span class="pf-consent-switch__thumb" aria-hidden="true"></span>
+            <span class="pf-visually-hidden">Statistik erlauben</span>
+          </label>
+        </div>
+        <p id="pf-cat-statistik-desc">{CONSENT_COPY.categories.statistik.description}</p>
+      </div>
+
+      <div class="pf-consent-cat">
+        <div class="pf-consent-cat__head">
+          <h3 id="pf-cat-externe">{CONSENT_COPY.categories.externe_medien.title}</h3>
+          <label class="pf-consent-switch">
+            <input type="checkbox" data-consent-category="externe_medien" aria-describedby="pf-cat-externe-desc" />
+            <span class="pf-consent-switch__track" aria-hidden="true"></span>
+            <span class="pf-consent-switch__thumb" aria-hidden="true"></span>
+            <span class="pf-visually-hidden">Externe Medien erlauben</span>
+          </label>
+        </div>
+        <p id="pf-cat-externe-desc">{CONSENT_COPY.categories.externe_medien.description}</p>
+      </div>
+    </div>
+
+    <div class="pf-consent-dialog__actions">
+      <button class="pf-btn pf-btn--secondary" type="button" data-consent-action="reject-all">
+        {CONSENT_COPY.onlyNecessary}
+      </button>
+      <button class="pf-btn pf-btn--primary" type="button" data-consent-action="save-selection">
+        {CONSENT_COPY.saveSelection}
+      </button>
+    </div>
+
+    <div>
+      <h3>{CONSENT_COPY.currentTitle}</h3>
+      <p class="pf-consent-dialog__current" data-consent-current></p>
+    </div>
+
+    <p class="pf-consent-dialog__notice">{CONSENT_COPY.storageNotice}</p>
+    <p class="pf-consent-dialog__notice">{CONSENT_COPY.revokeNotice}</p>
+
+    <button class="pf-btn pf-btn--secondary" type="button" data-consent-action="close-settings" data-consent-dialog-close>
+      Schließen
+    </button>
+  </div>
+</div>

@@ -1,0 +1,100 @@
+---
+/**
+ * ReviewSection (komponenten.md §8). Ein Renderer, zwei Zustaende:
+ *  - Inhalt (reviews.length > 0): Liste + Sortierhinweis + Attribution + Stand +
+ *    Google-Pruefhinweis.
+ *  - Leerzustand: sachlicher Satz + optionaler CTA. KEINE Sterne, KEINE
+ *    Attribution, kein erfundener Avatar (ADR §5.4).
+ * Es gibt keinen Code-Pfad, der im Leerzustand ein Sterne-Symbol rendert.
+ */
+import ReviewCard from "./ReviewCard.astro";
+import { visibleReviews, isEmptyDocument, type ReviewsDocument } from "../lib/reviews";
+import { REVIEWS_COPY } from "../lib/copy";
+import { ROUTES } from "../lib/pages";
+
+interface Props {
+  document: ReviewsDocument;
+  /** Ziel des CTA "Jetzt bei Google bewerten" (Laufzeit-Env, sonst leer). */
+  googleReviewUrl?: string | null;
+  /** Auf der eigenen Seite ist die Sektionsueberschrift die Seiten-h1 (IA §14.1). */
+  level?: 1 | 2;
+}
+
+const { document: doc, googleReviewUrl = null, level = 2 } = Astro.props;
+const empty = isEmptyDocument(doc);
+const reviews = visibleReviews(doc, { limit: 6 });
+// CTA-Ziel: expliziter Prop, sonst der Google-Maps-Eintrag aus dem Dokument
+// (nur bei quelle "places_api"). Leer => CTA wird nicht gerendert (ADR §5.4).
+const reviewUrl =
+  (googleReviewUrl ?? "").trim() || doc.ort?.place_url?.trim() || null;
+
+function formatStand(iso: string): string | null {
+  const parsed = new Date(iso);
+  if (Number.isNaN(parsed.getTime())) return null;
+  return parsed.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" });
+}
+
+const stand = empty ? null : formatStand(doc.aktualisiert_am);
+const Heading = (`h${level}`) as "h1" | "h2";
+---
+
+<section class="pf-section" role="region" aria-labelledby="pf-reviews-title">
+  <div class="pf-container">
+    <div class="pf-section-heading">
+      <Heading id="pf-reviews-title">{empty ? REVIEWS_COPY.h1Empty : REVIEWS_COPY.h1Filled}</Heading>
+      {
+        !empty && (
+          <p class="pf-lead">
+            {REVIEWS_COPY.introFilled}
+          </p>
+        )
+      }
+    </div>
+
+    {
+      empty ? (
+        <div class="pf-empty" style="margin-top: var(--pf-space-7)">
+          <p>{REVIEWS_COPY.emptyText}</p>
+          <div class="pf-hero__actions">
+            {reviewUrl ? (
+              <a class="pf-btn pf-btn--primary" href={reviewUrl} target="_blank" rel="noopener noreferrer">
+                {REVIEWS_COPY.ctaReview}
+                <span class="pf-visually-hidden"> (öffnet Google in neuem Tab)</span>
+              </a>
+            ) : (
+              // Ohne Ziel wird der CTA nicht ausgeliefert (kein toter Link). Ist
+              // GOOGLE_REVIEW_URL zur Laufzeit gesetzt, blendet das Client-Script
+              // (src/scripts/reviews-client.ts) ihn nach.
+              <a class="pf-btn pf-btn--primary" href="#" data-google-review-cta hidden>
+                {REVIEWS_COPY.ctaReview}
+                <span class="pf-visually-hidden"> (öffnet Google in neuem Tab)</span>
+              </a>
+            )}
+            <a class="pf-btn pf-btn--secondary" href={`${ROUTES.kontakt.path}#formular`}>
+              {REVIEWS_COPY.ctaContactEmpty}
+            </a>
+          </div>
+        </div>
+      ) : (
+        <div style="margin-top: var(--pf-space-7)">
+          <ul class="pf-reviews__list">
+            {reviews.map((review) => (
+              <ReviewCard review={review} />
+            ))}
+          </ul>
+
+          <div class="pf-reviews__meta">
+            {doc.sortierung_hinweis && <p class="pf-reviews__note">{doc.sortierung_hinweis}</p>}
+            <p class="pf-attribution" translate="no">
+              {REVIEWS_COPY.attribution}
+            </p>
+            {stand && <p class="pf-reviews__note">{REVIEWS_COPY.standPrefix} {stand}</p>}
+            <p class="pf-reviews__note">
+              <strong>{REVIEWS_COPY.googlePrivacyTitle}:</strong> {REVIEWS_COPY.googlePrivacy}
+            </p>
+          </div>
+        </div>
+      )
+    }
+  </div>
+</section>

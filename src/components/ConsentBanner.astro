@@ -1,0 +1,38 @@
+---
+/**
+ * Erstbanner (komponenten.md §10.1).
+ * Nicht-modale Region, die den Inhalt nicht verdeckt; "Alle akzeptieren" und
+ * "Nur notwendige" sind gleich gross, gleich gewichtet, gleiche Ebene (kein Dark
+ * Pattern, ADR §4.4). Sichtbarkeit steuert CSS ueber html[data-pf-consent].
+ */
+import { CONSENT_COPY } from "../lib/copy";
+import { ROUTES } from "../lib/pages";
+---
+
+<section
+  class="pf-consent-banner"
+  id="pf-consent-banner"
+  role="region"
+  aria-label={CONSENT_COPY.title}
+  data-consent-banner
+>
+  <div class="pf-consent-banner__inner">
+    <h2>{CONSENT_COPY.title}</h2>
+    <p>{CONSENT_COPY.intro}</p>
+    <div class="pf-consent-banner__actions">
+      <button class="pf-btn pf-btn--secondary" type="button" data-consent-action="reject-all">
+        {CONSENT_COPY.onlyNecessary}
+      </button>
+      <button class="pf-btn pf-btn--primary" type="button" data-consent-action="accept-all">
+        {CONSENT_COPY.acceptAll}
+      </button>
+      <button class="pf-btn pf-btn--secondary" type="button" data-consent-action="open-settings">
+        {CONSENT_COPY.settings}
+      </button>
+    </div>
+    <div class="pf-consent-banner__links">
+      <a href={ROUTES.datenschutz.path}>Datenschutzerklärung</a>
+      <a href={ROUTES.impressum.path}>Impressum</a>
+    </div>
+  </div>
+</section>

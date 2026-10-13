@@ -1,0 +1,39 @@
+# Abhaengigkeiten und Build-Output werden im Image erzeugt, nicht kopiert.
+node_modules
+dist
+.astro
+.output
+.vercel
+
+# Laufzeit-Cache (Google-Places-Inhalte) niemals ins Image (ADR §5.6).
+.cache
+*.cache.json
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.*
+
+# Git / Tooling
+.git
+.gitignore
+.github
+
+# Tests und Berichte braucht der Build nicht.
+tests
+playwright.config.ts
+vitest.config.ts
+eslint.config.js
+tools
+coverage
+playwright-report
+test-results
+blob-report
+.playwright
+*.log
+.DS_Store
+.idea
+.vscode

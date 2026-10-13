@@ -1,0 +1,60 @@
+---
+import ServiceDetailLayout from "../../components/ServiceDetailLayout.astro";
+import { IMAGES } from "../../lib/images";
+import { ROUTES, type RouteSeo } from "../../lib/pages";
+import { findSchemaNode, type SchemaOrgNode } from "../../lib/content";
+
+export const prerender = true;
+
+const service = findSchemaNode((node) => node["@id"] === "https://ivo-mertsch.de/leistungen/fassaden/#service");
+const breadcrumb = findSchemaNode((node) => node["@id"] === "https://ivo-mertsch.de/leistungen/fassaden/#breadcrumb");
+const schema = [service, breadcrumb].filter((node): node is SchemaOrgNode => node !== null);
+
+const others: RouteSeo[] = [ROUTES.baeder, ROUTES.boeden, ROUTES.innenausbau];
+
+const ways = [
+  { weg: "Neugestaltung ohne Dämmung", wann: "Die Dämmung ist in Ordnung, nur die Oberfläche soll neu.", was: "Der Anstrich/die Oberfläche wird erneuert." },
+  { weg: "Neugestaltung mit Dämmung", wann: "Wärme soll im Haus bleiben; die Fassade bekommt einen Dämmaufbau.", was: "Dämmung und neue Oberfläche in einem Zug." },
+  { weg: "Anstrich im Denkmalschutz", wann: "Das Gebäude steht unter Denkmalschutz; Vorgaben sind einzuhalten.", was: "Abgestimmter Anstrich nach den Vorgaben." },
+];
+---
+
+<ServiceDetailLayout
+  route={ROUTES.fassaden}
+  heroTitle="Neugestaltung mit oder ohne Dämmung — Anstriche im Denkmalschutz aus Schwörstadt."
+  heroLead="Fassaden-Neugestaltung mit oder ohne Dämmung — Anstriche im Denkmalschutz oder für langanhaltend schöne Fassaden."
+  heroImage={IMAGES.foto7.src}
+  heroImageAlt={IMAGES.foto7.alt}
+  primaryCtaLabel="Fassaden-Beratung anfragen"
+  steps={[
+    { title: "Beratung", body: "Wir schauen uns die Situation an und reden darüber, was möglich ist." },
+    { title: "Planung", body: "Sie wissen vorher, was passiert, in welcher Reihenfolge und mit welchen Materialien." },
+    { title: "Abwicklung", body: "Ich führe die Arbeit aus — ein Ansprechpartner bis zur Abnahme." },
+  ]}
+  others={others}
+  schema={schema}
+>
+  <section class="pf-section pf-section--sunken" aria-labelledby="wege">
+    <div class="pf-container">
+      <h2 id="wege">Drei Wege, eine Fassade zu erneuern</h2>
+      <div class="pf-grid--services pf-mt-7">
+        {
+          ways.map((way) => (
+            <article class="pf-card">
+              <h3>{way.weg}</h3>
+              <p><strong>Wann:</strong> {way.wann}</p>
+              <p><strong>Was passiert:</strong> {way.was}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <h2 class="pf-mt-9" id="vorher">Was Sie vorher wissen sollten</h2>
+      <ul class="pf-list">
+        <li>Ob gedämmt werden soll, hängt vom Zustand des Untergrunds und vom Ziel ab — das klärt die Bestandsaufnahme vor Ort.</li>
+        <li>Bei Denkmalschutz ist die Abstimmung mit der Behörde Teil der Planung.</li>
+        <li>Die Entscheidung mit/ohne Dämmung sollte vor Beginn der Arbeiten fallen.</li>
+      </ul>
+    </div>
+  </section>
+</ServiceDetailLayout>

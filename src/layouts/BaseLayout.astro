@@ -1,0 +1,96 @@
+---
+/**
+ * BaseLayout — Landmarks (banner/main/contentinfo), genau ein h1 je Seite,
+ * Consent-Banner/Dialog, Widerruf-Zugang, SEO-Meta und JSON-LD.
+ *
+ * Wichtig (Review-Blocker): In dieser Komponente wird KEIN `process.env` gelesen.
+ * Alle Seiten, die sie nutzen, sind `prerender = true`; Laufzeitwerte kommen nur
+ * ueber die on-demand-API-Routen.
+ */
+import "../styles/global.css";
+import SkipLink from "../components/SkipLink.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import Footer from "../components/Footer.astro";
+import ConsentBanner from "../components/ConsentBanner.astro";
+import ConsentDialog from "../components/ConsentDialog.astro";
+import ConsentRevoke from "../components/ConsentRevoke.astro";
+import { getSite } from "../lib/content";
+import { absoluteUrl, type RouteSeo } from "../lib/pages";
+
+interface Props {
+  seo: RouteSeo;
+  /** Zusaetzliche JSON-LD-Knoten (aus content/schema-org.jsonld). */
+  schema?: unknown[];
+  noindex?: boolean;
+}
+
+const { seo, schema = [], noindex = false } = Astro.props;
+const site = getSite();
+const canonical = absoluteUrl(seo.path);
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content={noindex ? "noindex, follow" : "index, follow"} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.firma.anzeige_name} />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.description} />
+    <meta property="og:url" content={canonical} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    {
+      schema.map((node) => (
+        <script type="application/ld+json" set:html={JSON.stringify(node)} />
+      ))
+    }
+
+    <!--
+      Inline-Consent-Snippet (<= 1 KB, ADR §7.2). Es setzt VOR dem ersten Paint
+      den Consent-Zustand am <html>, damit der Banner ohne Flackern erscheint und
+      kein Layoutshift entsteht. Es laedt selbst nichts nach.
+    -->
+    <script is:inline>
+      (function () {
+        const key = "pixelforge.consent.v1";
+        let record = null;
+        try {
+          record = JSON.parse(localStorage.getItem(key) || "null");
+        } catch {
+          record = null;
+        }
+        const decided =
+          record &&
+          record.version === 1 &&
+          typeof record.entscheidung === "string" &&
+          record.entscheidung !== "unbekannt";
+        document.documentElement.setAttribute("data-pf-consent", decided ? "decided" : "unbekannt");
+      })();
+    </script>
+  </head>
+  <body>
+    <SkipLink />
+    <SiteHeader currentPath={seo.path} site={site} />
+    <main id="hauptinhalt" tabindex="-1">
+      <slot />
+    </main>
+    <Footer site={site} />
+
+    <ConsentBanner />
+    <ConsentDialog />
+    <ConsentRevoke />
+
+    <script>
+      import "../scripts/consent-client";
+    </script>
+  </body>
+</html>

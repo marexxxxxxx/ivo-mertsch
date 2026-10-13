@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/Button.astro";
+import { ROUTES } from "../lib/pages";
+import { EMPTY_STATES } from "../lib/copy";
+
+export const prerender = true;
+---
+
+<BaseLayout seo={{ ...ROUTES.home, title: "Seite nicht gefunden | Ivo Mertsch", description: EMPTY_STATES.notFound }} noindex>
+  <section class="pf-section">
+    <div class="pf-container pf-center">
+      <p class="pf-eyebrow">404</p>
+      <h1>{EMPTY_STATES.notFound}</h1>
+      <Button href={ROUTES.home.path} variant="primary">{EMPTY_STATES.notFoundCta}</Button>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,54 @@
+---
+import ServiceDetailLayout from "../../components/ServiceDetailLayout.astro";
+import { IMAGES } from "../../lib/images";
+import { ROUTES, type RouteSeo } from "../../lib/pages";
+import { findSchemaNode, type SchemaOrgNode } from "../../lib/content";
+
+export const prerender = true;
+
+const service = findSchemaNode((node) => node["@id"] === "https://ivo-mertsch.de/leistungen/fugenlose-b%C3%A4der/#service");
+const breadcrumb = findSchemaNode((node) => node["@id"] === "https://ivo-mertsch.de/leistungen/fugenlose-b%C3%A4der/#breadcrumb");
+const schema = [service, breadcrumb].filter((node): node is SchemaOrgNode => node !== null);
+
+const others: RouteSeo[] = [ROUTES.boeden, ROUTES.innenausbau, ROUTES.fassaden];
+---
+
+<ServiceDetailLayout
+  route={ROUTES.baeder}
+  heroTitle="Ein Bad ohne Fugen — und ohne Stellen, an denen sich Schmutz festsetzt."
+  heroLead="Fugenlose Bäder aus 2K-Beschichtung für Nassbereiche — an Wänden und Böden. Beratung, Planung und Ausführung aus einer Hand."
+  heroImage={IMAGES.foto8.src}
+  heroImageAlt={IMAGES.foto8.alt}
+  primaryCtaLabel="Bad-Beratung anfragen"
+  steps={[
+    { title: "Beratung", body: "Wir schauen uns die Situation an und reden darüber, was möglich ist." },
+    { title: "Planung", body: "Sie wissen vorher, was passiert, in welcher Reihenfolge und mit welchen Materialien." },
+    { title: "Abwicklung", body: "Ich führe die Arbeit aus — ein Ansprechpartner bis zur Abnahme." },
+  ]}
+  others={others}
+  schema={schema}
+>
+  <section class="pf-section pf-section--sunken" aria-labelledby="was-ist-das">
+    <div class="pf-container">
+      <h2 id="was-ist-das">Was eine fugenlose Fläche ausmacht</h2>
+      <p>
+        Bei einer fugenlosen Beschichtung entstehen an Wänden und Böden keine Fugenlinien. Statt vieler
+        Einzelflächen mit Silikon- oder Zementfugen bekommen Sie eine durchgehende Oberfläche — dort, wo
+        sich sonst Kalk, Schimmel und Schmutz in den Fugen sammeln.
+      </p>
+
+      <h2 class="pf-mt-9" id="wofuer">Wo sie eingesetzt wird</h2>
+      <ul class="pf-list">
+        <li><strong>Nassbereiche</strong> — Dusche, Waschbereich, Boden und Wand im Badezimmer.</li>
+        <li><strong>Böden</strong> — als fugenlose Bodenfläche im Bad.</li>
+      </ul>
+
+      <h2 class="pf-mt-9" id="vorher">Was Sie vorher wissen sollten</h2>
+      <ul class="pf-list">
+        <li>Der Untergrund muss tragfähig vorbereitet sein — die Beschichtung ist die sichtbare letzte Schicht, nicht der Ausgleich von Bauschäden.</li>
+        <li>Vor Beginn prüfen wir den vorhandenen Aufbau und besprechen, ob eine Beschichtung oder ein Aufbau mit Untergrund sinnvoll ist.</li>
+        <li>Farbe und Oberfläche (matt, seidenglänzend, glänzend) werden vorab festgelegt.</li>
+      </ul>
+    </div>
+  </section>
+</ServiceDetailLayout>

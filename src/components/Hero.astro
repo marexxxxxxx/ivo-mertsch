@@ -1,0 +1,48 @@
+---
+import { Picture } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  /** LCP-Bild: eager + fetchpriority high (komponenten.md §4). */
+  priority?: boolean;
+}
+
+const { eyebrow, title, lead, image, imageAlt, priority = false } = Astro.props;
+---
+
+<section class="pf-hero">
+  <div class="pf-container pf-hero__grid">
+    <div class="pf-hero__body">
+      {
+        eyebrow && (
+          <p class="pf-eyebrow" translate="no">
+            {eyebrow}
+          </p>
+        )
+      }
+      <h1>{title}</h1>
+      <p class="pf-lead">{lead}</p>
+      <div class="pf-hero__actions">
+        <slot />
+      </div>
+    </div>
+    <div class="pf-hero__media">
+      <Picture
+        src={image}
+        alt={imageAlt}
+        formats={["avif", "webp"]}
+        fallbackFormat="webp"
+        widths={[400, 800, 1200]}
+        sizes="(min-width: 768px) 50vw, 100vw"
+        loading={priority ? "eager" : "lazy"}
+        fetchpriority={priority ? "high" : undefined}
+        decoding={priority ? "sync" : "async"}
+      />
+    </div>
+  </div>
+</section>

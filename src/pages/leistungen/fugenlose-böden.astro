@@ -1,0 +1,69 @@
+---
+import ServiceDetailLayout from "../../components/ServiceDetailLayout.astro";
+import { IMAGES } from "../../lib/images";
+import { ROUTES, type RouteSeo } from "../../lib/pages";
+import { findSchemaNode, type SchemaOrgNode } from "../../lib/content";
+
+export const prerender = true;
+
+const service = findSchemaNode((node) => node["@id"] === "https://ivo-mertsch.de/leistungen/fugenlose-b%C3%B6den/#service");
+const breadcrumb = findSchemaNode((node) => node["@id"] === "https://ivo-mertsch.de/leistungen/fugenlose-b%C3%B6den/#breadcrumb");
+const schema = [service, breadcrumb].filter((node): node is SchemaOrgNode => node !== null);
+
+const others: RouteSeo[] = [ROUTES.baeder, ROUTES.innenausbau, ROUTES.fassaden];
+
+const finishes = [
+  { key: "matt", wirkung: "zurückhaltend, unempfindlich im Alltag", passt: "Wohnräumen, Fluren, Räumen mit viel Tageslicht" },
+  { key: "seidenglänzend", wirkung: "leichter Glanz, lebendige Oberfläche", passt: "Wohn- und Essbereichen" },
+  { key: "glänzend", wirkung: "kräftige Reflexion, sehr glatte Optik", passt: "repräsentativen Räumen, wo der Glanz gewünscht ist" },
+];
+---
+
+<ServiceDetailLayout
+  route={ROUTES.boeden}
+  heroTitle="Matt, seidenglänzend oder glänzend — drei Oberflächen, ein fugenloses Ergebnis."
+  heroLead="Fugenlose Böden in matt, seidenglänzend oder glänzend — für Innenräume, Garagen, Balkone und den Außenbereich."
+  heroImage={IMAGES.foto11.src}
+  heroImageAlt={IMAGES.foto11.alt}
+  primaryCtaLabel="Boden-Beratung anfragen"
+  steps={[
+    { title: "Beratung", body: "Wir schauen uns die Situation an und reden darüber, was möglich ist." },
+    { title: "Planung", body: "Sie wissen vorher, was passiert, in welcher Reihenfolge und mit welchen Materialien." },
+    { title: "Abwicklung", body: "Ich führe die Arbeit aus — ein Ansprechpartner bis zur Abnahme." },
+  ]}
+  others={others}
+  schema={schema}
+>
+  <section class="pf-section pf-section--sunken" aria-labelledby="oberflaechen">
+    <div class="pf-container">
+      <h2 id="oberflaechen">Drei Oberflächen zur Auswahl</h2>
+      <div class="pf-grid--services pf-mt-7">
+        {
+          finishes.map((finish) => (
+            <article class="pf-card">
+              <h3>{finish.key}</h3>
+              <div class="pf-finish" aria-hidden="true" />
+              <p><strong>Wirkung:</strong> {finish.wirkung}</p>
+              <p><strong>Passt zu:</strong> {finish.passt}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <h2 class="pf-mt-9" id="wo">Wo sie eingesetzt werden</h2>
+      <ul class="pf-list">
+        <li><strong>Innenräume</strong> — Böden im gesamten Wohn- und Nutzbereich.</li>
+        <li><strong>Garagen</strong> und <strong>werkstattnahe Flächen</strong> — dort, wo ein robuster Boden gebraucht wird.</li>
+        <li><strong>Balkone</strong> — Außenfläche am Haus.</li>
+        <li><strong>Außenbereich</strong> — Flächen mit Witterungseinfluss.</li>
+      </ul>
+
+      <h2 class="pf-mt-9" id="vorher">Was Sie vorher wissen sollten</h2>
+      <ul class="pf-list">
+        <li>Der Untergrund muss rissfrei und tragfähig vorbereitet sein.</li>
+        <li>Für außenliegende Flächen braucht es ein abgestimmtes System, damit Nässe und Frost der Fläche nicht zusetzen.</li>
+        <li>Der Glanzgrad wird vor Beginn festgelegt — er lässt sich hinterher nicht korrigieren.</li>
+      </ul>
+    </div>
+  </section>
+</ServiceDetailLayout>

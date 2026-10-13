@@ -1,0 +1,141 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import CtaBand from "../components/CtaBand.astro";
+import Button from "../components/Button.astro";
+import { IMAGES } from "../lib/images";
+import { ROUTES } from "../lib/pages";
+import { findSchemaNode, getSite, hasType, type SchemaOrgNode } from "../lib/content";
+import { CTA_COPY } from "../lib/copy";
+
+export const prerender = true;
+
+const site = getSite();
+const website = findSchemaNode((node) => hasType(node, "WebSite"));
+const business = findSchemaNode((node) => hasType(node, "LocalBusiness"));
+const schema = [website, business].filter((node): node is SchemaOrgNode => node !== null);
+
+const services = [
+  {
+    route: ROUTES.baeder,
+    title: "Fugenlose Bäder",
+    body: "Die 2K-Beschichtung für Wände und Böden in Nassbereichen — fugenlos und hygienisch.",
+    linkLabel: "Zu den fugenlosen Bädern",
+    image: IMAGES.foto8,
+    wide: true,
+  },
+  {
+    route: ROUTES.boeden,
+    title: "Fugenlose Böden",
+    body: "Matt, seidenglänzend oder glänzend — für Innenräume, Garagen, Balkone und den Außenbereich.",
+    linkLabel: "Zu fugenlosen Böden",
+    image: IMAGES.foto11,
+    wide: false,
+  },
+  {
+    route: ROUTES.innenausbau,
+    title: "Innenausbau",
+    body: "Renovierung, Sanierung, Neubau oder Modernisierung — ein Ansprechpartner für alle Bereiche.",
+    linkLabel: "Zum Innenausbau",
+    image: IMAGES.foto6,
+    wide: false,
+  },
+  {
+    route: ROUTES.fassaden,
+    title: "Fassaden",
+    body: "Neugestaltung mit oder ohne Dämmung, Anstriche im Denkmalschutz.",
+    linkLabel: "Zur Fassadengestaltung",
+    image: IMAGES.foto7,
+    wide: false,
+  },
+];
+---
+
+<BaseLayout seo={ROUTES.home} schema={schema}>
+  <Hero
+    eyebrow={`${site.adresse.ort} (${site.adresse.region})`}
+    title="Ein Bad ohne Fugen — und ohne Stellen, an denen sich Schmutz festsetzt."
+    lead="Ivo Mertsch — Handwerk aus Leidenschaft aus Schwörstadt. 2K-Beschichtung für fugenlose Bäder, fugenlose Böden, Innenausbau und Fassadengestaltung. Beratung, Planung und Abwicklung kommen bei mir aus einer Hand."
+    image={IMAGES.foto3.src}
+    imageAlt={IMAGES.foto3.alt}
+    priority
+  >
+    <Button href={`${ROUTES.kontakt.path}#formular`} variant="primary">{CTA_COPY.primary}</Button>
+    <Button href={`tel:${site.kontakt.telefon_tel}`} variant="secondary">
+      Anrufen: <span class="pf-ways__value">{site.kontakt.telefon_anzeige}</span>
+    </Button>
+    <Button href={site.kontakt.whatsapp_url} variant="tertiary" external>WhatsApp schreiben</Button>
+  </Hero>
+
+  <section class="pf-section" aria-labelledby="leistungen-titel">
+    <div class="pf-container">
+      <SectionHeading
+        title="Was ich für Sie mache"
+        lead="Vier Leistungen, ein Ansprechpartner — so läuft Ihr Projekt nicht durch vier Kalender."
+        id="leistungen-titel"
+      />
+      <div class="pf-grid--services pf-mt-7">
+        {
+          services.map((service) => (
+            <ServiceCard
+              title={service.title}
+              body={service.body}
+              href={service.route.path}
+              linkLabel={service.linkLabel}
+              image={service.image.src}
+              imageAlt={service.image.alt}
+              wide={service.wide}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="pf-section pf-section--sunken" aria-labelledby="ablauf-titel">
+    <div class="pf-container">
+      <SectionHeading
+        title="So arbeite ich"
+        lead="Beratung, Planung, Abwicklung — aus dem Originalsatz des Auftritts, in drei Schritte übersetzt."
+        id="ablauf-titel"
+      />
+      <ol class="pf-steps pf-mt-7">
+        <li>
+          <h3>Beratung</h3>
+          <p>Wir schauen uns die Situation an und reden darüber, was möglich ist.</p>
+        </li>
+        <li>
+          <h3>Planung</h3>
+          <p>Sie wissen vorher, was passiert, in welcher Reihenfolge und mit welchen Materialien.</p>
+        </li>
+        <li>
+          <h3>Abwicklung</h3>
+          <p>Ich führe die Arbeit aus — ein Ansprechpartner bis zur Abnahme.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="pf-section" aria-labelledby="bewertungen-teaser">
+    <div class="pf-container">
+      <SectionHeading
+        title="Kundenstimmen und Erfahrungen"
+        lead={`Unter „Bewertungen“ lesen Sie, was andere sagen — oder wie Sie selbst eine Bewertung abgeben.`}
+        id="bewertungen-teaser"
+      />
+      <div class="pf-hero__actions pf-mt-7">
+        <Button href={ROUTES.bewertungen.path} variant="secondary">Zu den Bewertungen</Button>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand heading={CTA_COPY.ctaBandHeading}>
+    <Button href={`${ROUTES.kontakt.path}#formular`} variant="primary">{CTA_COPY.primary}</Button>
+    <Button href={`tel:${site.kontakt.telefon_tel}`} variant="secondary">
+      Anrufen: <span class="pf-ways__value">{site.kontakt.telefon_anzeige}</span>
+    </Button>
+    <Button href={site.kontakt.whatsapp_url} variant="tertiary" external>WhatsApp schreiben</Button>
+  </CtaBand>
+</BaseLayout>

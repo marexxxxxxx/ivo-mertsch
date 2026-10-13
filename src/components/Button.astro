@@ -1,0 +1,67 @@
+---
+/**
+ * Button — genau eine Aktion je Button.
+ * Varianten und Zustaende: docs/design/komponenten.md §12.
+ * `<a>` fuer Navigation, `<button>` fuer Aktionen — nie umgekehrt.
+ */
+interface Props {
+  href?: string;
+  variant?: "primary" | "secondary" | "tertiary";
+  type?: "button" | "submit";
+  block?: boolean;
+  external?: boolean;
+  id?: string;
+  label?: string;
+  disabled?: boolean;
+  name?: string;
+  value?: string;
+  dataSubmit?: boolean;
+}
+
+const {
+  href,
+  variant = "primary",
+  type = "button",
+  block = false,
+  external = false,
+  id,
+  label,
+  disabled = false,
+  name,
+  value,
+  dataSubmit = false,
+} = Astro.props;
+
+const classes = ["pf-btn", `pf-btn--${variant}`, block ? "pf-btn--block" : null]
+  .filter(Boolean)
+  .join(" ");
+---
+
+{
+  href ? (
+    <a
+      class={classes}
+      href={href}
+      id={id}
+      aria-label={label}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+    >
+      <slot />
+      {external && <span class="pf-visually-hidden">(öffnet einen externen Dienst)</span>}
+    </a>
+  ) : (
+    <button
+      class={classes}
+      type={type}
+      id={id}
+      name={name}
+      value={value}
+      aria-label={label}
+      disabled={disabled}
+      data-contact-submit={dataSubmit ? "" : undefined}
+    >
+      <slot />
+    </button>
+  )
+}

@@ -1,0 +1,18 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  id?: string;
+  level?: 2 | 3;
+}
+
+const { eyebrow, title, lead, id, level = 2 } = Astro.props;
+const Heading = `h${level}` as const;
+---
+
+<div class="pf-section-heading">
+  {eyebrow && <p class="pf-eyebrow">{eyebrow}</p>}
+  <Heading id={id}>{title}</Heading>
+  {lead && <p class="pf-lead">{lead}</p>}
+</div>

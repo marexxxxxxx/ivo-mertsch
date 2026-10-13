@@ -1,0 +1,105 @@
+---
+/**
+ * ServiceDetailLayout — identische Struktur aller vier Leistungsdetailseiten
+ * (komponenten.md §6): Breadcrumb, Hero, Seiteninhalt (Slot), "So läuft es ab",
+ * CTA-Band, Teaser auf die anderen Leistungen. Wiederkehrende Abschnittskoepfe
+ * kommen ueber SectionHeading, damit die Rhythmik ohne Linien identisch bleibt.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumb from "./Breadcrumb.astro";
+import Hero from "./Hero.astro";
+import SectionHeading from "./SectionHeading.astro";
+import CtaBand from "./CtaBand.astro";
+import Button from "./Button.astro";
+import { serviceCrumbs, serviceLabel, type RouteSeo } from "../lib/pages";
+import { getSite } from "../lib/content";
+import { CTA_COPY } from "../lib/copy";
+import type { ImageMetadata } from "astro";
+
+interface Step {
+  title: string;
+  body: string;
+}
+
+interface Props {
+  route: RouteSeo;
+  heroTitle: string;
+  heroLead: string;
+  heroImage: ImageMetadata;
+  heroImageAlt: string;
+  primaryCtaLabel: string;
+  steps: Step[];
+  others: RouteSeo[];
+  /** JSON-LD-Knoten (Service + BreadcrumbList). */
+  schema?: unknown[];
+}
+
+const {
+  route,
+  heroTitle,
+  heroLead,
+  heroImage,
+  heroImageAlt,
+  primaryCtaLabel,
+  steps,
+  others,
+  schema = [],
+} = Astro.props;
+
+const site = getSite();
+const crumbs = serviceCrumbs(route);
+---
+
+<BaseLayout seo={route} schema={schema}>
+  <div class="pf-container">
+    <Breadcrumb items={crumbs} />
+  </div>
+
+  <Hero eyebrow={serviceLabel(route.id)} title={heroTitle} lead={heroLead} image={heroImage} imageAlt={heroImageAlt} priority>
+    <Button href={`/kontakt/#formular`} variant="primary">{primaryCtaLabel}</Button>
+    <Button href={`tel:${site.kontakt.telefon_tel}`} variant="secondary">
+      Anrufen: <span class="pf-ways__value">{site.kontakt.telefon_anzeige}</span>
+    </Button>
+    <Button href={site.kontakt.whatsapp_url} variant="tertiary" external>WhatsApp schreiben</Button>
+  </Hero>
+
+  <slot />
+
+  <section class="pf-section pf-section--sunken" aria-labelledby="ablauf">
+    <div class="pf-container">
+      <SectionHeading title="So läuft es ab" id="ablauf" />
+      <ol class="pf-steps pf-mt-7">
+        {
+          steps.map((step) => (
+            <li>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="pf-section" aria-labelledby="andere-leistungen">
+    <div class="pf-container">
+      <SectionHeading title="Passt zusammen mit" id="andere-leistungen" />
+      <ul class="pf-list pf-mt-7">
+        {
+          others.map((other) => (
+            <li>
+              <a href={other.path}>{serviceLabel(other.id)}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand heading="Projekt vor? Ich höre zu und sage Ihnen, was möglich ist.">
+    <Button href="/kontakt/#formular" variant="primary">{CTA_COPY.primary}</Button>
+    <Button href={`tel:${site.kontakt.telefon_tel}`} variant="secondary">
+      Anrufen: <span class="pf-ways__value">{site.kontakt.telefon_anzeige}</span>
+    </Button>
+  </CtaBand>
+</BaseLayout>

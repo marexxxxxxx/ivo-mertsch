@@ -1,0 +1,202 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/img/logo_ivo.jpeg";
+import { NAV_LEISTUNGEN, PRIMARY_NAV, ROUTES, serviceLabel } from "../lib/pages";
+import type { SiteConfig } from "../lib/content";
+
+interface Props {
+  currentPath: string;
+  site: SiteConfig;
+}
+
+const { currentPath, site } = Astro.props;
+
+function isCurrent(href: string): boolean {
+  if (href === ROUTES.home.path) return currentPath === ROUTES.home.path;
+  return currentPath === href || currentPath.startsWith(href);
+}
+
+const navId = "pf-nav-drawer";
+---
+
+<header class="pf-header" data-header>
+  <div class="pf-container pf-header__inner">
+    <a class="pf-header__brand" href={ROUTES.home.path} aria-label={`${site.firma.anzeige_name} — Startseite`}>
+      <Image src={logo} alt="" width={40} height={40} loading="eager" decoding="async" />
+      <span>{site.firma.anzeige_name}</span>
+    </a>
+
+    <nav class="pf-header__nav" aria-label="Hauptnavigation">
+      <ul class="pf-nav">
+        {
+          PRIMARY_NAV.map((item) =>
+            item.children ? (
+              <li class="pf-nav__sub">
+                <button
+                  class="pf-nav__link"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="pf-nav-leistungen"
+                  data-nav-submenu
+                >
+                  {item.label}
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <ul class="pf-nav__panel" id="pf-nav-leistungen" hidden>
+                  <li>
+                    <a href={ROUTES.leistungen.path}>Alle Leistungen</a>
+                  </li>
+                  {item.children.map((child) => (
+                    <li><a href={child.href}>{child.label}</a></li>
+                  ))}
+                </ul>
+              </li>
+            ) : (
+              <li>
+                <a class="pf-nav__link" href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>
+                  {item.label}
+                </a>
+              </li>
+            ),
+          )
+        }
+      </ul>
+    </nav>
+
+    <div class="pf-header__actions">
+      <a class="pf-btn pf-btn--secondary pf-header__phone" href={`tel:${site.kontakt.telefon_tel}`}>
+        <span class="pf-visually-hidden">Anrufen: </span>
+        <span class="pf-ways__value">{site.kontakt.telefon_anzeige}</span>
+      </a>
+      <button
+        class="pf-btn pf-btn--secondary pf-menu-btn"
+        type="button"
+        aria-expanded="false"
+        aria-controls={navId}
+        data-nav-open
+      >
+        <span aria-hidden="true">☰</span>
+        <span class="pf-visually-hidden">Menü</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="pf-drawer" id={navId} data-nav-drawer hidden>
+  <button class="pf-drawer__scrim" type="button" data-nav-close tabindex="-1" aria-hidden="true"></button>
+  <div class="pf-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="pf-nav-title">
+    <h2 id="pf-nav-title">Navigation</h2>
+    <nav aria-label="Hauptnavigation (mobil)">
+      <ul class="pf-drawer__list">
+        {NAV_LEISTUNGEN.map((child) => (
+          <li><a href={child.path}>{serviceLabel(child.id)}</a></li>
+        ))}
+        <li><a href={ROUTES.leistungen.path}>Alle Leistungen</a></li>
+        <li><a href={ROUTES.ueberUns.path}>Über uns</a></li>
+        <li><a href={ROUTES.bewertungen.path}>Bewertungen</a></li>
+        <li><a href={ROUTES.kontakt.path}>Kontakt</a></li>
+      </ul>
+    </nav>
+    <div class="pf-hero__actions">
+      <a class="pf-btn pf-btn--primary" href={ROUTES.kontakt.path}>Beratung anfragen</a>
+      <a class="pf-btn pf-btn--secondary" href={`tel:${site.kontakt.telefon_tel}`}>
+        Anrufen: <span class="pf-ways__value">{site.kontakt.telefon_anzeige}</span>
+      </a>
+      <a class="pf-btn pf-btn--tertiary" href={site.kontakt.whatsapp_url} target="_blank" rel="noopener noreferrer">
+        WhatsApp schreiben
+        <span class="pf-visually-hidden">(öffnet einen externen Dienst)</span>
+      </a>
+    </div>
+    <button class="pf-btn pf-btn--secondary" type="button" data-nav-close>Schließen</button>
+  </div>
+</div>
+
+<script>
+  // Header-Schatten beim Scrollen + Drawer + Desktop-Untermenue.
+  const header = document.querySelector<HTMLElement>("[data-header]");
+  if (header) {
+    const onScroll = () => header.setAttribute("data-scrolled", String(window.scrollY > 4));
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+
+  const drawer = document.querySelector<HTMLElement>("[data-nav-drawer]");
+  const openBtn = document.querySelector<HTMLButtonElement>("[data-nav-open]");
+  const closeBtns = Array.from(document.querySelectorAll<HTMLElement>("[data-nav-close]"));
+  let lastFocused: HTMLElement | null = null;
+
+  function focusable(root: HTMLElement): HTMLElement[] {
+    return Array.from(
+      root.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'),
+    ).filter((el) => el.getAttribute("aria-hidden") !== "true");
+  }
+
+  function openDrawer(): void {
+    if (!drawer || !openBtn) return;
+    lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    drawer.hidden = false;
+    openBtn.setAttribute("aria-expanded", "true");
+    document.documentElement.style.overflow = "hidden";
+    focusable(drawer)[0]?.focus();
+  }
+
+  function closeDrawer(): void {
+    if (!drawer || !openBtn) return;
+    drawer.hidden = true;
+    openBtn.setAttribute("aria-expanded", "false");
+    document.documentElement.style.overflow = "";
+    lastFocused?.focus();
+  }
+
+  openBtn?.addEventListener("click", openDrawer);
+  for (const btn of closeBtns) btn.addEventListener("click", closeDrawer);
+
+  document.addEventListener("keydown", (event) => {
+    if (!drawer || drawer.hidden) return;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeDrawer();
+      return;
+    }
+    if (event.key !== "Tab") return;
+    const items = focusable(drawer);
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (!first || !last) return;
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+
+  // Desktop-Untermenue als Disclosure-Muster (nicht nur mit der Maus erreichbar).
+  const submenuTriggers = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-nav-submenu]"));
+  for (const trigger of submenuTriggers) {
+    const panelId = trigger.getAttribute("aria-controls");
+    const panel = panelId ? document.getElementById(panelId) : null;
+    if (!panel) continue;
+    trigger.addEventListener("click", () => {
+      const expanded = trigger.getAttribute("aria-expanded") === "true";
+      trigger.setAttribute("aria-expanded", String(!expanded));
+      panel.hidden = expanded;
+    });
+    document.addEventListener("click", (event) => {
+      if (panel.hidden) return;
+      const target = event.target as Node;
+      if (!trigger.contains(target) && !panel.contains(target)) {
+        trigger.setAttribute("aria-expanded", "false");
+        panel.hidden = true;
+      }
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !panel.hidden) {
+        trigger.setAttribute("aria-expanded", "false");
+        panel.hidden = true;
+        trigger.focus();
+      }
+    });
+  }
+</script>

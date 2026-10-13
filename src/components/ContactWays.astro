@@ -1,0 +1,49 @@
+---
+/** ContactWays (komponenten.md §9.1) — jeder Weg mit Icon UND Text UND Wert. */
+import { CONTACT_COPY } from "../lib/copy";
+import type { SiteConfig } from "../lib/content";
+
+interface Props {
+  site: SiteConfig;
+}
+
+const { site } = Astro.props;
+---
+
+<ul class="pf-ways">
+  <li>
+    <a href={`tel:${site.kontakt.telefon_tel}`}>
+      <span class="pf-ways__icon" aria-hidden="true">☎</span>
+      <span>{CONTACT_COPY.callLabel}: <span class="pf-ways__value">{site.kontakt.telefon_anzeige}</span></span>
+    </a>
+  </li>
+  <li>
+    <a href={site.kontakt.whatsapp_url} target="_blank" rel="noopener noreferrer">
+      <span class="pf-ways__icon" aria-hidden="true">▷</span>
+      <span>
+        {CONTACT_COPY.whatsapp}
+        <span class="pf-visually-hidden"> (öffnet einen externen Dienst)</span>
+      </span>
+    </a>
+  </li>
+  <li>
+    <a href={`mailto:${site.kontakt.email}`}>
+      <span class="pf-ways__icon" aria-hidden="true">✉</span>
+      <span>
+        {CONTACT_COPY.email}
+        <span class="pf-visually-hidden">
+          : {site.kontakt.email}
+        </span>
+      </span>
+    </a>
+  </li>
+  <li>
+    <a href={site.instagram.url} target="_blank" rel="noopener noreferrer">
+      <span class="pf-ways__icon" aria-hidden="true">◎</span>
+      <span>
+        Instagram
+        <span class="pf-visually-hidden"> (öffnet einen externen Dienst)</span>
+      </span>
+    </a>
+  </li>
+</ul>

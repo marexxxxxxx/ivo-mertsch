@@ -1,0 +1,51 @@
+---
+import ServiceDetailLayout from "../../components/ServiceDetailLayout.astro";
+import { IMAGES } from "../../lib/images";
+import { ROUTES, type RouteSeo } from "../../lib/pages";
+import { findSchemaNode, type SchemaOrgNode } from "../../lib/content";
+
+export const prerender = true;
+
+const service = findSchemaNode((node) => node["@id"] === "https://ivo-mertsch.de/leistungen/innenausbau/#service");
+const breadcrumb = findSchemaNode((node) => node["@id"] === "https://ivo-mertsch.de/leistungen/innenausbau/#breadcrumb");
+const schema = [service, breadcrumb].filter((node): node is SchemaOrgNode => node !== null);
+
+const others: RouteSeo[] = [ROUTES.baeder, ROUTES.boeden, ROUTES.fassaden];
+---
+
+<ServiceDetailLayout
+  route={ROUTES.innenausbau}
+  heroTitle="Ein Vorhaben, ein Ansprechpartner — statt vier Gewerken und vier Terminen."
+  heroLead="Renovierung, Sanierung, Neubau oder Modernisierung — für alle Bereiche. Von der Bestandsaufnahme über die Planung bis zur Ausführung."
+  heroImage={IMAGES.foto6.src}
+  heroImageAlt={IMAGES.foto6.alt}
+  primaryCtaLabel="Projekt anfragen"
+  steps={[
+    { title: "Bestandsaufnahme", body: "Wir sehen uns die Situation an." },
+    { title: "Planung", body: "Sie wissen vorher, was passiert, in welcher Reihenfolge und mit welchen Materialien." },
+    { title: "Ausführung", body: "Ein Ansprechpartner bis zur Abnahme." },
+  ]}
+  others={others}
+  schema={schema}
+>
+  <section class="pf-section pf-section--sunken" aria-labelledby="was">
+    <div class="pf-container">
+      <h2 id="was">Was Innenausbau hier bedeutet</h2>
+      <p>
+        Egal ob Renovierung, Sanierung, Neubau oder Modernisierung — die Lösung für alle Bereiche.
+        In klare Handlungen übersetzt:
+      </p>
+      <ul class="pf-list pf-mt-7">
+        <li><strong>Renovierung</strong> — ein bestehendes Zimmer oder eine Wohnung neu aufbauen, ohne die Struktur zu verändern.</li>
+        <li><strong>Sanierung</strong> — Schäden und Altbestand behandeln, bevor neu aufgebaut wird.</li>
+        <li><strong>Neubau</strong> — Innenausbau im Rohbau oder Neubau.</li>
+        <li><strong>Modernisierung</strong> — Bestehendes auf den heutigen Stand bringen.</li>
+      </ul>
+
+      <h2 class="pf-mt-9" id="galerie-titel">Material und Räume</h2>
+      <p class="pf-lead">
+        Die folgenden Aufnahmen zeigen Räume und Materialien, keine namentlich zugeordneten Projekte.
+      </p>
+    </div>
+  </section>
+</ServiceDetailLayout>

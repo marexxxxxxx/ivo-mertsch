@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import ContactWays from "../components/ContactWays.astro";
+import ContactForm from "../components/ContactForm.astro";
+import Button from "../components/Button.astro";
+import { ROUTES } from "../lib/pages";
+import { findSchemaNode, getSite, type SchemaOrgNode } from "../lib/content";
+import { CONTACT_COPY } from "../lib/copy";
+
+export const prerender = true;
+
+const site = getSite();
+const breadcrumb = findSchemaNode((node) => node["@id"] === "https://ivo-mertsch.de/kontakt/#breadcrumb");
+const schema = [breadcrumb].filter((node): node is SchemaOrgNode => node !== null);
+---
+
+<BaseLayout seo={ROUTES.kontakt} schema={schema}>
+  <div class="pf-container">
+    <Breadcrumb items={[{ label: "Start", href: ROUTES.home.path }, { label: "Kontakt", href: ROUTES.kontakt.path }]} />
+  </div>
+
+  <section class="pf-section">
+    <div class="pf-container">
+      <h1>{CONTACT_COPY.h1}</h1>
+      <p class="pf-lead pf-mt-7">{CONTACT_COPY.sub}</p>
+    </div>
+  </section>
+
+  <section class="pf-section pf-section--sunken" aria-labelledby="kontaktwege-titel">
+    <div class="pf-container">
+      <div class="pf-bestand">
+        <div>
+          <SectionHeading title={CONTACT_COPY.waysHeading} id="kontaktwege-titel" />
+          <div class="pf-mt-7">
+            <ContactWays site={site} />
+          </div>
+        </div>
+        <div>
+          <h2>{CONTACT_COPY.addressHeading}</h2>
+          <address class="pf-mt-7">
+            {site.firma.anzeige_name}
+            <br />
+            {site.adresse.strasse}
+            <br />
+            {site.adresse.plz}
+            {" "}
+            {site.adresse.ort}
+            <br />
+            {site.adresse.land}
+          </address>
+          <p class="pf-reviews__note pf-mt-7">
+            Eine Karte wird nicht eingebettet, damit vor Ihrer Zustimmung keine Verbindung zu
+            Kartendiensten entsteht.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pf-section" id="formular" aria-labelledby="kontakt-formular-titel">
+    <div class="pf-container">
+      <SectionHeading
+        title={CONTACT_COPY.formHeading}
+        lead="Felder mit (Pflichtfeld) sind erforderlich. Alles andere ist freiwillig."
+        id="kontakt-formular-titel"
+      />
+      <div class="pf-mt-7">
+        <ContactForm site={site} labelledBy="kontakt-formular-titel" />
+      </div>
+    </div>
+  </section>
+
+  <div class="pf-action-bar">
+    <a class="pf-btn pf-btn--primary pf-btn--block" href={`tel:${site.kontakt.telefon_tel}`}>
+      Anrufen
+    </a>
+    <a class="pf-btn pf-btn--secondary pf-btn--block" href={site.kontakt.whatsapp_url} target="_blank" rel="noopener noreferrer">
+      WhatsApp
+    </a>
+  </div>
+
+  <section class="pf-section pf-section--sunken" aria-labelledby="kontakt-cta">
+    <div class="pf-container">
+      <SectionHeading title="Lieber direkt sprechen? Das ist der schnellste Weg." id="kontakt-cta" />
+      <div class="pf-hero__actions pf-mt-7">
+        <Button href={`tel:${site.kontakt.telefon_tel}`} variant="primary">
+          Anrufen: <span class="pf-ways__value">{site.kontakt.telefon_anzeige}</span>
+        </Button>
+        <Button href={site.kontakt.whatsapp_url} variant="secondary" external>WhatsApp schreiben</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

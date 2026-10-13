@@ -1,0 +1,139 @@
+---
+/**
+ * ContactForm (komponenten.md §9.2). Feldnamen und Texte aus
+ * content/micro-ux-consent.md. Labels sichtbar (kein Placeholder-Label),
+ * autocomplete gesetzt, Eingaben bleiben 16 px (--pf-text-base, kein iOS-Zoom).
+ * Spam-Schutz ohne Drittanbieter: Honeypot + Zeitfalle (Client setzt `_ts`) +
+ * Rate-Limit (Server).
+ */
+import { FORM_HELP, FORM_LABELS, FORM_PLACEHOLDERS, FORM_STATES } from "../lib/copy";
+import { ROUTES } from "../lib/pages";
+import type { SiteConfig } from "../lib/content";
+
+interface Props {
+  site: SiteConfig;
+  /** id der Ueberschrift, die das Formular benennt (h2 der Kontaktseite). */
+  labelledBy?: string;
+}
+
+const { site, labelledBy } = Astro.props;
+---
+
+<form
+  class="pf-form"
+  method="post"
+  action="/api/contact"
+  novalidate
+  data-contact-form
+  data-mailto={site.kontakt.email}
+  aria-labelledby={labelledBy}
+>
+  <div class="pf-alert" role="alert" tabindex="-1" data-contact-summary hidden></div>
+
+  <div class="pf-form__grid">
+    <div class="pf-field">
+      <label for="contact-name">
+        {FORM_LABELS.name} <span class="pf-field__req">({FORM_LABELS.pflichtfeld})</span>
+      </label>
+      <input
+        class="pf-input"
+        id="contact-name"
+        name="name"
+        type="text"
+        autocomplete="name"
+        required
+        aria-describedby="contact-name-error"
+      />
+      <p class="pf-field__error" id="contact-name-error" hidden></p>
+    </div>
+
+    <div class="pf-field">
+      <label for="contact-email">
+        {FORM_LABELS.email} <span class="pf-field__req">({FORM_LABELS.pflichtfeld})</span>
+      </label>
+      <input
+        class="pf-input"
+        id="contact-email"
+        name="email"
+        type="email"
+        inputmode="email"
+        autocomplete="email"
+        placeholder={FORM_PLACEHOLDERS.email}
+        required
+        aria-describedby="contact-email-help contact-email-error"
+      />
+      <p class="pf-field__help" id="contact-email-help">{FORM_HELP.email}</p>
+      <p class="pf-field__error" id="contact-email-error" hidden></p>
+    </div>
+
+    <div class="pf-field pf-field--full">
+      <label for="contact-telefon">{FORM_LABELS.telefon}</label>
+      <input
+        class="pf-input"
+        id="contact-telefon"
+        name="telefon"
+        type="tel"
+        inputmode="tel"
+        autocomplete="tel"
+        placeholder={FORM_PLACEHOLDERS.telefon}
+        aria-describedby="contact-telefon-help contact-telefon-error"
+      />
+      <p class="pf-field__help" id="contact-telefon-help">{FORM_HELP.telefon}</p>
+      <p class="pf-field__error" id="contact-telefon-error" hidden></p>
+    </div>
+
+    <div class="pf-field pf-field--full">
+      <label for="contact-nachricht">
+        {FORM_LABELS.nachricht} <span class="pf-field__req">({FORM_LABELS.pflichtfeld})</span>
+      </label>
+      <textarea
+        class="pf-textarea"
+        id="contact-nachricht"
+        name="nachricht"
+        rows="6"
+        required
+        aria-describedby="contact-nachricht-help contact-nachricht-error"></textarea>
+      <p class="pf-field__help" id="contact-nachricht-help">{FORM_HELP.nachricht}</p>
+      <p class="pf-field__error" id="contact-nachricht-error" hidden></p>
+    </div>
+  </div>
+
+  <div class="pf-field">
+    <div class="pf-check">
+      <input
+        id="contact-einwilligung"
+        name="einwilligung"
+        type="checkbox"
+        required
+        aria-describedby="contact-einwilligung-help contact-einwilligung-error"
+      />
+      <label for="contact-einwilligung">{FORM_LABELS.einwilligung}</label>
+    </div>
+    <p class="pf-field__help" id="contact-einwilligung-help">
+      {FORM_HELP.einwilligung}
+      <a href={ROUTES.datenschutz.path}>Datenschutzerklärung</a>
+    </p>
+    <p class="pf-field__error" id="contact-einwilligung-error" hidden></p>
+  </div>
+
+  <div class="pf-honeypot" aria-hidden="true">
+    <label for="contact-firma">Firma (bitte leer lassen)</label>
+    <input id="contact-firma" name="firma" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+  <input type="hidden" name="_ts" value="" data-contact-ts />
+
+  <div class="pf-hero__actions">
+    <button class="pf-btn pf-btn--primary" type="submit" data-contact-submit>
+      {FORM_LABELS.submit}
+    </button>
+    <a class="pf-btn pf-btn--tertiary" href={`mailto:${site.kontakt.email}`}>E-Mail schreiben</a>
+  </div>
+
+  <noscript>
+    <p class="pf-reviews__note">{FORM_STATES.noscript}</p>
+  </noscript>
+</form>
+
+<script>
+  import "../scripts/contact-client";
+</script>

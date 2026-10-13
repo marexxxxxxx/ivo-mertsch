@@ -1,0 +1,37 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import ReviewSection from "../components/ReviewSection.astro";
+import CtaBand from "../components/CtaBand.astro";
+import Button from "../components/Button.astro";
+import { ROUTES } from "../lib/pages";
+import { findSchemaNode, getSite, readStaticReviews, type SchemaOrgNode } from "../lib/content";
+
+export const prerender = true;
+
+const site = getSite();
+// Renderer fuer den statischen Pfad (Quelle A). Die Sektion stellt beide Zustaende
+// datengetrieben dar; der CTA-Zielwert kommt zur Laufzeit aus /api/reviews.
+const document = readStaticReviews();
+const breadcrumb = findSchemaNode((node) => node["@id"] === "https://ivo-mertsch.de/bewertungen/#breadcrumb");
+const schema = [breadcrumb].filter((node): node is SchemaOrgNode => node !== null);
+---
+
+<BaseLayout seo={ROUTES.bewertungen} schema={schema}>
+  <div class="pf-container">
+    <Breadcrumb items={[{ label: "Start", href: ROUTES.home.path }, { label: "Bewertungen", href: ROUTES.bewertungen.path }]} />
+  </div>
+
+  <ReviewSection document={document} level={1} />
+
+  <CtaBand heading="Lieber direkt sprechen? Das ist der schnellste Weg.">
+    <Button href={`tel:${site.kontakt.telefon_tel}`} variant="primary">
+      Anrufen: <span class="pf-ways__value">{site.kontakt.telefon_anzeige}</span>
+    </Button>
+    <Button href={`${ROUTES.kontakt.path}#formular`} variant="secondary">Beratung anfragen</Button>
+  </CtaBand>
+</BaseLayout>
+
+<script>
+  import "../scripts/reviews-client";
+</script>

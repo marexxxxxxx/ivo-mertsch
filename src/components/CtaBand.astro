@@ -1,0 +1,25 @@
+---
+/** CtaBand — Seitenabschluss mit genau einer Fuge (komponenten.md §16). */
+interface Props {
+  heading: string;
+  seam?: boolean;
+}
+
+const { heading, seam = true } = Astro.props;
+---
+
+{seam && (
+  <div class="pf-cta-band">
+    <div class="pf-seam" data-drawn="true">
+      <span class="pf-seam__line" />
+    </div>
+  </div>
+)}
+<section class="pf-cta-band">
+  <div class="pf-container pf-cta-band__inner">
+    <h2>{heading}</h2>
+    <div class="pf-cta-band__actions">
+      <slot />
+    </div>
+  </div>
+</section>

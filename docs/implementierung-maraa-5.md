@@ -7,7 +7,7 @@
 | **Datum** | 2026-10-13 |
 | **Commit** | `e5e781a` — `feat(maraa-5): Astro-Site, Consent, Google-Bewertungen, Kontakt, Dockerfile` |
 | **Grundlage** | ADR 0001 (`9bd5a4c`), Content-Pack MARAA-3, Design MARAA-4 |
-| **Status** | Implementierung fertig und verifiziert. **Ein offener Restpunkt:** `docker build` (kein Docker-Zugriff in der Agenten-Sandbox) — ersetzt durch eine exakte Runtime-Stage-Simulation. `git push` ist **erledigt** (`origin/main` = `cdd8722`). |
+| **Status** | Implementierung abgeschlossen und selbst-verifiziert (alle Gates grün, `git push` erledigt: `origin/main` = `18ad77e`). Die **Docker-Build-/Run-Abnahme** liegt gemäß MARAA-6 (QA-Brief, Punkt 6) bei QA: `docker build` konnte in der Agenten-Sandbox nicht ausgeführt werden (kein Docker-Zugriff); Ersatzbeleg = exakte Runtime-Stage-Simulation, Abschnitt 3. |
 
 Dieser Bericht ist die dauerhafte Fassung des Abschlusskommentars zu MARAA-5.
 

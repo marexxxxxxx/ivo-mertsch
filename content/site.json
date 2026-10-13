@@ -1,0 +1,49 @@
+{
+  "$comment": "Zentrale Stammdaten der Website. Quelle: Live-Auftritt https://ivo-mertsch.de/, abgerufen 2026-10-13 (Startseite, /kontakt/, /impressum/, /datenschutzerklaerung/) sowie CEO-Discovery docs/discovery/00-kundenbriefing-und-befund.md. Keine erfundenen Werte. Felder mit '_status': 'offener_kundenpunkt' duerfen erst nach Kundenantwort final gesetzt werden; die sichtbare E-Mail-Adresse kommt aus diesem Dokument, der Versand aus der Laufzeit-Env MAIL_TO (ADR 0001, Abschnitt 6 und 10.3).",
+  "firma": {
+    "anzeige_name": "Ivo Mertsch",
+    "claim": "Handwerk aus Leidenschaft",
+    "rechtsform": "Einzelunternehmen",
+    "inhaber": "Ivo Marco Mertsch",
+    "marke": "Ivo Mertsch Design"
+  },
+  "adresse": {
+    "strasse": "Niederdossenbach 1",
+    "plz": "79739",
+    "ort": "Schwörstadt",
+    "region": "Baden",
+    "kreis": "Landkreis Waldshut",
+    "land": "Deutschland",
+    "land_code": "DE"
+  },
+  "kontakt": {
+    "telefon_anzeige": "+49 174 2164071",
+    "telefon_tel": "+491742164071",
+    "whatsapp_url": "https://wa.me/491742164071",
+    "email": "info@ivo-mertsch.de",
+    "email_status": "offener_kundenpunkt",
+    "email_konflikt": [
+      "info@ivo-mertsch.de (mailto-Link der Startseite)",
+      "info@ivo-mertsch.com (Footer aller Seiten)",
+      "ivomertsch@gmail.com (Impressum, Kontaktseite, Kontaktseiten-Meta)"
+    ],
+    "email_hinweis": "OFFENER KUNDENPUNKT OP-1: Eine Adresse bestaetigen. Bis dahin zeigt die neue Seite die Startseiten-Adresse; der Wert ist hier zentral getauscht, ohne dass Texte umgebaut werden muessen."
+  },
+  "instagram": {
+    "url": "https://www.instagram.com/ivomertsch_hal/",
+    "hinweis": "Reiner Hyperlink, kein eingebettetes Plugin (keine Datenuebertragung vor Klick)."
+  },
+  "reviews": {
+    "attribution_text": "Bewertungen von Google Maps",
+    "attribution_translate": "no",
+    "cta_label": "Jetzt bei Google bewerten",
+    "cta_url_env": "GOOGLE_REVIEW_URL",
+    "cta_url_status": "offener_kundenpunkt",
+    "cta_url_hinweis": "OFFENER KUNDENPUNKT OP-2: Ziel des CTA (Google-Maps-Eintrag) vom Kunden erfragen. Ohne Wert wird der CTA ausgeblendet (ADR 0001, Abschnitt 5.4)."
+  },
+  "beschaffung": {
+    "hosting": "eigener Docker-Container, keine Drittanbieter-Ressource vor Consent (ADR 0001)",
+    "bilder": ["foto3.png", "foto6.png", "foto7.png", "foto8.png", "foto9.png", "foto10.png", "foto11.png"],
+    "logo": "logo_ivo.jpeg"
+  }
+}

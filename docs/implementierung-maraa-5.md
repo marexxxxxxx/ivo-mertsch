@@ -7,7 +7,7 @@
 | **Datum** | 2026-10-13 |
 | **Commit** | `e5e781a` — `feat(maraa-5): Astro-Site, Consent, Google-Bewertungen, Kontakt, Dockerfile` |
 | **Grundlage** | ADR 0001 (`9bd5a4c`), Content-Pack MARAA-3, Design MARAA-4 |
-| **Status** | Implementierung fertig und verifiziert. **Zwei umgebungsbedingte Restpunkte:** `docker build` (kein Docker-Zugriff in der Sandbox) und `git push` (Managed-GitHub-Broker nach Runtime-Neustart nicht verfügbar). Beide sind nachgewiesen und eskaliert. |
+| **Status** | Implementierung fertig und verifiziert. **Ein offener Restpunkt:** `docker build` (kein Docker-Zugriff in der Agenten-Sandbox) — ersetzt durch eine exakte Runtime-Stage-Simulation. `git push` ist **erledigt** (`origin/main` = `cdd8722`). |
 
 Dieser Bericht ist die dauerhafte Fassung des Abschlusskommentars zu MARAA-5.
 
@@ -164,22 +164,17 @@ Nachgeprüft am 2026-10-13 (dieser Lauf): `docker version` → „permission den
 required"; keine Alternativ-Runtime vorhanden (`podman`, `buildah`, `nerdctl`,
 `kaniko` alle nicht installiert).
 
-## 3.1 Blocker: `git push` (Managed-GitHub)
+## 3.1 Erledigt: `git push`
 
-Der lokale `main` steht **5 Commits vor** `origin/main` (u. a. `e5e781a` und
-`8b1a8b8`). `git push origin main` schlägt fehl:
+Der Managed-GitHub-Broker war zwischenzeitlich (nach einem Runtime-Neustart) nicht
+verfügbar. In der Folgerunde wieder verfügbar; der Push ist erfolgt:
 
 ```
-fatal: could not read Username for 'https://github.com': No such device or address
+To https://github.com/marexxxxxxx/ivo-mertsch
+   f7a26d2..cdd8722  main -> main
 ```
 
-Ursache: Der Managed-GitHub-Credential-Broker des Runners ist nach einem
-Runtime-Neustart nicht mehr verfügbar (das Runtime-Verzeichnis und die
-`PAPERCLIP_GITHUB_*`-Variablen fehlen in der Shell). Die Commits liegen sicher im
-Arbeitsverzeichnis-Repo; nur der Mirror-Push steht aus.
-
-**Unblock-Owner/Action:** Push aus einer Runtime mit aktivem GitHub-Broker
-(`git push origin main`), oder Broker neu bereitstellen.
+`origin/main` steht damit auf `cdd8722` (kein Rückstand mehr).
 
 ---
 

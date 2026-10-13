@@ -1,0 +1,39 @@
+# Abhängigkeiten
+node_modules/
+.pnpm-store/
+
+# Build-Output
+dist/
+.astro/
+.output/
+.vercel/
+
+# Laufzeit-Caches (niemals committen — Google-Places-Inhalte mit 30-Tage-Frist)
+.cache/
+*.cache.json
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.*
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Test-Artefakte
+playwright-report/
+test-results/
+blob-report/
+.playwright/
+coverage/

@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pixelforge.studio/contracts/reviews.schema.json",
+  "title": "PixelForge Reviews-Datenkontrakt",
+  "description": "Verbindliches Schema fuer eine Google-Bewertung (Review) und fuer das Bewertungs-Dokument. Quelle: MARAA-2, docs/adr/0001-stack-und-consent-architektur.md (Abschnitt 5). Beide Quellpfade (statischer Export, Places-API) MUESSEN auf dieses Normalformat abgebildet werden.",
+  "type": "object",
+  "$defs": {
+    "review": {
+      "$comment": "Einzelne Bewertung. Pflichtfeldnamen sind durch den CEO-Auftrag vorgegeben (autor, sterne, datum, text, avatar_status, profil_link, review_time) und duerfen NICHT umbenannt werden.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "autor",
+        "sterne",
+        "datum",
+        "text",
+        "avatar_status",
+        "profil_link",
+        "review_time"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "description": "Optionale, stabile lokale ID fuer Keys. Wird bei Places-Quelle aus dem PublishTime+Autor-Hash erzeugt."
+        },
+        "autor": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "description": "Anzeigename des Rezensenten (Google authorAttribution.displayName). Pflicht: Google schreibt Autor-Nennung vor."
+        },
+        "sterne": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Bewertung in ganzen Sternen (Google rating)."
+        },
+        "datum": {
+          "type": "string",
+          "format": "date",
+          "description": "Veroeffentlichungsdatum als ISO-8601-Kalendertag (YYYY-MM-DD), abgeleitet aus review_time. Wird angezeigt, damit der Besucher das Alter der Bewertung sehen kann."
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000,
+          "description": "Bewertungstext. Kein serverseitiges Kuerczen/Trimmen ohne Kennzeichnung."
+        },
+        "avatar_status": {
+          "type": "string",
+          "enum": ["none", "initials", "google"],
+          "description": "none = kein Avatar; initials = lokal gerenderte Initialen (Default, keine Drittanbieter-Ressource); google = von Google gehostetes Avatar-Bild, nur nach Consent 'Externe Medien' ladbar."
+        },
+        "avatar_url": {
+          "type": ["string", "null"],
+          "format": "uri",
+          "description": "Nur noetig und nur erlaubt bei avatar_status === 'google'. Immer eine https-URL auf *.googleusercontent.com / gstatic.com. Bei jedem anderen Status MUSS der Wert null sein."
+        },
+        "profil_link": {
+          "type": ["string", "null"],
+          "format": "uri",
+          "description": "Deep-Link auf die Einzelbewertung bei Google (authorAttribution.uri bzw. googleMapsUri). Ein Link ist keine Ressourcen-Anfrage und daher NICHT consent-pflichtig; er MUSS immer gerendert werden (Google-Pflicht zur Quellen-Auffindbarkeit). Darf bei statischem Export null sein, wenn der Kunde keinen Link hat."
+        },
+        "review_time": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Veroeffentlichungszeitpunkt als Unix-Epoch-Sekunden (Google publishTime). Kanonischer Sortier- und Gueltigkeitswert; 'datum' leitet sich daraus ab."
+        },
+        "sprache": {
+          "type": "string",
+          "pattern": "^[a-z]{2}$",
+          "description": "Optionales ISO-639-1-Sprachkuerzel. Falls gesetzt, dient es der Anzeige eines Uebersetzungs-Hinweises."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "avatar_status": { "const": "google" } },
+            "required": ["avatar_status"]
+          },
+          "then": {
+            "required": ["avatar_url"],
+            "properties": {
+              "avatar_url": { "type": "string", "format": "uri", "minLength": 1 }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "avatar_status": { "enum": ["none", "initials"] } },
+            "required": ["avatar_status"]
+          },
+          "then": {
+            "properties": { "avatar_url": { "type": "null" } }
+          }
+        },
+        {
+          "if": {
+            "properties": { "avatar_url": { "type": "string" } },
+            "required": ["avatar_url"]
+          },
+          "then": {
+            "properties": { "avatar_status": { "const": "google" } }
+          }
+        }
+      ]
+    },
+    "reviewsDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reviews", "quelle", "aktualisiert_am", "leer"],
+      "properties": {
+        "reviews": {
+          "type": "array",
+          "maxItems": 50,
+          "items": { "$ref": "#/$defs/review" },
+          "description": "Normalisierte Bewertungen, sortiert nach review_time absteigend. maxItems 50 ist ein Performance-Budget, kein Datenlimit."
+        },
+        "quelle": {
+          "type": "string",
+          "enum": ["static_export", "places_api"],
+          "description": "Herkunftspfad des Dokuments. Wird fuer Diagnose/Logging verwendet, NICHT fuer die Darstellung."
+        },
+        "aktualisiert_am": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Zeitpunkt der letzten erfolgreichen Beschaffung (Build, Datei-MTime oder API-Abruf)."
+        },
+        "leer": {
+          "type": "boolean",
+          "description": "Muss genau dann true sein, wenn reviews leer ist. Die Konsistenz ist ueber die allOf-Bedingungen erzwungen; das Flag selbst ist reine Redundanz zur Absicherung und darf NICHT als const fixiert werden, sonst schlaegt der Leerzustand fehl."
+        },
+        "ort": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Optionaler Ortskontext. Nur bei quelle === 'places_api' befuellt.",
+          "required": ["place_id", "place_url"],
+          "properties": {
+            "place_id": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Google Place ID. Einziger Wert, der laut Google-ToS dauerhaft gespeichert werden darf."
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "place_url": {
+              "type": "string",
+              "format": "uri",
+              "description": "Link auf den Google-Maps-Eintrag (googleMapsUri). Pflicht für die Attributions-Zeile."
+            }
+          }
+        },
+        "sortierung_hinweis": {
+          "type": "string",
+          "maxLength": 300,
+          "description": "Hinweistext zur Reihenfolge/Filterung der Bewertungen (Google-Pflicht). Wird der Bewertungs-Sektion vorangestellt."
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "reviews": { "minItems": 1 } }, "required": ["reviews"] },
+          "then": { "properties": { "leer": { "const": false } } }
+        },
+        {
+          "if": { "properties": { "reviews": { "maxItems": 0 } }, "required": ["reviews"] },
+          "then": { "properties": { "leer": { "const": true } } }
+        }
+      ]
+    }
+  },
+  "$ref": "#/$defs/reviewsDocument"
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pixelforge.studio/contracts/consent.schema.json",
+  "title": "PixelForge Consent-Datensatz (localStorage)",
+  "description": "Verbindliches Schema des Einwilligungs-Datensatzes. Quelle: MARAA-2, docs/adr/0001-stack-und-consent-architektur.md (Abschnitt 4). Wird ausschliesslich lokal im Browser gespeichert (localStorage-Schluessel 'pixelforge.consent.v1') und NIEMALS an einen Server oder Dritten uebertragen.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "entscheidung", "kategorien", "zeitstempel", "methode", "textfassung"],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "const": 1,
+      "description": "Schema-Version. Eine Erhoehung erzeugt einen neuen localStorage-Schluessel (pixelforge.consent.vN), damit alte Datensaetze nicht falsch interpretiert werden."
+    },
+    "entscheidung": {
+      "type": "string",
+      "enum": ["unbekannt", "akzeptiert", "abgelehnt", "individuell"],
+      "description": "Gesamtstatus der Einwilligung. 'unbekannt' ist der Zustand vor jeder Interaktion (Leerzustand)."
+    },
+    "kategorien": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["essenziell", "statistik", "externe_medien"],
+      "properties": {
+        "essenziell": {
+          "type": "boolean",
+          "const": true,
+          "description": "Immer true, kein Toggle. Technisch notwendig (Seitenauslieferung, Consent-Datensatz selbst)."
+        },
+        "statistik": {
+          "type": "boolean",
+          "description": "Optionale Statistik. Default false. Aktuell ohne Nutzer: kein Analyse-Skript im Lieferumfang."
+        },
+        "externe_medien": {
+          "type": "boolean",
+          "description": "Optionale externe Medien (Google-Avatare, Karten, Social-Embeds). Default false."
+        }
+      }
+    },
+    "zeitstempel": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Zeitpunkt der Entscheidung im Browser (ISO-8601, lokale Uhr, gespeichert wird die absolute Zeit)."
+    },
+    "methode": {
+      "type": "string",
+      "enum": [
+        "initial",
+        "banner-alle",
+        "banner-ablehnen",
+        "banner-individuell",
+        "footer-einstellungen"
+      ],
+      "description": "Wie die Entscheidung zustande kam. 'initial' = noch keine Nutzerinteraktion."
+    },
+    "textfassung": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40,
+      "description": "Versionskennung der Banner-/Datenschutz-Textfassung zum Entscheidungszeitpunkt (z. B. '2026-10-13.1'). Dient der Nachweisbarkeit und wird von MARAA-3 (Content) gepflegt."
+    },
+    "widerruf_zaehler": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Optionales Zaehlfeld: wie oft die Entscheidung geaendert wurde. Nur Diagnose, kein Profiling."
+    }
+  }
+}

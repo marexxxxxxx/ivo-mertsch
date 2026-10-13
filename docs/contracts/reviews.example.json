@@ -1,0 +1,110 @@
+{
+  "$comment": "Beispiel-Datensaetze fuer MARAA-2 docs/contracts/reviews.schema.json. Werden von der Test-Suite als Fixtures verwendet. KEINE echten Kundendaten - die Werte sind erfunden und als Beispielwerte gekennzeichnet.",
+  "beispiele": [
+    {
+      "name": "gueltig_statischer_export",
+      "datei": "content/reviews.json",
+      "daten": {
+        "reviews": [
+          {
+            "id": "rev-local-001",
+            "autor": "Beispiel Name A",
+            "sterne": 5,
+            "datum": "2026-08-14",
+            "text": "Beispieltext: Fugenloses Bad im Badezimmer im Neuzeitstil, saubere Arbeit und termintreu. (Beispielwert, keine echte Bewertung.)",
+            "avatar_status": "initials",
+            "avatar_url": null,
+            "profil_link": null,
+            "review_time": 1786665600,
+            "sprache": "de"
+          }
+        ],
+        "quelle": "static_export",
+        "aktualisiert_am": "2026-10-13T09:00:00.000Z",
+        "leer": false
+      }
+    },
+    {
+      "name": "gueltig_places_api_mit_avatar",
+      "datei": "Laufzeit (aus Google Places API normalisiert)",
+      "daten": {
+        "reviews": [
+          {
+            "id": "rev-places-001",
+            "autor": "Beispiel Name B",
+            "sterne": 4,
+            "datum": "2026-07-02",
+            "text": "Beispieltext: Beratung, Planung und Ausfuehrung aus einer Hand. (Beispielwert, keine echte Bewertung.)",
+            "avatar_status": "google",
+            "avatar_url": "https://lh3.googleusercontent.com/a-/beispiel=photo",
+            "profil_link": "https://www.google.com/maps/contrib/beispiel/reviews",
+            "review_time": 1782940800,
+            "sprache": "de"
+          }
+        ],
+        "quelle": "places_api",
+        "aktualisiert_am": "2026-10-13T09:00:00.000Z",
+        "leer": false,
+        "ort": {
+          "place_id": "ChIJBEISPIELPLACEID",
+          "name": "Ivo Mertsch (Beispieleintrag)",
+          "place_url": "https://maps.google.com/?cid=beispiel"
+        },
+        "sortierung_hinweis": "Sortiert nach Aktualitaet - die Reihenfolge bei Google ist standardmaessig relevanzbasiert."
+      }
+    },
+    {
+      "name": "ungueltig_avatar_url_ohne_status_google",
+      "erwartung": "MUSS fehlschlagen (if/then: avatar_url als String erfordert avatar_status === 'google')",
+      "daten": {
+        "reviews": [
+          {
+            "autor": "Beispiel Name C",
+            "sterne": 5,
+            "datum": "2026-07-02",
+            "text": "Beispieltext.",
+            "avatar_status": "initials",
+            "avatar_url": "https://lh3.googleusercontent.com/a-/beispiel=photo",
+            "profil_link": null,
+            "review_time": 1782940800
+          }
+        ],
+        "quelle": "static_export",
+        "aktualisiert_am": "2026-10-13T09:00:00.000Z",
+        "leer": true
+      }
+    },
+    {
+      "name": "ungueltig_unbekanntes_feld",
+      "erwartung": "MUSS fehlschlagen (additionalProperties: false)",
+      "daten": {
+        "reviews": [
+          {
+            "autor": "Beispiel Name D",
+            "sterne": 5,
+            "datum": "2026-07-02",
+            "text": "Beispieltext.",
+            "avatar_status": "initials",
+            "avatar_url": null,
+            "profil_link": null,
+            "review_time": 1782940800,
+            "quelle": "google"
+          }
+        ],
+        "quelle": "static_export",
+        "aktualisiert_am": "2026-10-13T09:00:00.000Z",
+        "leer": false
+      }
+    },
+    {
+      "name": "gueltig_leerzustand",
+      "datei": "Laufzeit",
+      "daten": {
+        "reviews": [],
+        "quelle": "static_export",
+        "aktualisiert_am": "2026-10-13T09:00:00.000Z",
+        "leer": true
+      }
+    }
+  ]
+}

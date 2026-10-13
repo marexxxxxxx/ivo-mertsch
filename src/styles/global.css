@@ -195,6 +195,8 @@
   display: inline-flex;
   align-items: center;
   gap: var(--pf-space-3);
+  /* Trefferfläche ≥ 44 px (komponenten.md §0.4/§14.3); der Header bleibt höher. */
+  min-height: var(--pf-touch-target);
   color: var(--pf-text-primary);
   text-decoration: none;
   font-family: var(--pf-font-display);
@@ -288,7 +290,16 @@
 .pf-breadcrumb ol { display: flex; flex-wrap: wrap; align-items: center; gap: var(--pf-space-2); list-style: none; margin: 0; padding: 0; }
 .pf-breadcrumb li { display: inline-flex; align-items: center; gap: var(--pf-space-2); }
 .pf-breadcrumb li + li::before { content: "›"; color: var(--pf-text-muted); }
-.pf-breadcrumb a { color: var(--pf-text-muted); text-decoration: none; padding-block: var(--pf-space-2); }
+.pf-breadcrumb a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--pf-touch-target);
+  min-width: var(--pf-touch-target);
+  color: var(--pf-text-muted);
+  text-decoration: none;
+  padding-block: var(--pf-space-2);
+}
 @media (hover: hover) { .pf-breadcrumb a:hover { color: var(--pf-text-link); text-decoration: underline; } }
 .pf-breadcrumb [aria-current="page"] { color: var(--pf-text-secondary); font-weight: var(--pf-font-weight-medium); }
 
@@ -463,6 +474,9 @@ body:has(.pf-action-bar) .pf-floating-consent { bottom: calc(var(--pf-action-bar
 .pf-field label { font-weight: var(--pf-font-weight-medium); }
 .pf-field__req { color: var(--pf-text-muted); font-weight: var(--pf-font-weight-regular); }
 .pf-field__help { margin: 0; color: var(--pf-text-muted); font-size: var(--pf-text-xs); }
+/* Inline-Link im Hilfetext (keine Inline-Ausnahme nach WCAG 2.5.8): Trefferfläche
+   über vertikales Padding ≥ 44 px, ohne Textfluss oder Zeilenhöhe zu ändern. */
+.pf-field__help a { padding-block: var(--pf-space-4); }
 .pf-field__error { margin: 0; color: var(--pf-text-error); font-size: var(--pf-text-base); }
 .pf-field__error[hidden] { display: none; }
 
@@ -483,7 +497,66 @@ body:has(.pf-action-bar) .pf-floating-consent { bottom: calc(var(--pf-action-bar
 .pf-input[aria-invalid="true"], .pf-textarea[aria-invalid="true"] { border-color: var(--pf-text-error); }
 
 .pf-check { display: flex; gap: var(--pf-space-3); align-items: flex-start; }
-.pf-check input { width: var(--pf-space-6); height: var(--pf-space-6); flex: none; margin-block-start: var(--pf-space-1); }
+/* Checkbox: sichtbare Box bleibt 24 px (--pf-space-6), die Trefferfläche wächst auf
+   --pf-touch-target (44 px, komponenten.md §0.4/§14.3). Die native Darstellung wird
+   dafür durch eine token-basierte Box ersetzt (Chromium ignoriert Padding/Border am
+   nativen Widget); die negative Margin hält Layout und Zeilenhöhe unverändert. */
+.pf-check input {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  flex: none;
+  width: var(--pf-touch-target);
+  height: var(--pf-touch-target);
+  margin: calc((var(--pf-space-6) - var(--pf-touch-target)) / 2);
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.pf-check input::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--pf-space-6);
+  height: var(--pf-space-6);
+  transform: translate(-50%, -50%);
+  background-color: var(--pf-surface-raised);
+  border: var(--pf-border-width-input) solid var(--pf-border-input);
+  border-radius: var(--pf-radius-xs);
+}
+.pf-check input::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--pf-space-2);
+  height: var(--pf-space-1);
+  border: solid var(--pf-text-on-accent);
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+  opacity: 0;
+}
+@media (hover: hover) {
+  .pf-check input:hover::before { border-color: var(--pf-border-input-hover); }
+}
+.pf-check input:active::before { background-color: var(--pf-surface-sunken); }
+.pf-check input:focus-visible::before {
+  outline: var(--pf-focus-ring-width) solid var(--pf-focus-ring);
+  outline-offset: var(--pf-focus-ring-offset);
+}
+.pf-check input:checked::before {
+  background-color: var(--pf-accent-default);
+  border-color: var(--pf-accent-default);
+}
+.pf-check input:checked::after { opacity: 1; }
+.pf-check input[aria-invalid="true"]::before { border-color: var(--pf-text-error); }
+.pf-check input:disabled { cursor: not-allowed; }
+.pf-check input:disabled::before {
+  background-color: var(--pf-surface-sunken);
+  border-color: var(--pf-border-hairline);
+}
+.pf-check input:disabled::after { border-color: var(--pf-text-muted); }
 
 .pf-honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
@@ -527,6 +600,14 @@ html[data-pf-consent="unbekannt"] .pf-consent-banner { display: block; }
 .pf-consent-banner__actions { display: grid; gap: var(--pf-space-3); }
 @media (min-width: 48rem) { .pf-consent-banner__actions { grid-template-columns: repeat(3, 1fr); } }
 .pf-consent-banner__links { display: flex; flex-wrap: wrap; gap: var(--pf-space-4); font-size: var(--pf-text-xs); }
+/* Banner-Links sind eigenständige Flex-Items (keine Inline-Ausnahme): Trefferfläche
+   über vertikales Padding auf ≥ 44 px (Datei-Fund F-2, komponenten.md §0.4/§14.3). */
+.pf-consent-banner__links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--pf-touch-target);
+  padding-block: var(--pf-space-2);
+}
 
 .pf-consent-dialog { position: fixed; inset: 0; z-index: var(--pf-z-modal); display: grid; place-items: end center; }
 .pf-consent-dialog[hidden] { display: none; }

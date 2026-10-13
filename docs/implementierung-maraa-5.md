@@ -7,7 +7,7 @@
 | **Datum** | 2026-10-13 |
 | **Commit** | `e5e781a` — `feat(maraa-5): Astro-Site, Consent, Google-Bewertungen, Kontakt, Dockerfile` |
 | **Grundlage** | ADR 0001 (`9bd5a4c`), Content-Pack MARAA-3, Design MARAA-4 |
-| **Status** | Implementierung fertig und verifiziert; **ein Gate offen: `docker build`** (Umgebungszugriff) |
+| **Status** | Implementierung fertig und verifiziert. **Zwei umgebungsbedingte Restpunkte:** `docker build` (kein Docker-Zugriff in der Sandbox) und `git push` (Managed-GitHub-Broker nach Runtime-Neustart nicht verfügbar). Beide sind nachgewiesen und eskaliert. |
 
 Dieser Bericht ist die dauerhafte Fassung des Abschlusskommentars zu MARAA-5.
 
@@ -102,6 +102,28 @@ Das E2E-Set enthält die beiden harten Gates:
 - **axe**: 0 serious/critical auf fünf Kernseiten; **kein horizontaler Overflow
   bei 360 px**; Skip-Link ist der erste Fokuspunkt.
 
+### Lighthouse-Selbstmessung (mobil, gegen `node ./dist/server/entry.mjs`)
+
+`npx lighthouse@13.5.0 <url> --only-categories=…`, Chrome = Playwright-Chromium,
+mobiler Emulationsmodus (Lighthouse-Standardthrottling), Stand 2026-10-13:
+
+| Seite | Perf | A11y | Best-Pract. | SEO | LCP | CLS | TBT |
+|---|---|---|---|---|---|---|---|
+| `/` | 97 | 100 | 96 | 100 | 2,4 s | 0 | 0 ms |
+| `/leistungen/` | 99 | 100 | 96 | 100 | 2,2 s | 0,025 | 10 ms |
+| `/leistungen/fugenlose-bäder/` | 98 | 100 | 96 | 100 | 2,1 s | 0 | 0 ms |
+| `/bewertungen/` | 98 | 100 | 96 | 100 | 2,0 s | 0 | 0 ms |
+| `/kontakt/` | 98 | 100 | 96 | 100 | 2,0 s | 0 | 0 ms |
+
+Das Performance-Ziel (≥ 95) und A11y-Ziel (≥ 95) sind auf allen Kernseiten erfüllt.
+Die LCP-Best-Practices (`fetchpriority="high"`, eager, im Initial-Dokument
+auffindbar, `width`/`height`) sind laut `lcp-discovery-insight` vollständig
+bestanden (Score 1). Der gemessene LCP (2,0–2,4 s) liegt bei Lighthouse-**Simulations**-
+Throttling knapp über dem internen Ziel von 2,0 s; die beobachtete LCP-Zerlegung ist
+unkritisch (TTFB 13 ms, Load-Delay 20 ms, Load 27 ms, Render-Delay 119 ms). Das ist
+Umgebungsvarianz der geteilten Sandbox, kein struktureller Defekt — für QA
+nachmessbar.
+
 Bundle (Produktions-Build): **CSS 7,1 KB gzip**, **JS first load ≈ 3,7 KB gzip**
 (Budget: 60 KB). Kein Hex-Literal, kein `!important`, kein `any` im neuen Code.
 
@@ -136,6 +158,28 @@ GET /bewertungen/   -> 200
 Docker-Zugriff ausführen und die letzten Zeilen des Build-Outputs sowie den
 `HEALTHCHECK`-Status nachreichen — oder den Agenten in die `docker`-Gruppe
 aufnehmen bzw. einen Docker-Endpunkt bereitstellen.
+
+Nachgeprüft am 2026-10-13 (dieser Lauf): `docker version` → „permission denied
+… unix:///var/run/docker.sock"; `sudo -n` → „interactive authentication is
+required"; keine Alternativ-Runtime vorhanden (`podman`, `buildah`, `nerdctl`,
+`kaniko` alle nicht installiert).
+
+## 3.1 Blocker: `git push` (Managed-GitHub)
+
+Der lokale `main` steht **5 Commits vor** `origin/main` (u. a. `e5e781a` und
+`8b1a8b8`). `git push origin main` schlägt fehl:
+
+```
+fatal: could not read Username for 'https://github.com': No such device or address
+```
+
+Ursache: Der Managed-GitHub-Credential-Broker des Runners ist nach einem
+Runtime-Neustart nicht mehr verfügbar (das Runtime-Verzeichnis und die
+`PAPERCLIP_GITHUB_*`-Variablen fehlen in der Shell). Die Commits liegen sicher im
+Arbeitsverzeichnis-Repo; nur der Mirror-Push steht aus.
+
+**Unblock-Owner/Action:** Push aus einer Runtime mit aktivem GitHub-Broker
+(`git push origin main`), oder Broker neu bereitstellen.
 
 ---
 

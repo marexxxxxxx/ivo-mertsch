@@ -1,0 +1,43 @@
+[
+  {
+    "browser": "chromium-desktop",
+    "steps": {
+      "homeTitle": "Fugenlose Bäder & Böden aus Schwörstadt | Ivo Mertsch",
+      "consentRejected": true,
+      "contactUrl": "http://127.0.0.1:4321/kontakt/",
+      "emptySubmitError": true,
+      "submitStatus": "✓ Ihr E-Mail-Programm öffnet sich mit der fertigen Nachricht. Bitte senden Sie sie dort ab.",
+      "submitSuccess": true
+    },
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    ]
+  },
+  {
+    "browser": "chromium-mobil",
+    "steps": {
+      "homeTitle": "Fugenlose Bäder & Böden aus Schwörstadt | Ivo Mertsch",
+      "consentRejected": true,
+      "drawerOpen": true,
+      "contactUrl": "http://127.0.0.1:4321/kontakt/",
+      "emptySubmitError": true,
+      "submitStatus": "✓ Ihr E-Mail-Programm öffnet sich mit der fertigen Nachricht. Bitte senden Sie sie dort ab.",
+      "submitSuccess": true
+    },
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    ]
+  },
+  {
+    "browser": "firefox-desktop",
+    "steps": {
+      "homeTitle": "Fugenlose Bäder & Böden aus Schwörstadt | Ivo Mertsch",
+      "consentRejected": true,
+      "contactUrl": "http://127.0.0.1:4321/kontakt/",
+      "emptySubmitError": true,
+      "submitStatus": "✓ Ihr E-Mail-Programm öffnet sich mit der fertigen Nachricht. Bitte senden Sie sie dort ab.",
+      "submitSuccess": true
+    },
+    "consoleErrors": []
+  }
+]

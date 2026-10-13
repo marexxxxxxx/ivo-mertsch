@@ -1,0 +1,41 @@
+{
+  "skipLink": {
+    "first": {
+      "text": "Direkt zum Inhalt",
+      "href": "#hauptinhalt"
+    },
+    "hash": "#hauptinhalt"
+  },
+  "consentDialog": {
+    "dialogVisible": true,
+    "insideStart": true,
+    "escaped": false,
+    "closed": true
+  },
+  "mobileNav": {
+    "drawerOpen": true,
+    "expanded": "true",
+    "escaped": false,
+    "drawerClosed": true
+  },
+  "formLabels": {
+    "labelFor": {
+      "contact-name": "Ihr Name (Pflichtfeld)",
+      "contact-email": "Ihre E-Mail-Adresse (Pflichtfeld)",
+      "contact-telefon": "Telefon (optional)",
+      "contact-nachricht": "Ihr Anliegen (Pflichtfeld)",
+      "contact-einwilligung": "Ich habe die Datenschutzerklärung gelesen."
+    },
+    "reached": [
+      "contact-name",
+      "contact-email",
+      "contact-telefon",
+      "contact-nachricht",
+      "contact-einwilligung"
+    ]
+  },
+  "reducedMotion": {
+    "transitionDuration": "0.001s",
+    "durationToken": "1ms"
+  }
+}

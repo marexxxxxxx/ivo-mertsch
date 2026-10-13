@@ -1,0 +1,25 @@
+{
+  "emptyState": {
+    "text": "Bewertungen",
+    "bodyText": "Start Bewertungen Bewertungen Aktuell liegen uns keine Google-Bewertungen für die Anzeige vor. Das lässt sich ändern: Wenn Sie mit meiner Arbeit zufrieden waren, freue ich mich über Ihre Bewertung bei Google. Sie hilft anderen in der Region, eine Entscheidung zu treffen. Jetzt bei Google bewerten (öffnet Google in neuem Tab) Zufrieden? Schreiben Sie mir. Lieber direkt sprechen? Das ist der schnellste Weg. Anrufen: +49 174 2164071 Beratung anfragen",
+    "starCount": 0,
+    "reviewCount": 0,
+    "attribution": 0,
+    "ctaGoogle": 1,
+    "ctaContact": 1
+  },
+  "homeReviews": {
+    "sectionPresent": 0,
+    "reviewCount": 0
+  },
+  "api": {
+    "status": 200,
+    "body": {
+      "reviews": [],
+      "quelle": "static_export",
+      "aktualisiert_am": "2026-10-13T00:00:00.000Z",
+      "leer": true,
+      "sortierung_hinweis": "Angezeigt werden die Bewertungen in der Reihenfolge, die Google Maps vorgibt (Standard: Relevanz). Es werden keine Bewertungen ausgefiltert."
+    }
+  }
+}

@@ -1,0 +1,303 @@
+[
+  {
+    "path": "/",
+    "width": 360,
+    "scrollW": 360,
+    "clientW": 360,
+    "overflow": false
+  },
+  {
+    "path": "/kontakt/",
+    "width": 360,
+    "scrollW": 360,
+    "clientW": 360,
+    "overflow": false
+  },
+  {
+    "path": "/bewertungen/",
+    "width": 360,
+    "scrollW": 360,
+    "clientW": 360,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/",
+    "width": 360,
+    "scrollW": 360,
+    "clientW": 360,
+    "overflow": false
+  },
+  {
+    "path": "/",
+    "width": 768,
+    "scrollW": 768,
+    "clientW": 768,
+    "overflow": false
+  },
+  {
+    "path": "/kontakt/",
+    "width": 768,
+    "scrollW": 768,
+    "clientW": 768,
+    "overflow": false
+  },
+  {
+    "path": "/bewertungen/",
+    "width": 768,
+    "scrollW": 768,
+    "clientW": 768,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/",
+    "width": 768,
+    "scrollW": 768,
+    "clientW": 768,
+    "overflow": false
+  },
+  {
+    "path": "/",
+    "width": 1024,
+    "scrollW": 1024,
+    "clientW": 1024,
+    "overflow": false
+  },
+  {
+    "path": "/kontakt/",
+    "width": 1024,
+    "scrollW": 1024,
+    "clientW": 1024,
+    "overflow": false
+  },
+  {
+    "path": "/bewertungen/",
+    "width": 1024,
+    "scrollW": 1024,
+    "clientW": 1024,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/",
+    "width": 1024,
+    "scrollW": 1024,
+    "clientW": 1024,
+    "overflow": false
+  },
+  {
+    "path": "/",
+    "width": 1440,
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflow": false
+  },
+  {
+    "path": "/kontakt/",
+    "width": 1440,
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflow": false
+  },
+  {
+    "path": "/bewertungen/",
+    "width": 1440,
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/",
+    "width": 1440,
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflow": false
+  },
+  {
+    "touchTargetsUnder44": {
+      "/": [
+        {
+          "tag": "A",
+          "id": "",
+          "cls": "pf-header__brand",
+          "label": "Ivo Mertsch",
+          "w": 169,
+          "h": 40,
+          "inlineInText": false
+        },
+        {
+          "tag": "A",
+          "id": "",
+          "cls": "",
+          "label": "Datenschutzerklärung",
+          "w": 135,
+          "h": 20,
+          "inlineInText": false
+        },
+        {
+          "tag": "A",
+          "id": "",
+          "cls": "",
+          "label": "Impressum",
+          "w": 67,
+          "h": 20,
+          "inlineInText": false
+        }
+      ],
+      "/kontakt/": [
+        {
+          "tag": "A",
+          "id": "",
+          "cls": "pf-header__brand",
+          "label": "Ivo Mertsch",
+          "w": 169,
+          "h": 40,
+          "inlineInText": false
+        },
+        {
+          "tag": "A",
+          "id": "",
+          "cls": "",
+          "label": "Start",
+          "w": 37,
+          "h": 40,
+          "inlineInText": false
+        },
+        {
+          "tag": "INPUT",
+          "id": "contact-einwilligung",
+          "cls": "",
+          "label": "",
+          "w": 24,
+          "h": 24,
+          "inlineInText": false
+        },
+        {
+          "tag": "A",
+          "id": "",
+          "cls": "",
+          "label": "Datenschutzerklärung",
+          "w": 135,
+          "h": 16,
+          "inlineInText": true
+        },
+        {
+          "tag": "A",
+          "id": "",
+          "cls": "",
+          "label": "Datenschutzerklärung",
+          "w": 135,
+          "h": 20,
+          "inlineInText": false
+        },
+        {
+          "tag": "A",
+          "id": "",
+          "cls": "",
+          "label": "Impressum",
+          "w": 67,
+          "h": 20,
+          "inlineInText": false
+        }
+      ],
+      "/bewertungen/": [
+        {
+          "tag": "A",
+          "id": "",
+          "cls": "pf-header__brand",
+          "label": "Ivo Mertsch",
+          "w": 169,
+          "h": 40,
+          "inlineInText": false
+        },
+        {
+          "tag": "A",
+          "id": "",
+          "cls": "",
+          "label": "Start",
+          "w": 37,
+          "h": 40,
+          "inlineInText": false
+        },
+        {
+          "tag": "A",
+          "id": "",
+          "cls": "",
+          "label": "Datenschutzerklärung",
+          "w": 135,
+          "h": 20,
+          "inlineInText": false
+        },
+        {
+          "tag": "A",
+          "id": "",
+          "cls": "",
+          "label": "Impressum",
+          "w": 67,
+          "h": 20,
+          "inlineInText": false
+        }
+      ]
+    },
+    "touchTargetsUnder24": {
+      "/": [
+        {
+          "tag": "A",
+          "id": "",
+          "cls": "",
+          "label": "Datenschutzerklärung",
+          "w": 135,
+          "h": 20,
+          "inlineInText": false
+        },
+        {
+          "tag": "A",
+          "id": "",
+          "cls": "",
+          "label": "Impressum",
+          "w": 67,
+          "h": 20,
+          "inlineInText": false
+        }
+      ],
+      "/kontakt/": [
+        {
+          "tag": "A",
+          "id": "",
+          "cls": "",
+          "label": "Datenschutzerklärung",
+          "w": 135,
+          "h": 20,
+          "inlineInText": false
+        },
+        {
+          "tag": "A",
+          "id": "",
+          "cls": "",
+          "label": "Impressum",
+          "w": 67,
+          "h": 20,
+          "inlineInText": false
+        }
+      ],
+      "/bewertungen/": [
+        {
+          "tag": "A",
+          "id": "",
+          "cls": "",
+          "label": "Datenschutzerklärung",
+          "w": 135,
+          "h": 20,
+          "inlineInText": false
+        },
+        {
+          "tag": "A",
+          "id": "",
+          "cls": "",
+          "label": "Impressum",
+          "w": 67,
+          "h": 20,
+          "inlineInText": false
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,111 @@
+{
+  "fresh": {
+    "thirdParty": [],
+    "cookies": [],
+    "localStorage": [],
+    "bannerVisible": true,
+    "totalRequests": 20
+  },
+  "prominence": {
+    "reject": {
+      "box": {
+        "x": 304,
+        "y": 779.3125,
+        "width": 216,
+        "height": 45.1875
+      },
+      "style": {
+        "fontSize": "16px",
+        "minHeight": "44px",
+        "padding": "12px 32px",
+        "weight": "500"
+      }
+    },
+    "accept": {
+      "box": {
+        "x": 532,
+        "y": 779.3125,
+        "width": 216,
+        "height": 45.1875
+      },
+      "style": {
+        "fontSize": "16px",
+        "minHeight": "44px",
+        "padding": "12px 32px",
+        "weight": "500"
+      }
+    }
+  },
+  "reject": {
+    "bannerGone": 0,
+    "record": {
+      "version": 1,
+      "entscheidung": "abgelehnt",
+      "kategorien": {
+        "essenziell": true,
+        "statistik": false,
+        "externe_medien": false
+      },
+      "zeitstempel": "2026-10-13T22:23:20.972Z",
+      "methode": "banner-ablehnen",
+      "textfassung": "2026-10-13.1",
+      "widerruf_zaehler": 1
+    },
+    "cookies": [],
+    "thirdParty": []
+  },
+  "persistence": {
+    "afterReload": {
+      "banner": 0,
+      "state": "decided"
+    },
+    "afterNav": {
+      "banner": 0,
+      "state": "decided"
+    }
+  },
+  "accept": {
+    "banner": 0,
+    "record": {
+      "version": 1,
+      "entscheidung": "akzeptiert",
+      "kategorien": {
+        "essenziell": true,
+        "statistik": true,
+        "externe_medien": true
+      },
+      "zeitstempel": "2026-10-13T22:23:21.674Z",
+      "methode": "banner-alle",
+      "textfassung": "2026-10-13.1",
+      "widerruf_zaehler": 1
+    }
+  },
+  "revoke": {
+    "footerVisible": 1,
+    "record": {
+      "version": 1,
+      "entscheidung": "abgelehnt",
+      "kategorien": {
+        "essenziell": true,
+        "statistik": false,
+        "externe_medien": false
+      },
+      "zeitstempel": "2026-10-13T22:23:22.228Z",
+      "methode": "footer-einstellungen",
+      "textfassung": "2026-10-13.1",
+      "widerruf_zaehler": 2
+    },
+    "gateSlotsActive": 0
+  },
+  "versionChange": {
+    "banner": true,
+    "state": "unbekannt"
+  },
+  "corrupt": {
+    "banner": true
+  },
+  "toggles": {
+    "stat": false,
+    "ext": false
+  }
+}

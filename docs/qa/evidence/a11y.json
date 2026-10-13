@@ -1,0 +1,160 @@
+[
+  {
+    "path": "/",
+    "violations": [],
+    "seriousCritical": 0,
+    "h1": 1,
+    "landmarks": {
+      "header": 1,
+      "main": 1,
+      "footer": 1
+    },
+    "lang": "de",
+    "consoleErrors": []
+  },
+  {
+    "path": "/leistungen/",
+    "violations": [],
+    "seriousCritical": 0,
+    "h1": 1,
+    "landmarks": {
+      "header": 1,
+      "main": 1,
+      "footer": 1
+    },
+    "lang": "de",
+    "consoleErrors": []
+  },
+  {
+    "path": "/leistungen/fugenlose-bäder/",
+    "violations": [],
+    "seriousCritical": 0,
+    "h1": 1,
+    "landmarks": {
+      "header": 1,
+      "main": 1,
+      "footer": 1
+    },
+    "lang": "de",
+    "consoleErrors": []
+  },
+  {
+    "path": "/leistungen/fugenlose-böden/",
+    "violations": [],
+    "seriousCritical": 0,
+    "h1": 1,
+    "landmarks": {
+      "header": 1,
+      "main": 1,
+      "footer": 1
+    },
+    "lang": "de",
+    "consoleErrors": []
+  },
+  {
+    "path": "/leistungen/innenausbau/",
+    "violations": [],
+    "seriousCritical": 0,
+    "h1": 1,
+    "landmarks": {
+      "header": 1,
+      "main": 1,
+      "footer": 1
+    },
+    "lang": "de",
+    "consoleErrors": []
+  },
+  {
+    "path": "/leistungen/fassaden/",
+    "violations": [],
+    "seriousCritical": 0,
+    "h1": 1,
+    "landmarks": {
+      "header": 1,
+      "main": 1,
+      "footer": 1
+    },
+    "lang": "de",
+    "consoleErrors": []
+  },
+  {
+    "path": "/über-uns/",
+    "violations": [],
+    "seriousCritical": 0,
+    "h1": 1,
+    "landmarks": {
+      "header": 1,
+      "main": 1,
+      "footer": 1
+    },
+    "lang": "de",
+    "consoleErrors": []
+  },
+  {
+    "path": "/bewertungen/",
+    "violations": [],
+    "seriousCritical": 0,
+    "h1": 1,
+    "landmarks": {
+      "header": 1,
+      "main": 1,
+      "footer": 1
+    },
+    "lang": "de",
+    "consoleErrors": []
+  },
+  {
+    "path": "/kontakt/",
+    "violations": [],
+    "seriousCritical": 0,
+    "h1": 1,
+    "landmarks": {
+      "header": 1,
+      "main": 1,
+      "footer": 1
+    },
+    "lang": "de",
+    "consoleErrors": []
+  },
+  {
+    "path": "/impressum/",
+    "violations": [],
+    "seriousCritical": 0,
+    "h1": 1,
+    "landmarks": {
+      "header": 1,
+      "main": 1,
+      "footer": 1
+    },
+    "lang": "de",
+    "consoleErrors": []
+  },
+  {
+    "path": "/datenschutzerklaerung/",
+    "violations": [],
+    "seriousCritical": 0,
+    "h1": 1,
+    "landmarks": {
+      "header": 1,
+      "main": 1,
+      "footer": 1
+    },
+    "lang": "de",
+    "consoleErrors": []
+  },
+  {
+    "path": "/gibt-es-nicht/",
+    "violations": [],
+    "seriousCritical": 0,
+    "h1": 1,
+    "landmarks": {
+      "header": 1,
+      "main": 1,
+      "footer": 1
+    },
+    "lang": "de",
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ]
+  }
+]

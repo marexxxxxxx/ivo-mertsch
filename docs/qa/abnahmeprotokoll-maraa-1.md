@@ -133,6 +133,41 @@ Zusätzlich wurden die projekteigenen Gates gegengeprüft und bestätigt:
   Nachverfolgung: **MARAA-7** (Follow-up zu MARAA-6).
 - **Konsequenz:** Das Goal-Kriterium „fertiger Docker-Container" ist damit **nicht abgenommen**.
 
+#### F-5 Nachtrag — MARAA-7 Docker-Nachziehung (2026-10-13)
+
+**Erneuter Abnahmeversuch, weiterhin umgebungsbedingt nicht ausführbar.** Der Unblock
+(Docker-Zugriff) liegt noch nicht vor. Reproduzierte Befehle und Ergebnisse dieses Laufs:
+
+| Prüfung | Ergebnis |
+|---|---|
+| `docker version` (Client) | OK — Client 29.7.2 vorhanden |
+| `docker info` (Daemon) | **Fail** — `permission denied … unix:///var/run/docker.sock` |
+| Socket | `srw-rw---- root:docker` (660); Nutzer `user` **nicht** in Gruppe `docker` (`gid 983`) |
+| `sudo -n` | **Fail** — `interactive authentication is required` |
+| Rootless-Daemon (`dockerd`, `rootlesskit` vorhanden) | **Fail** — `dockerd needs to be started with root privileges`; `unshare -Ur` scheitert an `/proc/self/uid_map: Operation not permitted`; `newuidmap`/`newgidmap` fehlen |
+| Alternativ-Runtime | **keine** (`podman`, `nerdctl`, `buildah`, `kaniko`, `img` fehlen) |
+| Docker-Connection (Runtime-Tools `connections/search?query=docker`) | **leer** — kein Endpunkt verfügbar |
+
+**Prüfbar gemacht (kein Ersatz für den Build):** `tests/qa/docker-acceptance.sh` führt die
+sechs Abnahmepunkte idempotent aus (`build` → `run` → Healthcheck via `docker inspect` →
+`GET /api/healthz` → `GET /` → `/app`-Listing + `docker history` + Image-Größe) und legt die
+Belege unter `docs/qa/evidence/docker/` ab. Exit 0 nur bei 6/6. Der Prolog-Guard wurde in
+diesem Lauf ausgeführt und quittiert — `docs/qa/evidence/docker/results.tsv`:
+`FAIL  Prolog:Docker-Zugriff  docker info fehlgeschlagen — kein Socket/DOCKER_HOST`.
+Es wird **kein** Secret übergeben; gestartet wird der Default-/Leerzustand.
+
+**Fallback (aus CEO-Entscheidung):** Die Auslieferung als Quell-Dockerfile **mit
+Build-Anleitung** an den Kunden ist vorhanden — `README.md`, Abschnitt mit den
+`docker build` / `docker run`-Kommandos für alle drei Abnahmeartefakte und den Healthcheck.
+Verifikation erfolgt dann auf dem Kunden-Host.
+
+**Erwartete Belege beim Nachreichen nach Unblock** (in `docs/qa/evidence/docker/`):
+`build-tail.txt`, `image-size.txt`, `healthcheck.json`, `healthz-body.txt`, `root-body.html`,
+`app-listing.txt`, `history.txt`, `summary.txt`.
+
+**Owner/Action unverändert:** CEO/Infrastruktur stellt Docker-Zugriff bereit (Agent in die
+`docker`-Gruppe aufnehmen oder `DOCKER_HOST`/Endpunkt liefern). Nachverfolgung: **MARAA-7**.
+
 ### F-6 — Rechtsseiten sind Entwürfe (Livegang-Sperre) — *kritisch für Livegang*
 - **Befund:** Impressum und Datenschutzerklärung tragen einen ausdrücklichen Prüfvermerk
   („Ohne diese Freigabe darf die Seite nicht öffentlich erreichbar sein") und offene Punkte
@@ -216,6 +251,8 @@ docs/qa/evidence/lighthouse-mobil.json   Lighthouse mobil (Lauf 1)
 docs/qa/evidence/lighthouse-mobil-run2.json, -run3.json   Wiederholungen (Varianz)
 docs/qa/evidence/lighthouse-desktop.json Lighthouse desktop
 docs/qa/evidence/screens/*.jpg           Screenshots 360/768/1024/1440 (Home/Kontakt/Bewertungen) + Banner + Filled-Review
+docs/qa/evidence/docker/results.tsv      MARAA-7: Prolog-Guard (Docker-Zugriff) — aktuell FAIL (F-5 Nachtrag)
+tests/qa/docker-acceptance.sh            MARAA-7: idempotentes Docker-Abnahmeskript (6 Punkte, Belege nach evidence/docker/)
 ```
 
 Reproduktion:

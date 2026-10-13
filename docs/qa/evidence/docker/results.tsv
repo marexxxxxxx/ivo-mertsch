@@ -1,0 +1,1 @@
+FAIL	Prolog:Docker-Zugriff	docker info fehlgeschlagen — kein Socket/DOCKER_HOST

@@ -42,8 +42,6 @@ const PAGES = [
   ["datenschutzerklaerung", "/datenschutzerklaerung/"],
   ["404", "/gibt-es-nicht/"],
 ];
-const KEY = ["start", "leistungen", "kontakt", "bewertungen"];
-
 const section = process.argv[2] ?? "all";
 let failures = 0;
 const results = [];

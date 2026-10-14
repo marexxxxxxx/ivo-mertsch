@@ -1,0 +1,31 @@
+{
+  "filled": {
+    "360": {
+      "reviewCount": 3,
+      "gridTemplateColumns": "320px",
+      "starCount": 3,
+      "attribution": 1,
+      "cardRadius": "16px",
+      "cardShadow": "rgba(36, 31, 25, 0.04) 0px 1px 2px 0px, rgba(36, 31, 25, 0.12) 0px 10px 28px -14px",
+      "overflow": false
+    },
+    "768": {
+      "reviewCount": 3,
+      "gridTemplateColumns": "332px 332px",
+      "starCount": 3,
+      "attribution": 1,
+      "cardRadius": "16px",
+      "cardShadow": "rgba(36, 31, 25, 0.04) 0px 1px 2px 0px, rgba(36, 31, 25, 0.12) 0px 10px 28px -14px",
+      "overflow": false
+    },
+    "1440": {
+      "reviewCount": 3,
+      "gridTemplateColumns": "357.328px 357.328px 357.344px",
+      "starCount": 3,
+      "attribution": 1,
+      "cardRadius": "16px",
+      "cardShadow": "rgba(36, 31, 25, 0.04) 0px 1px 2px 0px, rgba(36, 31, 25, 0.12) 0px 10px 28px -14px",
+      "overflow": false
+    }
+  }
+}

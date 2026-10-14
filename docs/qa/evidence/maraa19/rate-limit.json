@@ -1,0 +1,85 @@
+{
+  "note": "Echter Rate-Limit-Nachweis am laufenden Server: 6 schnelle POSTs von derselben IP. Die ersten 5 werden validiert (400), der 6. liefert 429 rate_limited mit retryAfterSeconds=600 (CONTACT_RATE_LIMIT_MAX Default 5).",
+  "endpoint": "POST /api/contact",
+  "calls": [
+    {
+      "post": 1,
+      "status": 400,
+      "body": {
+        "ok": false,
+        "error": "validation",
+        "fields": [
+          "name",
+          "email",
+          "nachricht",
+          "einwilligung"
+        ]
+      }
+    },
+    {
+      "post": 2,
+      "status": 400,
+      "body": {
+        "ok": false,
+        "error": "validation",
+        "fields": [
+          "name",
+          "email",
+          "nachricht",
+          "einwilligung"
+        ]
+      }
+    },
+    {
+      "post": 3,
+      "status": 400,
+      "body": {
+        "ok": false,
+        "error": "validation",
+        "fields": [
+          "name",
+          "email",
+          "nachricht",
+          "einwilligung"
+        ]
+      }
+    },
+    {
+      "post": 4,
+      "status": 400,
+      "body": {
+        "ok": false,
+        "error": "validation",
+        "fields": [
+          "name",
+          "email",
+          "nachricht",
+          "einwilligung"
+        ]
+      }
+    },
+    {
+      "post": 5,
+      "status": 400,
+      "body": {
+        "ok": false,
+        "error": "validation",
+        "fields": [
+          "name",
+          "email",
+          "nachricht",
+          "einwilligung"
+        ]
+      }
+    },
+    {
+      "post": 6,
+      "status": 429,
+      "body": {
+        "ok": false,
+        "error": "rate_limited",
+        "retryAfterSeconds": 600
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "id": "Bewertungen: Inhalt-Zustand rendert Bewertungskarten als Karten-Grid (1/2/3 Spalten)",
+    "status": "pass",
+    "detail": "1440: 3 Karten, 3 Spalten"
+  },
+  {
+    "id": "Bewertungen: Inhalt-Zustand ohne horizontalen Overflow (360/768/1440)",
+    "status": "pass",
+    "detail": null
+  }
+]

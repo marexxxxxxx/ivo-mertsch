@@ -1,0 +1,194 @@
+{
+  "tags": [
+    "wcag2a",
+    "wcag2aa",
+    "wcag21a",
+    "wcag21aa",
+    "wcag22a",
+    "wcag22aa"
+  ],
+  "results": [
+    {
+      "label": "start",
+      "path": "/",
+      "axeVersion": "4.13.0",
+      "violations": [],
+      "seriousCritical": 0,
+      "h1": 1,
+      "landmarks": {
+        "header": 1,
+        "main": 1,
+        "footer": 1
+      },
+      "lang": "de",
+      "consoleErrors": []
+    },
+    {
+      "label": "leistungen",
+      "path": "/leistungen/",
+      "axeVersion": "4.13.0",
+      "violations": [],
+      "seriousCritical": 0,
+      "h1": 1,
+      "landmarks": {
+        "header": 1,
+        "main": 1,
+        "footer": 1
+      },
+      "lang": "de",
+      "consoleErrors": []
+    },
+    {
+      "label": "leistungen-fugenlose-baeder",
+      "path": "/leistungen/fugenlose-bäder/",
+      "axeVersion": "4.13.0",
+      "violations": [],
+      "seriousCritical": 0,
+      "h1": 1,
+      "landmarks": {
+        "header": 1,
+        "main": 1,
+        "footer": 1
+      },
+      "lang": "de",
+      "consoleErrors": []
+    },
+    {
+      "label": "leistungen-fugenlose-boeden",
+      "path": "/leistungen/fugenlose-böden/",
+      "axeVersion": "4.13.0",
+      "violations": [],
+      "seriousCritical": 0,
+      "h1": 1,
+      "landmarks": {
+        "header": 1,
+        "main": 1,
+        "footer": 1
+      },
+      "lang": "de",
+      "consoleErrors": []
+    },
+    {
+      "label": "leistungen-innenausbau",
+      "path": "/leistungen/innenausbau/",
+      "axeVersion": "4.13.0",
+      "violations": [],
+      "seriousCritical": 0,
+      "h1": 1,
+      "landmarks": {
+        "header": 1,
+        "main": 1,
+        "footer": 1
+      },
+      "lang": "de",
+      "consoleErrors": []
+    },
+    {
+      "label": "leistungen-fassaden",
+      "path": "/leistungen/fassaden/",
+      "axeVersion": "4.13.0",
+      "violations": [],
+      "seriousCritical": 0,
+      "h1": 1,
+      "landmarks": {
+        "header": 1,
+        "main": 1,
+        "footer": 1
+      },
+      "lang": "de",
+      "consoleErrors": []
+    },
+    {
+      "label": "ueber-uns",
+      "path": "/über-uns/",
+      "axeVersion": "4.13.0",
+      "violations": [],
+      "seriousCritical": 0,
+      "h1": 1,
+      "landmarks": {
+        "header": 1,
+        "main": 1,
+        "footer": 1
+      },
+      "lang": "de",
+      "consoleErrors": []
+    },
+    {
+      "label": "kontakt",
+      "path": "/kontakt/",
+      "axeVersion": "4.13.0",
+      "violations": [],
+      "seriousCritical": 0,
+      "h1": 1,
+      "landmarks": {
+        "header": 1,
+        "main": 1,
+        "footer": 1
+      },
+      "lang": "de",
+      "consoleErrors": []
+    },
+    {
+      "label": "bewertungen",
+      "path": "/bewertungen/",
+      "axeVersion": "4.13.0",
+      "violations": [],
+      "seriousCritical": 0,
+      "h1": 1,
+      "landmarks": {
+        "header": 1,
+        "main": 1,
+        "footer": 1
+      },
+      "lang": "de",
+      "consoleErrors": []
+    },
+    {
+      "label": "impressum",
+      "path": "/impressum/",
+      "axeVersion": "4.13.0",
+      "violations": [],
+      "seriousCritical": 0,
+      "h1": 1,
+      "landmarks": {
+        "header": 1,
+        "main": 1,
+        "footer": 1
+      },
+      "lang": "de",
+      "consoleErrors": []
+    },
+    {
+      "label": "datenschutzerklaerung",
+      "path": "/datenschutzerklaerung/",
+      "axeVersion": "4.13.0",
+      "violations": [],
+      "seriousCritical": 0,
+      "h1": 1,
+      "landmarks": {
+        "header": 1,
+        "main": 1,
+        "footer": 1
+      },
+      "lang": "de",
+      "consoleErrors": []
+    },
+    {
+      "label": "404",
+      "path": "/gibt-es-nicht/",
+      "axeVersion": "4.13.0",
+      "violations": [],
+      "seriousCritical": 0,
+      "h1": 1,
+      "landmarks": {
+        "header": 1,
+        "main": 1,
+        "footer": 1
+      },
+      "lang": "de",
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ]
+    }
+  ]
+}

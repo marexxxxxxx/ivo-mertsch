@@ -1,0 +1,71 @@
+{
+  "fresh": {
+    "thirdParty": [],
+    "cookies": [],
+    "localStorage": [],
+    "totalRequests": 18
+  },
+  "banner": {
+    "bannerVisible": true,
+    "reject": {
+      "box": {
+        "x": 304,
+        "y": 754.8125,
+        "width": 216,
+        "height": 45.1875
+      },
+      "style": {
+        "fontSize": "16px",
+        "minHeight": "44px",
+        "padding": "12px 32px"
+      }
+    },
+    "accept": {
+      "box": {
+        "x": 532,
+        "y": 754.8125,
+        "width": 216,
+        "height": 45.1875
+      },
+      "style": {
+        "fontSize": "16px",
+        "minHeight": "44px",
+        "padding": "12px 32px"
+      }
+    }
+  },
+  "persistence": {
+    "afterReload": {
+      "banner": 0,
+      "state": "decided"
+    },
+    "afterNav": {
+      "banner": 0,
+      "state": "decided"
+    }
+  },
+  "toggles": {
+    "stat": false,
+    "ext": false
+  },
+  "revoke": {
+    "footerVisible": 1,
+    "record": {
+      "version": 1,
+      "entscheidung": "abgelehnt",
+      "kategorien": {
+        "essenziell": true,
+        "statistik": false,
+        "externe_medien": false
+      },
+      "zeitstempel": "2026-10-14T07:56:00.109Z",
+      "methode": "footer-einstellungen",
+      "textfassung": "2026-10-13.1",
+      "widerruf_zaehler": 2
+    },
+    "gateSlotsActive": 0
+  },
+  "versionChange": {
+    "banner": true
+  }
+}

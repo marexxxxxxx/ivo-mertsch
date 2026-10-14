@@ -1,0 +1,22 @@
+{
+  "error": {
+    "summaryVisible": true,
+    "summaryText": "Bitte prüfen Sie die markierten Felder. Bitte geben Sie Ihre E-Mail-Adresse ein. Bitte schreiben Sie kurz, worum es geht. Bitte bestätigen Sie die Datenschutzerklärung, damit ich Ihre Anfrage bearbeiten darf.",
+    "emailInvalid": "true",
+    "nameKept": "Behalten"
+  },
+  "loading": {
+    "busy": "true",
+    "disabled": true
+  },
+  "success": {
+    "statusText": "✓ Anfrage gesendet. Ich melde mich in der Regel innerhalb von zwei Werktagen."
+  },
+  "rateLimitedMocked": {
+    "summaryText": "Sie haben gerade mehrere Anfragen gesendet. Bitte warten Sie einen Moment — oder rufen Sie einfach an: +49 174 2164071."
+  },
+  "successReal": {
+    "statusText": "✓ Ihr E-Mail-Programm öffnet sich mit der fertigen Nachricht. Bitte senden Sie sie dort ab.",
+    "formGone": true
+  }
+}

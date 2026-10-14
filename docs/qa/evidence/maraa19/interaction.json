@@ -1,0 +1,68 @@
+{
+  "touch": {
+    "under44All": {
+      "/": [],
+      "/leistungen/": [],
+      "/kontakt/": [],
+      "/bewertungen/": []
+    },
+    "under24All": {
+      "/": [],
+      "/leistungen/": [],
+      "/kontakt/": [],
+      "/bewertungen/": []
+    }
+  },
+  "focus": {
+    "steps": 30,
+    "invisibleIndicators": 0,
+    "samples": [
+      {
+        "tag": "A",
+        "label": "Direkt zum Inhalt",
+        "outline": "solid 3px rgb(14, 58, 54)",
+        "boxShadow": false,
+        "visibleIndicator": true
+      },
+      {
+        "tag": "A",
+        "label": "Ivo Mertsch",
+        "outline": "solid 3px rgb(14, 58, 54)",
+        "boxShadow": false,
+        "visibleIndicator": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Leistungen ▾",
+        "outline": "solid 3px rgb(14, 58, 54)",
+        "boxShadow": false,
+        "visibleIndicator": true
+      },
+      {
+        "tag": "A",
+        "label": "Über uns",
+        "outline": "solid 3px rgb(14, 58, 54)",
+        "boxShadow": false,
+        "visibleIndicator": true
+      },
+      {
+        "tag": "A",
+        "label": "Bewertungen",
+        "outline": "solid 3px rgb(14, 58, 54)",
+        "boxShadow": false,
+        "visibleIndicator": true
+      },
+      {
+        "tag": "A",
+        "label": "Kontakt",
+        "outline": "solid 3px rgb(14, 58, 54)",
+        "boxShadow": false,
+        "visibleIndicator": true
+      }
+    ]
+  },
+  "reducedMotion": {
+    "durationToken": "1ms",
+    "btnTransition": "0.001s"
+  }
+}

@@ -1,0 +1,210 @@
+{
+  "overflow": [
+    {
+      "path": "/",
+      "width": 360,
+      "scrollW": 360,
+      "clientW": 360,
+      "bodyScrollW": 360,
+      "overflow": false
+    },
+    {
+      "path": "/leistungen/",
+      "width": 360,
+      "scrollW": 360,
+      "clientW": 360,
+      "bodyScrollW": 360,
+      "overflow": false
+    },
+    {
+      "path": "/leistungen/fugenlose-bäder/",
+      "width": 360,
+      "scrollW": 360,
+      "clientW": 360,
+      "bodyScrollW": 360,
+      "overflow": false
+    },
+    {
+      "path": "/kontakt/",
+      "width": 360,
+      "scrollW": 360,
+      "clientW": 360,
+      "bodyScrollW": 360,
+      "overflow": false
+    },
+    {
+      "path": "/bewertungen/",
+      "width": 360,
+      "scrollW": 360,
+      "clientW": 360,
+      "bodyScrollW": 360,
+      "overflow": false
+    },
+    {
+      "path": "/über-uns/",
+      "width": 360,
+      "scrollW": 360,
+      "clientW": 360,
+      "bodyScrollW": 360,
+      "overflow": false
+    },
+    {
+      "path": "/impressum/",
+      "width": 360,
+      "scrollW": 360,
+      "clientW": 360,
+      "bodyScrollW": 360,
+      "overflow": false
+    },
+    {
+      "path": "/datenschutzerklaerung/",
+      "width": 360,
+      "scrollW": 360,
+      "clientW": 360,
+      "bodyScrollW": 360,
+      "overflow": false
+    },
+    {
+      "path": "/",
+      "width": 768,
+      "scrollW": 768,
+      "clientW": 768,
+      "bodyScrollW": 768,
+      "overflow": false
+    },
+    {
+      "path": "/leistungen/",
+      "width": 768,
+      "scrollW": 768,
+      "clientW": 768,
+      "bodyScrollW": 768,
+      "overflow": false
+    },
+    {
+      "path": "/leistungen/fugenlose-bäder/",
+      "width": 768,
+      "scrollW": 768,
+      "clientW": 768,
+      "bodyScrollW": 768,
+      "overflow": false
+    },
+    {
+      "path": "/kontakt/",
+      "width": 768,
+      "scrollW": 768,
+      "clientW": 768,
+      "bodyScrollW": 768,
+      "overflow": false
+    },
+    {
+      "path": "/bewertungen/",
+      "width": 768,
+      "scrollW": 768,
+      "clientW": 768,
+      "bodyScrollW": 768,
+      "overflow": false
+    },
+    {
+      "path": "/über-uns/",
+      "width": 768,
+      "scrollW": 768,
+      "clientW": 768,
+      "bodyScrollW": 768,
+      "overflow": false
+    },
+    {
+      "path": "/impressum/",
+      "width": 768,
+      "scrollW": 768,
+      "clientW": 768,
+      "bodyScrollW": 768,
+      "overflow": false
+    },
+    {
+      "path": "/datenschutzerklaerung/",
+      "width": 768,
+      "scrollW": 768,
+      "clientW": 768,
+      "bodyScrollW": 768,
+      "overflow": false
+    },
+    {
+      "path": "/",
+      "width": 1440,
+      "scrollW": 1440,
+      "clientW": 1440,
+      "bodyScrollW": 1440,
+      "overflow": false
+    },
+    {
+      "path": "/leistungen/",
+      "width": 1440,
+      "scrollW": 1440,
+      "clientW": 1440,
+      "bodyScrollW": 1440,
+      "overflow": false
+    },
+    {
+      "path": "/leistungen/fugenlose-bäder/",
+      "width": 1440,
+      "scrollW": 1440,
+      "clientW": 1440,
+      "bodyScrollW": 1440,
+      "overflow": false
+    },
+    {
+      "path": "/kontakt/",
+      "width": 1440,
+      "scrollW": 1440,
+      "clientW": 1440,
+      "bodyScrollW": 1440,
+      "overflow": false
+    },
+    {
+      "path": "/bewertungen/",
+      "width": 1440,
+      "scrollW": 1440,
+      "clientW": 1440,
+      "bodyScrollW": 1440,
+      "overflow": false
+    },
+    {
+      "path": "/über-uns/",
+      "width": 1440,
+      "scrollW": 1440,
+      "clientW": 1440,
+      "bodyScrollW": 1440,
+      "overflow": false
+    },
+    {
+      "path": "/impressum/",
+      "width": 1440,
+      "scrollW": 1440,
+      "clientW": 1440,
+      "bodyScrollW": 1440,
+      "overflow": false
+    },
+    {
+      "path": "/datenschutzerklaerung/",
+      "width": 1440,
+      "scrollW": 1440,
+      "clientW": 1440,
+      "bodyScrollW": 1440,
+      "overflow": false
+    }
+  ],
+  "screens": [
+    "/home/user/.paperclip/instances/default/projects/6992fac5-bb01-4b16-bacd-d1a1e4e22e35/e0993fec-e594-45d6-b2c3-7f05fc624e75/ivo-mertsch/docs/qa/evidence/maraa19/screens/start-360.png",
+    "/home/user/.paperclip/instances/default/projects/6992fac5-bb01-4b16-bacd-d1a1e4e22e35/e0993fec-e594-45d6-b2c3-7f05fc624e75/ivo-mertsch/docs/qa/evidence/maraa19/screens/leistungen-360.png",
+    "/home/user/.paperclip/instances/default/projects/6992fac5-bb01-4b16-bacd-d1a1e4e22e35/e0993fec-e594-45d6-b2c3-7f05fc624e75/ivo-mertsch/docs/qa/evidence/maraa19/screens/kontakt-360.png",
+    "/home/user/.paperclip/instances/default/projects/6992fac5-bb01-4b16-bacd-d1a1e4e22e35/e0993fec-e594-45d6-b2c3-7f05fc624e75/ivo-mertsch/docs/qa/evidence/maraa19/screens/bewertungen-360.png",
+    "/home/user/.paperclip/instances/default/projects/6992fac5-bb01-4b16-bacd-d1a1e4e22e35/e0993fec-e594-45d6-b2c3-7f05fc624e75/ivo-mertsch/docs/qa/evidence/maraa19/screens/start-768.png",
+    "/home/user/.paperclip/instances/default/projects/6992fac5-bb01-4b16-bacd-d1a1e4e22e35/e0993fec-e594-45d6-b2c3-7f05fc624e75/ivo-mertsch/docs/qa/evidence/maraa19/screens/leistungen-768.png",
+    "/home/user/.paperclip/instances/default/projects/6992fac5-bb01-4b16-bacd-d1a1e4e22e35/e0993fec-e594-45d6-b2c3-7f05fc624e75/ivo-mertsch/docs/qa/evidence/maraa19/screens/kontakt-768.png",
+    "/home/user/.paperclip/instances/default/projects/6992fac5-bb01-4b16-bacd-d1a1e4e22e35/e0993fec-e594-45d6-b2c3-7f05fc624e75/ivo-mertsch/docs/qa/evidence/maraa19/screens/bewertungen-768.png",
+    "/home/user/.paperclip/instances/default/projects/6992fac5-bb01-4b16-bacd-d1a1e4e22e35/e0993fec-e594-45d6-b2c3-7f05fc624e75/ivo-mertsch/docs/qa/evidence/maraa19/screens/start-1440.png",
+    "/home/user/.paperclip/instances/default/projects/6992fac5-bb01-4b16-bacd-d1a1e4e22e35/e0993fec-e594-45d6-b2c3-7f05fc624e75/ivo-mertsch/docs/qa/evidence/maraa19/screens/leistungen-1440.png",
+    "/home/user/.paperclip/instances/default/projects/6992fac5-bb01-4b16-bacd-d1a1e4e22e35/e0993fec-e594-45d6-b2c3-7f05fc624e75/ivo-mertsch/docs/qa/evidence/maraa19/screens/kontakt-1440.png",
+    "/home/user/.paperclip/instances/default/projects/6992fac5-bb01-4b16-bacd-d1a1e4e22e35/e0993fec-e594-45d6-b2c3-7f05fc624e75/ivo-mertsch/docs/qa/evidence/maraa19/screens/bewertungen-1440.png"
+  ]
+}

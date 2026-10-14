@@ -1,0 +1,58 @@
+{
+  "start": {
+    "bodyBackground": "rgb(251, 250, 246)",
+    "bodyFont": "\"Instrument Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+    "h1Font": "\"Instrument Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+    "cardBackground": "rgb(255, 255, 255)",
+    "cardRadius": "16px",
+    "cardShadow": "rgba(36, 31, 25, 0.04) 0px 1px 2px 0px, rgba(36, 31, 25, 0.12) 0px 10px 28px -14px",
+    "heroRadius": "16px",
+    "heroShadow": "rgba(36, 31, 25, 0.04) 0px 1px 2px 0px, rgba(36, 31, 25, 0.12) 0px 10px 28px -14px",
+    "heroBody": {
+      "x": 160,
+      "y": 216,
+      "width": 509.765625,
+      "height": 479.703125,
+      "top": 216,
+      "right": 669.765625,
+      "bottom": 695.703125,
+      "left": 160
+    },
+    "heroMedia": {
+      "x": 693.765625,
+      "y": 272.65625,
+      "width": 586.234375,
+      "height": 366.390625,
+      "top": 272.65625,
+      "right": 1280,
+      "bottom": 639.046875,
+      "left": 693.765625
+    },
+    "servicesGrid": "71.3281px 71.3281px 71.3281px 71.3281px 71.3281px 71.3281px 71.3281px 71.3281px 71.3281px 71.3281px 71.3281px 71.3281px",
+    "cardWidths": [
+      1120,
+      357,
+      357,
+      357
+    ],
+    "fontFaces": [
+      "Instrument Sans"
+    ]
+  },
+  "kontakt": {
+    "formRadius": "16px",
+    "formShadow": "rgba(36, 31, 25, 0.04) 0px 1px 2px 0px, rgba(36, 31, 25, 0.12) 0px 10px 28px -14px",
+    "inputRadius": "12px",
+    "gridColumns": "514.281px 565.719px",
+    "formX": 714.28125,
+    "waysX": 160,
+    "formCard": {
+      "w": 566,
+      "h": 747
+    }
+  },
+  "footer": {
+    "bg": "rgb(36, 31, 25)",
+    "columns": "428.234px 305.875px 305.891px"
+  }
+}

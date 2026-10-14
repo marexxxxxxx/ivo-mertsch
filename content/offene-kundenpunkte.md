@@ -91,11 +91,18 @@ vorliegen, muss `content/reviews.json` befüllt werden. Kein manueller Schalter 
 die Sektion wechselt datengetrieben (`reviews.length === 0` ⇒ Leerzustand, sonst
 Liste). Bis dahin bleibt der Leerzustand aus `bewertungen.md` gültig.
 
+**OP-14 · Produktions-Hosting/Docker-Betrieb + Auftragsverarbeitungsvertrag (AVV). — OFFEN.**
+Die Website wird als eigener Docker-Container ausgeliefert. Für den
+Produktivbetrieb legt der Kunde den **Hosting-Anbieter** fest und benennt ihn mit
+**Name und Sitz**; außerdem die **Aufbewahrungsfrist der Server-Logs**. Betreibt der
+Dienstleister den Container als Auftragsverarbeiter, kommt der
+**Auftragsverarbeitungsvertrag nach Art. 28 DSGVO** hinzu. Die Angaben gehören in
+`datenschutzerklaerung.md`, Abschnitt 3 („Empfänger / Auftragsverarbeitung", dort
+als Freigabe-Hinweis ausgewiesen). Nicht Teil der Kundenantwort `950f0d46`; es
+wird nichts angenommen.
+
 ## Nicht nummerierte, noch offene Punkte
 
-- **Hosting-Anbieter / Auftragsverarbeitung** (`datenschutzerklaerung.md`,
-  Abschnitt 3): Name, Sitz und ggf. AV-Vertrag des Hosting-Dienstleisters. Nicht
-  Teil der Kundenantwort `950f0d46`.
 - **Nennung der ausführenden Agentur im Impressum** (`impressum.md`, „Technische
   Umsetzung"): nur, wenn der Kunde sie wünscht.
 - **`og:image`** (`seo-meta.md`): eigenes, lokal gehostetes Vorschaubild

@@ -80,7 +80,11 @@ bleiben selbstverständlich erhalten (z. B. `/leistungen/fugenlose-bäder/`).
    „79739 Schwörstadt".
 6. **Rechtsseiten:** Der Kunde prüft und gibt sie selbst frei (OP-5; Kundenantwort
    `950f0d46`). Kein Studio-seitiger Prüfvermerk mehr; Freigabe-Hinweis in
-   `impressum.md` / `datenschutzerklaerung.md`.
+   `impressum.md` / `datenschutzerklaerung.md`. In den kundenlesbaren Rechtsseiten
+   stehen **keine** internen Marker (`[OFFENER KUNDENPUNKT: …]` /
+   `[FREIGABE NÖTIG: …]`) im Fließtext — ein offener Punkt wird dort als
+   kundenlesbarer Freigabe-Hinweis ausgewiesen (Beispiel: OP-14, Hosting/AVV in
+   `datenschutzerklaerung.md`, Abschnitt 3).
 7. **KI-Bilder:** sichtbarer Hinweis an jeder Bildstelle + Footer-Kurzform
    (`ki-bildhinweis.md`, ADR 0002). Alt-Texte ohne Projektbehauptung; Provenienz in
    `bild-provenienz.json`.

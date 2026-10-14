@@ -10,8 +10,10 @@
 > Bestätigt (OP-3): Verantwortlicher ist der Betreiber, Ivo Mertsch. Bestätigt
 > (OP-1): sichtbare E-Mail ist `info@ivo-mertsch.de`.
 >
-> Offen bleibt der Hosting-Anbieter (unten markiert) — nicht Teil der
-> Kundenantwort `950f0d46`.
+> Offen bleibt ein Punkt: Für den Produktivbetrieb benennt der Kunde den
+> Hosting-Anbieter und den Auftragsverarbeitungsvertrag (AVV); die Stelle ist in
+> Abschnitt 3 als Freigabe-Hinweis ausgewiesen (OP-14 in
+> `content/offene-kundenpunkte.md`). Nicht Teil der Kundenantwort `950f0d46`.
 >
 > **KI-Bilder (ADR 0002 §5.5):** Die KI-Bilder zeigen Räume, Materialien und
 > Fassaden — keine Personen — und sind synthetisch. Es werden dadurch **keine
@@ -83,12 +85,17 @@ fehlerfreien Betrieb (Art. 6 Abs. 1 lit. f DSGVO).
 (üblich sind 7–14 Tage), sofern kein Sicherheitsvorfall eine längere Aufbewahrung
 erfordert.
 
-**Empfänger / Auftragsverarbeitung:** `[OFFENER KUNDENPUNKT (nicht nummeriert):
-Hosting-Anbieter und Log-Aufbewahrungsfrist benennen. Der Kunde betreibt den
-Container voraussichtlich bei einem Dienstleister; Name, Sitz und ggf.
-Auftragsverarbeitungsvertrag (Art. 28 DSGVO) müssen hier stehen. Die Alt-Seite
-nannte Strato AG — ob dieser Anbieter bleibt, ist offen. Nicht raten; nicht Teil
-der Kundenantwort `950f0d46`.]`
+**Empfänger / Auftragsverarbeitung.** Die Website läuft in einem eigenen
+Container. Sobald der Kunde den Hosting-Anbieter festgelegt hat, stehen hier Name
+und Sitz des Dienstleisters; wird der Container dort als Auftragsverarbeitung
+betrieben, kommt der Auftragsverarbeitungsvertrag nach Art. 28 DSGVO hinzu.
+
+> **Freigabe-Hinweis — Hosting und Server-Logs (Stand 2026-10-14).** Name und
+> Sitz des Hosting-Anbieters, die Aufbewahrungsfrist der Server-Logs und — falls
+> der Container bei einem Dienstleister betrieben wird — der
+> Auftragsverarbeitungsvertrag (Art. 28 DSGVO) werden vor dem Go-live an dieser
+> Stelle ergänzt. Der Kunde gibt diese Angaben selbst frei (OP-5). Bis dahin steht
+> hier bewusst keine Angabe — es wird nichts geraten.
 
 ## 4. Consent-Management (Einwilligung vor dem Laden externer Inhalte)
 

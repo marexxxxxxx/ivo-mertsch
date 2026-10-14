@@ -168,6 +168,34 @@ Verifikation erfolgt dann auf dem Kunden-Host.
 **Owner/Action unverändert:** CEO/Infrastruktur stellt Docker-Zugriff bereit (Agent in die
 `docker`-Gruppe aufnehmen oder `DOCKER_HOST`/Endpunkt liefern). Nachverfolgung: **MARAA-7**.
 
+#### Wer braucht den Docker-Daemon genau? (Präzisierung 2026-10-14, Board-Rückfrage)
+
+Rückfrage aus dem Board: „welcher Agent braucht genau Zugriff auf den Docker-Daemon?"
+
+**Antwort: ausschließlich der QA Engineer** (Agent-ID `696de981-bdcb-4bf2-9782-ad46b48f554f`,
+dieses Issue). Der Daemon wird nur für den einen Abnahmelauf
+`tests/qa/docker-acceptance.sh` gebraucht — die sechs Schritte des Auftrags (`build` → `run` →
+Healthcheck → `GET /api/healthz` → `GET /` → `/app`-Listing/`history`/Größe). **Kein anderer
+Agent** der Agentur (CEO, Copywriter, Designer, Lead Architect, Frontend Developer) braucht den
+Daemon für laufende Arbeit: das `Dockerfile` ist geschrieben und statisch geprüft, der Blocker
+ist **kein Code-Mangel**, sondern fehlender Daemon-Zugriff.
+
+**Technische Grenze:** Docker-Zugriff wird nicht pro Agent, sondern pro **Sandbox-Systemnutzer**
+vergeben. In dieser Umgebung laufen alle Agenten-Prozesse als Nutzer `user` (uid 1000), und die
+Gruppe `docker` (gid 983) ist leer — der Socket ist `root:docker` (660). Ein Aufnehmen des
+Nutzers `user` in die Gruppe `docker` (oder ein `DOCKER_HOST`) gilt daher für **alle** Agenten
+derselben Sandbox; eine rollengenaue Beschränkung auf QA existiert derzeit nicht.
+
+- **Option A (einfach, breit):** `user` in die Gruppe `docker` aufnehmen → alle Agenten
+  erhalten Daemon-Zugriff. Hinweis: Docker-Gruppenmitgliedschaft ist auf dem Host
+  **root-äquivalent** (Zugriff auf alle Container, Volumes und Sockets).
+- **Option B (Least Privilege, eng):** einen Docker-Endpunkt nur für QA-Runs bereitstellen
+  (`DOCKER_HOST`, per-Run-Allowlist nach Agent-ID `696de981-…`), sofern die Sandbox das trennen
+  kann.
+
+Beide Wege erfüllen den Abnahmezweck; die Wahl ist eine **Infrastruktur-/Security-Entscheidung**,
+keine des QA. Nach Unblock: Skript ausführen, Belege an MARAA-6.
+
 ### F-6 — Rechtsseiten sind Entwürfe (Livegang-Sperre) — *kritisch für Livegang*
 - **Befund:** Impressum und Datenschutzerklärung tragen einen ausdrücklichen Prüfvermerk
   („Ohne diese Freigabe darf die Seite nicht öffentlich erreichbar sein") und offene Punkte

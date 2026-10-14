@@ -1,0 +1,310 @@
+[
+  {
+    "path": "/",
+    "width": 360,
+    "scrollW": 360,
+    "clientW": 360,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/",
+    "width": 360,
+    "scrollW": 360,
+    "clientW": 360,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/fugenlose-bäder/",
+    "width": 360,
+    "scrollW": 360,
+    "clientW": 360,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/fugenlose-böden/",
+    "width": 360,
+    "scrollW": 360,
+    "clientW": 360,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/innenausbau/",
+    "width": 360,
+    "scrollW": 360,
+    "clientW": 360,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/fassaden/",
+    "width": 360,
+    "scrollW": 360,
+    "clientW": 360,
+    "overflow": false
+  },
+  {
+    "path": "/über-uns/",
+    "width": 360,
+    "scrollW": 360,
+    "clientW": 360,
+    "overflow": false
+  },
+  {
+    "path": "/bewertungen/",
+    "width": 360,
+    "scrollW": 360,
+    "clientW": 360,
+    "overflow": false
+  },
+  {
+    "path": "/kontakt/",
+    "width": 360,
+    "scrollW": 360,
+    "clientW": 360,
+    "overflow": false
+  },
+  {
+    "path": "/impressum/",
+    "width": 360,
+    "scrollW": 360,
+    "clientW": 360,
+    "overflow": false
+  },
+  {
+    "path": "/datenschutzerklaerung/",
+    "width": 360,
+    "scrollW": 360,
+    "clientW": 360,
+    "overflow": false
+  },
+  {
+    "path": "/",
+    "width": 768,
+    "scrollW": 768,
+    "clientW": 768,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/",
+    "width": 768,
+    "scrollW": 768,
+    "clientW": 768,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/fugenlose-bäder/",
+    "width": 768,
+    "scrollW": 768,
+    "clientW": 768,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/fugenlose-böden/",
+    "width": 768,
+    "scrollW": 768,
+    "clientW": 768,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/innenausbau/",
+    "width": 768,
+    "scrollW": 768,
+    "clientW": 768,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/fassaden/",
+    "width": 768,
+    "scrollW": 768,
+    "clientW": 768,
+    "overflow": false
+  },
+  {
+    "path": "/über-uns/",
+    "width": 768,
+    "scrollW": 768,
+    "clientW": 768,
+    "overflow": false
+  },
+  {
+    "path": "/bewertungen/",
+    "width": 768,
+    "scrollW": 768,
+    "clientW": 768,
+    "overflow": false
+  },
+  {
+    "path": "/kontakt/",
+    "width": 768,
+    "scrollW": 768,
+    "clientW": 768,
+    "overflow": false
+  },
+  {
+    "path": "/impressum/",
+    "width": 768,
+    "scrollW": 768,
+    "clientW": 768,
+    "overflow": false
+  },
+  {
+    "path": "/datenschutzerklaerung/",
+    "width": 768,
+    "scrollW": 768,
+    "clientW": 768,
+    "overflow": false
+  },
+  {
+    "path": "/",
+    "width": 1024,
+    "scrollW": 1024,
+    "clientW": 1024,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/",
+    "width": 1024,
+    "scrollW": 1024,
+    "clientW": 1024,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/fugenlose-bäder/",
+    "width": 1024,
+    "scrollW": 1024,
+    "clientW": 1024,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/fugenlose-böden/",
+    "width": 1024,
+    "scrollW": 1024,
+    "clientW": 1024,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/innenausbau/",
+    "width": 1024,
+    "scrollW": 1024,
+    "clientW": 1024,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/fassaden/",
+    "width": 1024,
+    "scrollW": 1024,
+    "clientW": 1024,
+    "overflow": false
+  },
+  {
+    "path": "/über-uns/",
+    "width": 1024,
+    "scrollW": 1024,
+    "clientW": 1024,
+    "overflow": false
+  },
+  {
+    "path": "/bewertungen/",
+    "width": 1024,
+    "scrollW": 1024,
+    "clientW": 1024,
+    "overflow": false
+  },
+  {
+    "path": "/kontakt/",
+    "width": 1024,
+    "scrollW": 1024,
+    "clientW": 1024,
+    "overflow": false
+  },
+  {
+    "path": "/impressum/",
+    "width": 1024,
+    "scrollW": 1024,
+    "clientW": 1024,
+    "overflow": false
+  },
+  {
+    "path": "/datenschutzerklaerung/",
+    "width": 1024,
+    "scrollW": 1024,
+    "clientW": 1024,
+    "overflow": false
+  },
+  {
+    "path": "/",
+    "width": 1440,
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/",
+    "width": 1440,
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/fugenlose-bäder/",
+    "width": 1440,
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/fugenlose-böden/",
+    "width": 1440,
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/innenausbau/",
+    "width": 1440,
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflow": false
+  },
+  {
+    "path": "/leistungen/fassaden/",
+    "width": 1440,
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflow": false
+  },
+  {
+    "path": "/über-uns/",
+    "width": 1440,
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflow": false
+  },
+  {
+    "path": "/bewertungen/",
+    "width": 1440,
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflow": false
+  },
+  {
+    "path": "/kontakt/",
+    "width": 1440,
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflow": false
+  },
+  {
+    "path": "/impressum/",
+    "width": 1440,
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflow": false
+  },
+  {
+    "path": "/datenschutzerklaerung/",
+    "width": 1440,
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflow": false
+  }
+]

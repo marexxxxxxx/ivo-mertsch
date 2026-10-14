@@ -1,0 +1,57 @@
+{
+  "sectionHeading": "Flächen ansehen",
+  "itemCount": 4,
+  "bigCellCount": 1,
+  "bigCellIsFirst": true,
+  "decorativeCount": 1,
+  "imgs": [
+    {
+      "src": "http://127.0.0.1:4321/_astro/foto9.DfkcZlLi_5NjCU.webp",
+      "alt": "",
+      "loading": "lazy",
+      "decoding": "async",
+      "width": "1890",
+      "height": "1914",
+      "naturalWidth": 475,
+      "aspectRatio": "auto",
+      "complete": true
+    },
+    {
+      "src": "http://127.0.0.1:4321/_astro/foto10.Djv9iVMx_Z1OsROh.webp",
+      "alt": "Fassadenbereich mit aufgebrachtem Dämmaufbau.",
+      "loading": "lazy",
+      "decoding": "async",
+      "width": "1896",
+      "height": "1911",
+      "naturalWidth": 475,
+      "aspectRatio": "1 / 1",
+      "complete": true
+    },
+    {
+      "src": "http://127.0.0.1:4321/_astro/foto7.M0QRXLsG_ZjMHyN.webp",
+      "alt": "Fassade eines Altbaus mit Gerüst und Handwerkern bei der Arbeit.",
+      "loading": "lazy",
+      "decoding": "async",
+      "width": "1897",
+      "height": "1915",
+      "naturalWidth": 475,
+      "aspectRatio": "1 / 1",
+      "complete": true
+    },
+    {
+      "src": "http://127.0.0.1:4321/_astro/foto6.IoT1qp08_Z2rIdWR.webp",
+      "alt": "Leerer Wohnraum mit Holzboden, Kamin und großen Fenstern.",
+      "loading": "lazy",
+      "decoding": "async",
+      "width": "1891",
+      "height": "1918",
+      "naturalWidth": 475,
+      "aspectRatio": "1 / 1",
+      "complete": true
+    }
+  ],
+  "kiHinweisFullInSection": 1,
+  "galleryBytes": 402279,
+  "totalPageTransferBytes": 449317,
+  "thirdPartyRequestsWithoutConsent": []
+}

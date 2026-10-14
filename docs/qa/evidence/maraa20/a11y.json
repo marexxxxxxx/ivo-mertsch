@@ -1,0 +1,57 @@
+[
+  {
+    "path": "/",
+    "seriousCritical": 0,
+    "ids": []
+  },
+  {
+    "path": "/leistungen/",
+    "seriousCritical": 0,
+    "ids": []
+  },
+  {
+    "path": "/leistungen/fugenlose-bäder/",
+    "seriousCritical": 0,
+    "ids": []
+  },
+  {
+    "path": "/leistungen/fugenlose-böden/",
+    "seriousCritical": 0,
+    "ids": []
+  },
+  {
+    "path": "/leistungen/innenausbau/",
+    "seriousCritical": 0,
+    "ids": []
+  },
+  {
+    "path": "/leistungen/fassaden/",
+    "seriousCritical": 0,
+    "ids": []
+  },
+  {
+    "path": "/über-uns/",
+    "seriousCritical": 0,
+    "ids": []
+  },
+  {
+    "path": "/bewertungen/",
+    "seriousCritical": 0,
+    "ids": []
+  },
+  {
+    "path": "/kontakt/",
+    "seriousCritical": 0,
+    "ids": []
+  },
+  {
+    "path": "/impressum/",
+    "seriousCritical": 0,
+    "ids": []
+  },
+  {
+    "path": "/datenschutzerklaerung/",
+    "seriousCritical": 0,
+    "ids": []
+  }
+]

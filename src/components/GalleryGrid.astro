@@ -8,6 +8,12 @@ interface GalleryItem {
   image: ImageMetadata;
   alt: string;
   caption?: string;
+  /**
+   * Dekoratives Bild (alt="" + aria-hidden, komponenten.md §7 / §19.4): nur setzen,
+   * wenn das Bild keine Information trägt — dann faellt es auch aus dem Baum der
+   * Hilfstechnologien. Der KI-Hinweis bleibt davon unberuehrt (eigener Absatz).
+   */
+  decorative?: boolean;
 }
 
 interface Props {
@@ -28,7 +34,7 @@ const { title, id, items } = Astro.props;
       {
         items.map((item, index) => (
           <li class={index === 0 ? "pf-gallery__item pf-gallery__item--big" : "pf-gallery__item"}>
-            <figure>
+            <figure aria-hidden={item.decorative ? "true" : undefined}>
               <Image
                 src={item.image}
                 alt={item.alt}

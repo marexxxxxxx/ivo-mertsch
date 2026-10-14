@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import ServiceCard from "../components/ServiceCard.astro";
+import GalleryGrid from "../components/GalleryGrid.astro";
 import KiBildHinweis from "../components/KiBildHinweis.astro";
 import CtaBand from "../components/CtaBand.astro";
 import Button from "../components/Button.astro";
@@ -52,6 +53,19 @@ const services = [
     wide: false,
   },
 ];
+
+/**
+ * Galerie „Flächen ansehen" (konzept.md §5 Bildsprache, komponenten.md §19.4):
+ * Zielzustand aus docs/design/mockup/start.html — eine grosse Zelle (foto9,
+ * dekorativ) plus drei Nachbarn. Alt-Texte unveraendert aus content/start.md,
+ * keine Referenzbehauptung; foto9 bleibt dekorativ (alt="" + aria-hidden).
+ */
+const gallery = [
+  { image: IMAGES.foto9.src, alt: IMAGES.foto9.alt, decorative: true },
+  { image: IMAGES.foto10.src, alt: IMAGES.foto10.alt },
+  { image: IMAGES.foto7.src, alt: IMAGES.foto7.alt },
+  { image: IMAGES.foto6.src, alt: IMAGES.foto6.alt },
+];
 ---
 
 <BaseLayout seo={ROUTES.home} schema={schema}>
@@ -98,6 +112,8 @@ const services = [
       </div>
     </div>
   </section>
+
+  <GalleryGrid title="Flächen ansehen" id="galerie-titel" items={gallery} />
 
   <section class="pf-section pf-section--sunken" aria-labelledby="ablauf-titel">
     <div class="pf-container">

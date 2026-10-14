@@ -96,10 +96,12 @@ Token-Governance. Sie wird nicht umgesetzt.
 
 ## 4. Umsetzung für MARAA-18 (F1) — Datei, Stelle, erwartetes Ergebnis
 
-> **Reihenfolge-Hinweis:** MARAA-16 (D1) bearbeitet `docs/design/tokens.json` **parallel**.
-> Punkte 1–2 betreffen `tokens.json` und sind **nach** dem D1-Delta (oder auf D1s Stand
-> rebased) einzuarbeiten, um Merge-Konflikte zu vermeiden. Punkt 3 (`tools/build-tokens.py`)
-> ist D1-frei und kann sofort erfolgen.
+> **Reihenfolge-Hinweis (Stand 2026-10-14):** MARAA-16 (D1) bearbeitet `docs/design/tokens.json`
+> **und** `tools/build-tokens.py` **parallel**; beide Dateien sind im Working Tree geändert.
+> F1 arbeitet auf D1s Stand weiter und legt **keine zweite Umsetzung** an: (1)(2) sind faktisch
+> bereits umgesetzt — zu prüfen ist nur, dass `meta.colorScheme.autoDark === false` gilt und der
+> Generator genau an diesem Flag hängt; (3) `tokens.css` neu erzeugen und `npm run build`.
+> Der Codeblock unten ist die **referenzierte** Fassung, falls D1s Fassung abweicht.
 
 ### 4.1 `docs/design/tokens.json` — Meta-Flag sicherstellen
 Erforderlich ist ein Schlüssel `meta.colorScheme.autoDark` mit dem Wert `false`.
@@ -155,9 +157,15 @@ Den bisher **bedingungslos** emittierten Auto-Dark-Block durch folgende Logik er
     A(":root { color-scheme: light; }")
 ```
 
-- **Wichtig:** Der Kommentar im `else`-Zweig enthält die Zeichenfolge
-  `prefers-color-scheme` **absichtlich nicht**, damit der Abnahme-Grep (Abschnitt 7/9) bei
-  **0** Treffern steht.
+- **Gate-Hinweis:** Der Abnahme-Gate prüft die **At-Regel**, nicht die Zeichenfolge. Ein
+  erklärender Kommentar darf `prefers-color-scheme` erwähnen; entscheidend ist, dass keine
+  `@media`-Regel emittiert wird.
+- **Abstimmung mit D1 (in-flight):** D1 hat im Working Tree bereits eine **funktional
+  äquivalente** Umsetzung (dasselbe Flag `meta.colorScheme.autoDark`, dieselbe Bedingung,
+  keine At-Regel bei `false`). F1 übernimmt entweder diese Fassung oder den Codeblock oben —
+  **entscheidend ist das Verhalten, nicht der Wortlaut**. Es darf nur **eine** Implementierung
+  landen (`tools/build-tokens.py` ist eine Datei). Verifiziert: D1s Fassung → At-Regel-Zähler
+  **0** bei `autoDark=false`, **1** bei `true`.
 - Die **explizite** `[data-theme="dark"]`-Sektion aus Abschnitt 2 (`build_css`, Theme-Loop)
   bleibt unangetastet — sie ist kein Auto-Dark.
 
@@ -165,20 +173,24 @@ Den bisher **bedingungslos** emittierten Auto-Dark-Block durch folgende Logik er
 `python3 tools/build-tokens.py` (schreibt `tokens.css` und führt den Audit aus).
 
 ### 4.4 Erwartetes Ergebnis (Invarianten nach der Umstellung)
+> Der Gate prüft die **At-Regel**, nicht die Zeichenfolge — Kommentare dürfen
+> `prefers-color-scheme` nennen. Das Muster `^[[:space:]]*@media[^{]*prefers-color-scheme`
+> trifft ausschließlich emittierte `@media`-Regeln.
+
 | Prüfung | Erwartet |
 |---|---|
-| `grep -c 'prefers-color-scheme' docs/design/tokens.css` | **0** |
+| `grep -cE '^[[:space:]]*@media[^{]*prefers-color-scheme' docs/design/tokens.css` | **0** |
 | `grep -c 'color-scheme: dark' docs/design/tokens.css` | **0** |
 | `grep -c 'color-scheme: light' docs/design/tokens.css` | **1** |
 | `grep -c '^\[data-theme="dark"\] {' docs/design/tokens.css` | **1** (Dormant-Remap bleibt) |
 | `grep -c '^\.pf-invert {' docs/design/tokens.css` | **1** (unverändert) |
 | `python3 tools/build-tokens.py --check` | **Exit 0** (Generator ↔ CSS synchron) |
 | `python3 tools/build-tokens.py --audit` | **Exit 0** (Audit inkl. `darkMode` bestanden) |
-| Gebautes `dist/…/BaseLayout.*.css` nach `npm run build` | **kein** `prefers-color-scheme` mehr |
+| Gebautes `dist/…/BaseLayout.*.css` nach `npm run build` | **keine** Auto-Dark-At-Regel mehr |
 
-**Für MARAA-19 (QA):** Der Gate ist `grep -c 'prefers-color-scheme'` == 0 auf dem gebauten
-CSS **und** ein Render bei emuliertem `prefers-color-scheme: dark` (Chromium 1440 px), in dem
-`body`-Hintergrund der Light-Wert bleibt (nicht `#15120D`).
+**Für MARAA-19 (QA):** Der Gate ist `grep -cE '^[[:space:]]*@media[^{]*prefers-color-scheme'`
+== 0 auf dem gebauten CSS **und** ein Render bei emuliertem `prefers-color-scheme: dark`
+(Chromium 1440 px), in dem `body`-Hintergrund der Light-Wert bleibt (nicht `#15120D`).
 
 ---
 
@@ -252,12 +264,14 @@ erzeugt (kein Produktionscode im Repo, gemäß Auftrag — Umsetzung obliegt MAR
 | Generator geändert (Flag=false) | `python3 build-tokens.py` | Exit **0** |
 | Konsistenz-Gate | `python3 tools/build-tokens.py --check` | Exit **0** |
 | Audit inkl. `darkMode` | `python3 tools/build-tokens.py --audit` | Exit **0** („AUDIT BESTANDEN") |
-| Invariante „kein Auto-Dark" | `grep -c 'prefers-color-scheme' tokens.css` | **0** |
+| Invariante „keine Auto-Dark-At-Regel" | `grep -cE '^[[:space:]]*@media[^{]*prefers-color-scheme' tokens.css` | **0** |
+| Naiver Substring-Grep ist **nicht** gatesicher | `grep -c 'prefers-color-scheme' tokens.css` | 0 oder 1 (je nach Kommentarwortlaut) — deshalb At-Regel-Gate |
 | Invariante „kein `color-scheme: dark`" | `grep -c 'color-scheme: dark' tokens.css` | **0** |
 | Light-UA-Fixierung bleibt | `grep -c 'color-scheme: light' tokens.css` | **1** |
 | Dormantes Dark-Remap bleibt | `grep -c '^\[data-theme="dark"\] {' tokens.css` | **1** |
 | `.pf-invert` bleibt | `grep -c '^\.pf-invert {' tokens.css` | **1** |
-| Flag ist der Schalter | `autoDark=true` setzen + regenerieren | Auto-Dark-Block kehrt zurück |
+| Flag ist der Schalter | `autoDark=true` setzen + regenerieren | Auto-Dark-At-Regel kehrt zurück (Zähler **1**) |
+| D1-Fassung ist funktional gleich | D1 in-flight Generator + `autoDark=false`/`true` | At-Regel **0** / **1**; `--audit` Exit 0 |
 | Gebautes CSS trägt die Regel (Bestand) | `grep` in `dist/client/_astro/BaseLayout.C54cT-cW.css` | 1 Vorkommen `prefers-color-scheme:dark` → Befund bestätigt |
 
 ---

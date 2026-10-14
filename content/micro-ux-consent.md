@@ -121,5 +121,6 @@ ADR 0001, Abschnitt 4. Reihenfolge der Buttons und gleiche Schriftgröße für
 - Telefon-Link: `tel:+491742164071` — sichtbarer Text `+49 174 2164071`.
 - WhatsApp: `https://wa.me/491742164071` — sichtbarer Text `WhatsApp schreiben`
   (öffnet einen fremden Dienst erst nach Klick; kein Embed).
-- E-Mail: `mailto:` mit Adresse aus `content/site.json`. Solange OP-1 offen ist,
-  ist das die Startseiten-Adresse; ein Adresstausch ändert nur `site.json`.
+- E-Mail: `mailto:` mit Adresse aus `content/site.json`. Bestätigte Adresse:
+  `info@ivo-mertsch.de` (OP-1 geklärt, Interaktion `950f0d46`). Ein Adresstausch
+  ändert nur `site.json`.

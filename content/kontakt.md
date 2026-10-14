@@ -47,7 +47,7 @@ nur wissen wollen, wie sie anrufen.
 | Telefon (primär) | `Anrufen: +49 174 2164071` | `tel:+491742164071` | Auf Mobil ein Tipp, der direkt wählt. |
 | WhatsApp | `WhatsApp schreiben` | `https://wa.me/491742164071` | Öffnet einen fremden Dienst erst nach Klick; kein Embed. |
 | Formular (primär) | `Anfrage senden` | `/kontakt/#formular` | Serverseitiger Versand oder mailto-Fallback (ADR 0001, Abschnitt 6). |
-| E-Mail | `E-Mail schreiben` | `mailto:` aus `content/site.json` | Adresse ist OP-1 (drei Varianten); Austausch nur in `site.json`. |
+| E-Mail | `E-Mail schreiben` | `mailto:` aus `content/site.json` | Adresse bestätigt: `info@ivo-mertsch.de` (OP-1). Austausch nur in `site.json`. |
 
 ## Adresse
 

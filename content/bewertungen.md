@@ -2,9 +2,10 @@
 
 Rolle: Social Proof zeigen — oder ehrlich sagen, dass noch keine öffentlichen
 Bewertungen für die Anzeige vorliegen — und zur Bewertung bei Google einladen.
-Datenquelle ist `content/reviews.json` (Phase 1: leer) bzw. die Places-API über
-`/api/reviews` (ADR 0001, Abschnitt 5). Der Renderer kennt nur das Normalformat;
-diese Datei liefert **beide** Textfassungen.
+Datenquelle ist `content/reviews.json` (Stand: leer). Ein Abruf über die
+Places-API ist **nicht** beauftragt (Kundenantwort Interaktion `950f0d46`, OP-11:
+nein, statischer Pfad); `content/reviews.json` bleibt die einzige Quelle. Der
+Renderer kennt nur das Normalformat; diese Datei liefert **beide** Textfassungen.
 
 **Verbindlich:** keine Bewertungstexte erfinden. Nichts von anderen Portalen als
 „Google" ausgeben. Kein `aggregateRating` (siehe `schema-org.jsonld`).
@@ -67,8 +68,10 @@ CEO-Entscheidung aus MARAA-3 — vor Livegang mit Belegzeile versehen.]`
 
 ### CTA
 
-- Primär-CTA: **Jetzt bei Google bewerten** → Ziel-URL aus `GOOGLE_REVIEW_URL`
-  (Laufzeit-Env; Wert fehlt noch → OFFENER KUNDENPUNKT OP-2).
+- Primär-CTA: **Jetzt bei Google bewerten** → Ziel-URL aus `GOOGLE_REVIEW_URL`,
+  Standardwert `https://maps.app.goo.gl/4w3i7sVLrrs8di5v9` (Kundenantwort
+  Interaktion `950f0d46`; OP-2 geklärt). Zentral in `content/site.json`
+  (`reviews.cta_url`).
 - Sekundär-CTA: **Beratung anfragen** → `/kontakt/#formular`
 
 HTML-Skizze einer Karte (Umsetzung MARAA-5 gegen `docs/contracts/reviews.schema.json`):
@@ -104,22 +107,27 @@ Abschnitt 4). Überschrift und CTA bleiben, nur der Mittelteil wechselt.
 
 > Bewertungen
 
-`[FREIGABE NÖTIG: Die H1 unterscheidet sich bewusst vom Zustand-A-Titel und enthält
-keine Behauptung. Alternativ: „Bewertungen von Google Maps" — dann aber nur, wenn
-keine Inhalte von Google gezeigt werden; hier wird bewusst keine Attribution
-gezeigt, weil keine Google-Inhalte dargestellt werden (ADR 0001, Abschnitt 5.4).]`
+`[GEKLÄRT: Der Kunde liefert keine Bewertungstexte (Interaktion `950f0d46`),
+deshalb bleibt der ehrliche Leerzustand. Die H1 unterscheidet sich bewusst vom
+Zustand-A-Titel und enthält keine Behauptung. Alternativ: „Bewertungen von Google
+Maps" — dann aber nur, wenn keine Inhalte von Google gezeigt werden; hier wird
+bewusst keine Attribution gezeigt, weil keine Google-Inhalte dargestellt werden
+(ADR 0001, Abschnitt 5.4).]`
 
 ### Leerzustand-Text
 
-> Aktuell liegen uns keine Google-Bewertungen für die Anzeige vor.
+> Aktuell liegen für diese Website keine Google-Bewertungen zur Anzeige vor.
 >
-> Das lässt sich ändern: Wenn Sie mit meiner Arbeit zufrieden waren, freue ich
-> mich über Ihre Bewertung bei Google. Sie hilft anderen in der Region, eine
-> Entscheidung zu treffen.
+> Wenn Sie mit meiner Arbeit zufrieden waren, freue ich mich über Ihre Bewertung
+> bei Google. Sie hilft anderen in der Region, eine Entscheidung zu treffen. Über
+> den Knopf unten gelangen Sie direkt zum Google-Maps-Profil dieses Betriebs.
 
-`[FREIGABE NÖTIG: Der zweite Absatz ist eine Bitte, keine Behauptung. Der Kunde
-bestätigt ihn. Er darf nicht zu einer verkappten Gegenleistung werden („für eine
-gute Bewertung gibt es …") — das wäre ein Verstoß gegen Googles Richtlinien.]`
+`[GEKLÄRT: Der Kunde liefert keine Bewertungstexte (Interaktion `950f0d46`),
+deshalb bleibt dieser Leerzustand. Der zweite Absatz ist eine Bitte, keine
+Behauptung, und darf nicht zu einer verkappten Gegenleistung werden („für eine
+gute Bewertung gibt es …") — das wäre ein Verstoß gegen Googles Richtlinien.
+Der Hinweis auf das Google-Maps-Profil ist ergänzt; das Ziel steht in
+`content/site.json` (`reviews.cta_url`).]`
 
 ### Verboten im Leerzustand
 
@@ -130,8 +138,11 @@ gute Bewertung gibt es …") — das wäre ein Verstoß gegen Googles Richtlinie
 
 ### CTA
 
-- Primär-CTA: **Jetzt bei Google bewerten** → Ziel-URL aus `GOOGLE_REVIEW_URL`
-  (OFFENER KUNDENPUNKT OP-2; ohne Wert wird der CTA ausgeblendet, ADR 5.4).
+- Primär-CTA: **Jetzt bei Google bewerten** → Ziel-URL aus `GOOGLE_REVIEW_URL`,
+  Standardwert `https://maps.app.goo.gl/4w3i7sVLrrs8di5v9` (OP-2 geklärt,
+  Kundenantwort Interaktion `950f0d46`). Zentral in `content/site.json`
+  (`reviews.cta_url`). Ohne gültigen Wert wird der CTA nicht gerendert (ADR 5.4,
+  kein toter Link) — der Leerzustandstext bleibt trotzdem stehen.
 - Sekundär-CTA: **Zufrieden? Schreiben Sie mir.** → `/kontakt/#formular`
 
 ---

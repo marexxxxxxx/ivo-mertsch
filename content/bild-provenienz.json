@@ -1,0 +1,36 @@
+{
+  "$comment": "Provenienz-Akte KI-Bilder (ADR 0002, Abschnitt 5.2). Pruefbarer Nachweis je Bilddatei; ergaenzt den sichtbaren KI-Hinweis (content/ki-bildhinweis.md), ersetzt ihn nicht. Werte stammen aus ADR 0002: Kundenangabe Interaktion 950f0d46 (KI-generiert) und den PNG-tIME-Chunks der Quellen (src/assets/img/*.png). Generator unbekannt. Dieses Dokument erhebt KEINEN Anspruch auf maschinenlesbare Kennzeichnung der Build-Artefakte (ADR 0002, Abschnitt 3.2/4.2/8).",
+  "stand": "2026-10-14",
+  "quelle_kundenangabe": "Interaktion 950f0d46 (2026-10-14): die Bilder wurden mit KI generiert.",
+  "bilder": [
+    { "datei": "foto3.png",  "herkunft": "Alt-Auftritt", "ki_generiert": true,
+      "generator": "unbekannt (Kundenangabe)", "erstellt_am": "2025-07-08T07:09:02",
+      "offenlegung": true, "projektzuordnung": "keine" },
+    { "datei": "foto6.png",  "herkunft": "Alt-Auftritt", "ki_generiert": true,
+      "generator": "unbekannt (Kundenangabe)", "erstellt_am": "2025-07-08T07:11:19",
+      "offenlegung": true, "projektzuordnung": "keine" },
+    { "datei": "foto7.png",  "herkunft": "Alt-Auftritt", "ki_generiert": true,
+      "generator": "unbekannt (Kundenangabe)", "erstellt_am": "2025-07-08T07:15:49",
+      "offenlegung": true, "projektzuordnung": "keine" },
+    { "datei": "foto8.png",  "herkunft": "Alt-Auftritt", "ki_generiert": true,
+      "generator": "unbekannt (Kundenangabe)", "erstellt_am": "2025-07-08T07:13:52",
+      "offenlegung": true, "projektzuordnung": "keine" },
+    { "datei": "foto9.png",  "herkunft": "Alt-Auftritt", "ki_generiert": true,
+      "generator": "unbekannt (Kundenangabe)", "erstellt_am": "2025-07-08T07:17:51",
+      "offenlegung": true, "projektzuordnung": "keine" },
+    { "datei": "foto10.png", "herkunft": "Alt-Auftritt", "ki_generiert": true,
+      "generator": "unbekannt (Kundenangabe)", "erstellt_am": "2025-07-08T07:19:27",
+      "offenlegung": true, "projektzuordnung": "keine" },
+    { "datei": "foto11.png", "herkunft": "Alt-Auftritt", "ki_generiert": true,
+      "generator": "unbekannt (Kundenangabe)", "erstellt_am": "2025-07-08T07:20:20",
+      "offenlegung": true, "projektzuordnung": "keine" }
+  ],
+  "logo": {
+    "datei": "logo_ivo.jpeg",
+    "herkunft": "Alt-Auftritt",
+    "ki_generiert": "unbekannt",
+    "hinweis": "Bildmarke zur Kennzeichnung des Betriebs, kein darstellender Bildinhalt. Faellt nicht unter den Deepfake-Begriff (Art. 3 Nr. 60) und braucht keine eigene Pflichtkennzeichnung; von der Vollform 'Ein Teil der Bilder ...' mit abgedeckt (ADR 0002, Abschnitt 5.6). Kein tIME-Chunk (JPEG) -> kein belastbares Erstellungsdatum.",
+    "offenlegung": false,
+    "projektzuordnung": "keine"
+  }
+}

@@ -21,13 +21,8 @@
     "telefon_tel": "+491742164071",
     "whatsapp_url": "https://wa.me/491742164071",
     "email": "info@ivo-mertsch.de",
-    "email_status": "offener_kundenpunkt",
-    "email_konflikt": [
-      "info@ivo-mertsch.de (mailto-Link der Startseite)",
-      "info@ivo-mertsch.com (Footer aller Seiten)",
-      "ivomertsch@gmail.com (Impressum, Kontaktseite, Kontaktseiten-Meta)"
-    ],
-    "email_hinweis": "OFFENER KUNDENPUNKT OP-1: Eine Adresse bestaetigen. Bis dahin zeigt die neue Seite die Startseiten-Adresse; der Wert ist hier zentral getauscht, ohne dass Texte umgebaut werden muessen."
+    "email_status": "bestaetigt",
+    "email_quelle": "Kundenantwort Interaktion 950f0d46 (2026-10-14). Loest OP-1 ab; ersetzt die drei Alt-Varianten (info@ivo-mertsch.de, info@ivo-mertsch.com, ivomertsch@gmail.com)."
   },
   "instagram": {
     "url": "https://www.instagram.com/ivomertsch_hal/",
@@ -38,8 +33,12 @@
     "attribution_translate": "no",
     "cta_label": "Jetzt bei Google bewerten",
     "cta_url_env": "GOOGLE_REVIEW_URL",
-    "cta_url_status": "offener_kundenpunkt",
-    "cta_url_hinweis": "OFFENER KUNDENPUNKT OP-2: Ziel des CTA (Google-Maps-Eintrag) vom Kunden erfragen. Ohne Wert wird der CTA ausgeblendet (ADR 0001, Abschnitt 5.4)."
+    "cta_url": "https://maps.app.goo.gl/4w3i7sVLrrs8di5v9",
+    "cta_url_status": "bestaetigt",
+    "cta_url_quelle": "Kundenantwort Interaktion 950f0d46 (2026-10-14): Google-Maps-Profil 'genau dieses Unternehmen'. Loest OP-2 ab.",
+    "cta_url_typ": "Google-Maps-Profil-Link (statisch verlinkt; keine Places-API)",
+    "places_api": "nein",
+    "places_api_hinweis": "Kundenantwort Interaktion 950f0d46 (OP-11): keine Places-API, rein statischer Pfad. Bewertungen bleiben der Leerzustand aus content/reviews.json."
   },
   "beschaffung": {
     "hosting": "eigener Docker-Container, keine Drittanbieter-Ressource vor Consent (ADR 0001)",

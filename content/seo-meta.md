@@ -92,8 +92,8 @@ zentral getauscht werden — `content/site.json` ist die Quelle.]`
   Bewertungen vor. Sobald echte Bewertungen existieren, wird Review-Markup nur für
   **sichtbare** Bewertungen ergänzt (und dann mit `aggregateRating` nur, wenn alle
   Bewertungen vollständig gezeigt werden — Google-Regel).
-- Die `email` im LocalBusiness-Knoten folgt `content/site.json` (OP-1). Nach der
-  Adressentscheidung zentral nachziehen.
+- Die `email` im LocalBusiness-Knoten folgt `content/site.json`: bestätigt
+  `info@ivo-mertsch.de` (OP-1 geklärt). Ein Adresstausch erfolgt zentral.
 - `image`/`logo` sind **bewusst nicht** gesetzt: solange kein lokal gehostetes,
   absolutes Bild-URL existiert, wird keins erfunden. Nach Aufbereitung der
   Originalbilder (`public/img/…`) ergänzen.

@@ -1,19 +1,27 @@
 # Datenschutzerklärung (`/datenschutzerklaerung/`)
 
-> **[PRÜFVERMERK — ABNAHMEKRITERIUM]** Diese Datenschutzerklärung ist ein Entwurf
-> für die **neue** Website. Sie beschreibt die tatsächlich implementierte
-> Consent-Architektur (ADR 0001, Abschnitt 4) und den Kontaktweg (ADR 0001,
-> Abschnitt 6). Sie **muss vor Livegang von einem Rechtsanwalt bzw. einem
-> IT-Recht-Dienstleister des Kunden final geprüft und freigegeben werden.** Ohne
-> diese Freigabe darf die Seite nicht öffentlich erreichbar sein.
+> **Freigabe-Hinweis (Stand 2026-10-14).** Diese Datenschutzerklärung beschreibt
+> die tatsächlich implementierte Consent-Architektur (ADR 0001, Abschnitt 4) und
+> den Kontaktweg (ADR 0001, Abschnitt 6). Sie wird vom Kunden selbst geprüft und
+> freigegeben (Kundenantwort Interaktion `950f0d46`; OP-5 in
+> `content/offene-kundenpunkte.md`). Es wird **keine** anwaltliche Freigabe durch
+> PixelForge Studio zugesagt.
 >
-> Kritische Prüfpunkte: Verantwortlicher (OP-3 — die Alt-Seite nannte eine andere
-> Person), Hosting-Anbieter (unten markiert), Aufbewahrungsfristen, Rechtsgrundlagen.
-> Siehe `content/offene-kundenpunkte.md`.
+> Bestätigt (OP-3): Verantwortlicher ist der Betreiber, Ivo Mertsch. Bestätigt
+> (OP-1): sichtbare E-Mail ist `info@ivo-mertsch.de`.
 >
-> Stand des Entwurfs: 2026-10-13. Vorlage nicht aus der Alt-Seite übernommen — die
-> Alt-Fassung beschrieb „Real Cookie Banner" und ein Hosting bei Strato, beides
-> trifft auf die neue Lösung nicht mehr zu.
+> Offen bleibt der Hosting-Anbieter (unten markiert) — nicht Teil der
+> Kundenantwort `950f0d46`.
+>
+> **KI-Bilder (ADR 0002 §5.5):** Die KI-Bilder zeigen Räume, Materialien und
+> Fassaden — keine Personen — und sind synthetisch. Es werden dadurch **keine
+> personenbezogenen Daten** verarbeitet; eine Erweiterung dieser Erklärung ist
+> deshalb **nicht** erforderlich. Der Transparenzhinweis steht separat (Impressum
+> `#bildhinweis`, `content/ki-bildhinweis.md`).
+>
+> Vorlage nicht aus der Alt-Seite übernommen — die Alt-Fassung beschrieb „Real
+> Cookie Banner" und ein Hosting bei Strato, beides trifft auf die neue Lösung
+> nicht mehr zu.
 
 ---
 
@@ -29,14 +37,9 @@ Deutschland
 Telefon: +49 174 2164071
 E-Mail: `info@ivo-mertsch.de`
 
-`[OFFENER KUNDENPUNKT OP-3: Die Datenschutzerklärung des Alt-Auftritts nannte als
-Verantwortlichen eine dritte Person („Marec Salzmann, Waldstraße 7, 79713 Bad
-Säckingen") statt des Betreibers. Für die neue Seite ist der tatsächliche
-Verantwortliche zu bestätigen — voraussichtlich Ivo Mertsch. Bis zur Bestätigung
-nicht live stellen.]`
-
-`[OFFENER KUNDENPUNKT OP-1: E-Mail-Adresse wie im Impressum; zentraler Wert in
-`content/site.json`.]`
+`[OP-3 — GEKLÄRT] Verantwortlicher ist der Betreiber, bestätigt durch Kundenantwort
+Interaktion `950f0d46` (2026-10-14). Die im Alt-Auftritt genannte dritte Person
+(„Marec Salzmann, Waldstraße 7, 79713 Bad Säckingen") ist damit ersetzt.`
 
 ## 2. Ihre Rechte
 
@@ -56,9 +59,9 @@ Zur Ausübung können Sie sich jederzeit an die oben genannten Kontaktdaten wend
 Landesbeauftragte für den Datenschutz und die Informationsfreiheit
 Baden-Württemberg, Lautenschlagerstraße 20, 70173 Stuttgart.
 
-`[PRÜFUNG: Anschrift der Aufsichtsbehörde vor Livegang aktualisieren. Die Alt-Seite
-nannte „Postfach 10 29 32, 70025 Stuttgart"; die aktuelle Hausanschrift lautet
-Lautenschlagerstraße 20, 70173 Stuttgart. Vom Rechtsprüfer bestätigen lassen.]`
+`[OP-5 — KUNDEN-SELBSTPRÜFUNG] Die Anschrift der Aufsichtsbehörde ist auf dem
+aktuellen Stand (Lautenschlagerstraße 20, 70173 Stuttgart); die Alt-Seite nannte
+das Postfach. Vom Kunden im Rahmen seiner Freigabe gegenzuprüfen.`
 
 ## 3. Hosting und Server-Logs
 
@@ -80,11 +83,12 @@ fehlerfreien Betrieb (Art. 6 Abs. 1 lit. f DSGVO).
 (üblich sind 7–14 Tage), sofern kein Sicherheitsvorfall eine längere Aufbewahrung
 erfordert.
 
-**Empfänger / Auftragsverarbeitung:** `[OFFENER KUNDENPUNKT: Hosting-Anbieter und
-Log-Aufbewahrungsfrist benennen. Der Kunde betreibt den Container voraussichtlich
-bei einem Dienstleister; Name, Sitz und ggf. Auftragsverarbeitungsvertrag (Art. 28
-DSGVO) müssen hier stehen. Die Alt-Seite nannte Strato AG — ob dieser Anbieter
-bleibt, ist offen. Nicht raten.]`
+**Empfänger / Auftragsverarbeitung:** `[OFFENER KUNDENPUNKT (nicht nummeriert):
+Hosting-Anbieter und Log-Aufbewahrungsfrist benennen. Der Kunde betreibt den
+Container voraussichtlich bei einem Dienstleister; Name, Sitz und ggf.
+Auftragsverarbeitungsvertrag (Art. 28 DSGVO) müssen hier stehen. Die Alt-Seite
+nannte Strato AG — ob dieser Anbieter bleibt, ist offen. Nicht raten; nicht Teil
+der Kundenantwort `950f0d46`.]`
 
 ## 4. Consent-Management (Einwilligung vor dem Laden externer Inhalte)
 
@@ -158,6 +162,13 @@ Die Website zeigt Bewertungen aus Google Maps.
 Google. Dann wird auch keine Attribution angezeigt, weil kein Google-Inhalt
 dargestellt wird.
 
+Stattdessen verlinken wir auf das Google-Maps-Profil des Betriebs („Jetzt bei
+Google bewerten"). Dies ist ein **einfacher Link**: Beim Besuch unserer Website
+werden keine Daten an Google übertragen. Erst mit Ihrem Klick verlassen Sie unsere
+Seite; ab dann gilt die Datenschutzerklärung von Google
+(<https://policies.google.com/privacy>). Eine Places-API wird nicht eingesetzt
+(Kundenentscheidung, statischer Pfad).
+
 ## 7. Instagram
 
 Die Website enthält einen einfachen Link auf unser Instagram-Profil. Es handelt
@@ -193,6 +204,6 @@ Instagram, Google Maps). Ein Verkauf von Daten findet nicht statt.
 Diese Datenschutzerklärung kann angepasst werden, wenn sich die Verarbeitung
 ändert. Es gilt die jeweils auf der Website veröffentlichte Fassung.
 
-`[FREIGABE NÖTIG: Textfassung im Consent-Datensatz (`textfassung`, z. B.
+`[PRÜFUNG (MARAA-11): Textfassung im Consent-Datensatz (`textfassung`, z. B.
 „2026-10-13.1") mit der veröffentlichten Fassung synchron halten. Ändert sich
-dieser Text nach Freigabe, muss die Kennung mit erhöht werden.]`
+dieser Text, muss die Kennung mit erhöht werden.]`

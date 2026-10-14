@@ -2,8 +2,10 @@
 
 Vollständiger Texte-, SEO- und Schema-Baustein für die neue Website. Grundlage
 ausschließlich: der Live-Auftritt <https://ivo-mertsch.de/> (abgerufen 2026-10-13),
-die CEO-Discovery in MARAA-1 (`docs/discovery/00-kundenbriefing-und-befund.md`) und
-das Kundenbriefing. **Keine erfundenen Fakten, Zahlen, Kunden oder Bewertungen.**
+die CEO-Discovery in MARAA-1 (`docs/discovery/00-kundenbriefing-und-befund.md`),
+das Kundenbriefing sowie die bestätigten Kundenantworten aus Interaktion
+`950f0d46` (2026-10-14). **Keine erfundenen Fakten, Zahlen, Kunden oder
+Bewertungen.**
 
 ## Stimme (verbindlich für alle Texte)
 
@@ -55,7 +57,9 @@ Vollständige Liste: `content/offene-kundenpunkte.md`.
 | `datenschutzerklaerung.md` | Datenschutzerklärung (neu, dokumentiert) |
 | `seo-meta.md` | Title, Description, OG, Canonical, Keywords |
 | `schema-org.jsonld` | JSON-LD-Bausteine |
-| `reviews.json` | Datenquelle der Bewertungs-Sektion (Phase 1: Leerzustand) |
+| `reviews.json` | Datenquelle der Bewertungs-Sektion (Leerzustand; keine Places-API) |
+| `ki-bildhinweis.md` | KI-Transparenz: finaler Wortlaut, Alt-Texte, Caption-/UWG-Regeln (ADR 0002) |
+| `bild-provenienz.json` | Provenienz-Akte der KI-Bilder (ADR 0002, §5.2) |
 | `offene-kundenpunkte.md` | nummerierte Kundenpunkte |
 
 Dateinamen ohne Umlaute (ASCII), damit Build, Router und Git keine
@@ -74,16 +78,38 @@ bleiben selbstverständlich erhalten (z. B. `/leistungen/fugenlose-bäder/`).
    `aggregateRating` im Schema.
 5. **Schreibweise 1:1 aus der Live-Seite:** „Schwörstadt", „Niederdossenbach 1",
    „79739 Schwörstadt".
-6. **Rechtsseiten tragen den Prüfvermerk** für den Kundenanwalt / IT-Recht-Dienstleister
-   (Abnahmekriterium). Siehe jeweilige Datei.
+6. **Rechtsseiten:** Der Kunde prüft und gibt sie selbst frei (OP-5; Kundenantwort
+   `950f0d46`). Kein Studio-seitiger Prüfvermerk mehr; Freigabe-Hinweis in
+   `impressum.md` / `datenschutzerklaerung.md`.
+7. **KI-Bilder:** sichtbarer Hinweis an jeder Bildstelle + Footer-Kurzform
+   (`ki-bildhinweis.md`, ADR 0002). Alt-Texte ohne Projektbehauptung; Provenienz in
+   `bild-provenienz.json`.
 
-## Hinweis für Frontend (MARAA-5)
+## Hinweis für Frontend (MARAA-11)
 
+- **Bestätigte Werte (Interaktion `950f0d46`) sind jetzt in `content/site.json`:**
+  `kontakt.email = info@ivo-mertsch.de` (`email_status: bestaetigt`) und
+  `reviews.cta_url = https://maps.app.goo.gl/4w3i7sVLrrs8di5v9`
+  (`cta_url_status: bestaetigt`). Die ersetzen `email_konflikt`/`email_hinweis`
+  und `cta_url_hinweis`.
+- **`src/lib/content.ts` nachziehen:** Der dortige `SiteConfig`-Typ und der
+  `SITE_FALLBACK` spiegeln noch den alten Stand (`email_status`/`cta_url_status:
+  "offener_kundenpunkt"`, `email_konflikt`, `email_hinweis`, `cta_url_hinweis`).
+  Diese Felder existieren in `content/site.json` nicht mehr; der Fallback muss auf
+  `bestaetigt` und die neuen Felder (`cta_url`, `places_api`) umgestellt werden.
+  **Bewusst nicht in MARAA-10 geändert** (Grenze: kein `src/`-Code).
+- **CTA-Verdrahtung:** Der Button „Jetzt bei Google bewerten" nutzt bisher
+  `GOOGLE_REVIEW_URL` aus der Laufzeit-Env (`src/lib/reviews.server.ts`). Als
+  Standardwert ist jetzt `reviews.cta_url` aus `site.json` gesetzt.
+- **KI-Hinweis rendern:** Vollform an jeder Bildstelle, Kurzform im Footer —
+  Wortlaut, Platzierung und A11y-Regeln in `content/ki-bildhinweis.md` (ADR 0002,
+  §5.1). Sichtbarer Absatz, kein `title`/`aria-label`-Only.
 - Alle UI-Texte vollständig in `micro-ux-consent.md` — Labels, Fehler, Leer-,
   Lade-, Erfolgszustände, Consent.
-- Bildalt-Texte stehen bei den Bildern in den jeweiligen Seitendateien.
+- Bildalt-Texte stehen bei den Bildern in den jeweiligen Seitendateien;
+  KI-Hinweis-/Caption-Regeln in `ki-bildhinweis.md`.
 - Die Originalbilder sind schwere PNGs — für Lighthouse ≥ 95 konvertieren
-  (AVIF/WebP, Größenattribute). Rechte/Nutzung s. offene Punkte.
+  (AVIF/WebP, Größenattribute). Nutzungsrechte: OP-6 geklärt.
 - Consent: keine Drittanbieter-Ressource vor Einwilligung. Google-Bewertungen
-  werden serverseitig geladen (Proxy + Cache) oder statisch exportiert —
+  werden statisch exportiert (keine Places-API, OP-11) —
   Details in `datenschutzerklaerung.md`, Abschnitt Consent.

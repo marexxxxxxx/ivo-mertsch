@@ -362,3 +362,173 @@ Firefox. Offen bzw. mangelhaft:
 Padding/min-height). F-4 erfordert Umgebungszugriff und ist kein Code-Mangel (F-5 ist seit
 2026-10-14 abgenommen).
 Ein **Go-live** ist erst nach F-6 (Rechtsfreigabe) möglich; F-5 (verifizierter Container) ist am 2026-10-14 abgenommen.
+
+---
+
+# Re-Verifikation MARAA-12 — nach Content-/KI-Transparenz-Änderungen
+
+| | |
+|---|---|
+| **Issue** | MARAA-12 — QA: Re-Verifikation nach Content-/KI-Transparenz-Änderungen |
+| **Prüfobjekt** | Ivo-Mertsch-Relaunch nach MARAA-10 (Content, `e22035f`) + MARAA-11 (Frontend, `26c1d0a`) |
+| **Autor** | QA Engineer, PixelForge Studio |
+| **Datum** | 2026-10-14 |
+| **Geprüfter Stand** | Commit `f1108f0` (`main`), frisch gebaut mit `npm run build`, ausgeliefert über `node ./dist/server/entry.mjs` (Port 4321) |
+| **Gesamturteil** | **Abnahme bestanden (7/7 Prüfkriterien), 120/120 Einzelprüfungen grün**, mit **1 redaktionellen Anmerkung** (nicht blockierend) und unverändert offenen **Livegang**-Punkten (Hosting-Anbieter, OP-7…OP-10/12/13, anwaltliche Freigabe entfällt zugunsten Kunden-Selbstprüfung) |
+
+> Grundsatz unverändert: Jeder „Pass" hat einen Beleg. **Nicht gerendert und angesehen =
+> nicht verifiziert** — die visuellen Belege (Screenshots) wurden angesehen. Bei Zweifel
+> wurde Fail gemeldet, nicht Pass.
+
+## 8.1 Prüfumgebung
+
+| | |
+|---|---|
+| Host | Agenten-Sandbox (Linux), Node v26.8.1 |
+| Auslieferung | Production-Build, `http://127.0.0.1:4321` (plus Laufzeit-Override-Server `:4399`, s. §8.3) |
+| Browser | Chromium (Playwright, `chromium-1248`) |
+| axe | axe-core 4.13.0 über `@axe-core/playwright`, Tags `wcag2a, wcag2aa, wcag21a, wcag21aa` |
+| QA-Harness | `tests/qa/qa-run.mjs` (Bestand) + **neu** `tests/qa/maraa12-check.mjs` (KI-Transparenz, Rechtstexte, Review-CTA, Metadaten-Policy) — unabhängig vom Entwickler-E2E-Set |
+
+## 8.2 Ergebnistabelle (Kriterien aus MARAA-12)
+
+| # | Kriterium (Quelle) | Status | Beleg |
+|---|---|---|---|
+| 1 | **A11y/axe: 0 Verstöße** — Kernseiten (Start, 4 Leistungsdetail, Leistungen, Über uns, Bewertungen, Kontakt) + Rechtsseiten (Impressum, Datenschutz) + 404 | **Pass** | `evidence/a11y.json` |
+| 2 | **DSGVO: 0 Dritt-Requests + 0 Cookies vor Einwilligung** (unverändert) | **Pass** | `evidence/consent.json` |
+| 3 | **Regression F-1/F-2:** `touchTargetsUnder44` = 0 **und** `touchTargetsUnder24` = 0 | **Pass** | `evidence/overflow.json` |
+| 4 | **KI-Transparenz sichtbar; Metadaten-Policy eingehalten** (kein Entfernen von Provenienz-Tags) | **Pass** | `evidence/maraa12/ki-transparenz.json`, `metadata-policy.json`, `dist-metadata.json`, `screens/` |
+| 5 | **Rechtstexte final:** kein Prüfvermerk mehr; bestätigte Angaben; Kunden-Selbstprüfung dokumentiert | **Pass** (1 Anmerkung) | `evidence/maraa12/legal.json`, `screens/impressum-*.png` |
+| 6 | **Review-CTA** zeigt auf den bestätigten Maps-Link (bei gesetztem `GOOGLE_REVIEW_URL`); Leerzustand korrekt, keine erfundenen Bewertungen | **Pass** | `evidence/maraa12/results.json`, `screens/bewertungen-*` |
+| 7 | **Gates:** `npm test`, `npm run contracts`, `npx playwright test`, `npm run build` | **Pass** | s. §8.4 |
+
+Zusätzlich gegengeprüft (nicht gefordert): `npm run lint` **0**, `npm run typecheck` **0 Fehler/0 Warnungen/0 Hinweise**. Der neue QA-Harness ist lint-fähig (ESLint prüft `tests/qa/**`).
+
+## 8.3 Bestandene Prüfungen — Nachweis (Auszug)
+
+- **A11y (Kriterium 1):** axe über **12 Seiten** (Kern **und** Rechtsseiten + 404):
+  **0 Verstöße insgesamt** (nicht nur 0 serious/critical), je genau ein `<h1>`, je ein
+  `header`/`main#hauptinhalt`/`footer`, `lang="de"`. Einziger Console-Eintrag ist der
+  erwartete HTTP-404 der 404-Testseite. Beleg `evidence/a11y.json`.
+- **DSGVO (Kriterium 2):** frischer Kontext → **0 Cross-Origin-Requests**, **0 Cookies**,
+  kein `pixelforge.consent.v1` vor Einwilligung; „Nur notwendige" entfernt das Banner in
+  **einem** Klick ohne Dritt-Request; „Alle akzeptieren"/„Nur notwendige" **exakt gleich groß**
+  (216 × 45,19 px); Persistenz über Reload/Seitenwechsel; Widerruf setzt Kategorien zurück
+  und entfernt Gate-Slots; Version-2-Datensatz **und** korrupter Wert lassen das Banner
+  wiederkommen; optionale Kategorien **nicht vorausgewählt**. Beleg `evidence/consent.json`.
+- **Regression F-1/F-2 (Kriterium 3):** `touchTargetsUnder44` = **0** (vorher Fail: Logo 169×40,
+  Breadcrumb 37×40, Checkbox 24×24), `touchTargetsUnder24` = **0** (vorher Fail: Banner-Links
+  20 px). Zusätzlich **0 horizontaler Overflow** auf `/`, `/kontakt/`, `/bewertungen/`,
+  `/leistungen/` bei 360/768/1024/1440 px. Beleg `evidence/overflow.json`.
+  **F-1 und F-2 damit geschlossen.**
+- **KI-Transparenz (Kriterium 4):** Kurzform im Footer **jeder** Seite sichtbar
+  (Kontrast **10,47:1**); Vollform an jeder Bildstelle (Start 2× Hero+Sektion, Leistungen,
+  4 Leistungsdetailseiten, Über uns; Kontrast **8,04–8,61:1**, Schriftgröße 16 px, echter
+  Textknoten ohne `title`/`aria-label`); **keine doppelte `id="ki-bildhinweis"`**; Footer-Link
+  „Bildhinweis" → `/impressum/#bildhinweis`; kein verbotener Referenz-/Projektbegriff.
+  Beleg `evidence/maraa12/ki-transparenz.json` + Screenshots.
+- **Metadaten-Policy (Kriterium 4, ADR 0002 §5.2):** Quellbilder tragen **keine**
+  Provenienz-Chunks (`tEXt`/`iTXt`/`zTXt`/`eXIf`; JPEG nur `APP0`+`APP2`) → es gibt nichts
+  zu entfernen; **38 dist-Bildartefakte** über `sharp.metadata()` geprüft → **keine**
+  EXIF/XMP/IPTC. Provenienz-Akte `content/bild-provenienz.json` deckt alle 7 Bilder +
+  Logo ab. Der in der ADR geforderte Regressionsschutz ist als Prüfung implementiert
+  (`tests/qa/maraa12-check.mjs`, `distMetaScan`). Beleg `evidence/maraa12/metadata-policy.json`,
+  `dist-metadata.json`.
+- **Rechtstexte (Kriterium 5):** An der **gerenderten** Rechtsseite: **kein** Studio-Prüfvermerk
+  mehr („Prüfvermerk", „Ohne diese Freigabe …", „Rechtsanwalt des Kunden", „Abnahmekriterium"
+  → alle **0 Treffer**); Kunden-Selbstprüfung dokumentiert („Freigabe-Hinweis (Stand 2026-10-14)");
+  bestätigte Angaben gerendert (`info@ivo-mertsch.de`, „Niederdossenbach 1 … Schwörstadt",
+  „Ivo Marco Mertsch", USt-/W-IdNr. „ist nicht vorhanden"). Beleg `evidence/maraa12/legal.json`,
+  `screens/impressum-bildhinweis-1280.png`.
+- **Review-CTA (Kriterium 6):** Leerzustand `/bewertungen/` zeigt **0 Karten, 0 Sterne,
+  0 Attribution** (keine erfundene Bewertung), `GET /api/reviews` = **200** mit leerer Liste.
+  CTA „Jetzt bei Google bewerten" ist sichtbar, `target="_blank"` + `rel="noopener noreferrer"`.
+  - **Statisch (kein Env):** `href` = bestätigter Maps-Link
+    `https://maps.app.goo.gl/4w3i7sVLrrs8di5v9` (OP-2 geklärt).
+  - **Laufzeit (gesetzter `GOOGLE_REVIEW_URL`):** zweiter Server `:4399` mit
+    `GOOGLE_REVIEW_URL=https://maps.app.goo.gl/qaOverrideTest123` → CTA übernimmt den
+    Env-Wert, `GET /api/reviews` liefert `X-Google-Review-Url` = Env-Wert (same-origin).
+  - **0 Dritt-Requests** auf `/bewertungen/` in beiden Fällen.
+  Beleg `evidence/maraa12/results.json`, `screens/bewertungen-cta-fokus.png`, `-footer-360.png`.
+  **OP-A (CTA ohne Ziel) damit geschlossen.**
+
+## 8.4 Projekt-Gates (Kriterium 7)
+
+| Gate | Ergebnis |
+|---|---|
+| `npm run build` | **Exit 0** (Server gebaut) |
+| `npm test` (vitest) | **42/42** |
+| `npm run contracts` | **14/14** |
+| `npx playwright test` (Chromium) | **25/25** |
+| `npm run lint` / `npm run typecheck` | **0** / **0 Fehler, 0 Warnungen, 0 Hinweise** |
+
+## 8.5 Befunde der Re-Verifikation
+
+### F-7 — Interner Marker im Fliesstext der Datenschutzerklärung — *leicht, redaktionell (nicht blockierend)*
+- **Befund:** In §3 „Hosting und Server-Logs" der **veröffentlichten** Datenschutzerklärung steht
+  wörtlich „**Offener Kundenpunkt:** Hosting-Anbieter und Log-Aufbewahrungsfrist sind zu benennen.
+  Die Alt-Seite nannte die Strato AG — ob dieser Anbieter bleibt, ist offen; **es wird nicht
+  geraten.**" Das ist ein internes Projekt-Label in Verbrauchertext. Analog im Impressum
+  („Technische Umsetzung": „… keine Angabe erfinden.").
+- **Beleg:** `evidence/maraa12/legal.json` (`internalMarker`), `screens/datenschutz-1280.png`.
+- **Einordnung:** **Kein** Studio-Prüfvermerk (der ist entfernt, Kriterium 5 = Pass). Der
+  Hosting-Anbieter ist ein **dokumentiert legitimer, offener Kundenpunkt**
+  (`content/offene-kundenpunkte.md`, „Nicht nummerierte … Punkte"). Die DSGVO verlangt die
+  Benennung des Empfängers; ihn nicht zu nennen wäre schlechter als der Hinweis. **Empfehlung
+  (redaktionell, Frontend/Content):** die interne Label-Formulierung in neutrale
+  Verbraucherprosa überführen, z. B. „Der Hosting-Anbieter wird nach abschließender
+  Bestätigung durch den Betreiber ergänzt." Kein Rückgabe-Grund.
+
+### Unverändert offen (aus MARAA-6, nicht Teil dieser Änderung)
+- **F-3** Mobiler LCP 2,1–2,3 s > Ziel 2,0 s (unter Blocker 2,5 s) — Produktionsmessung.
+- **F-4** WebKit/Safari in dieser Sandbox nicht startbar (fehlende Libs) — Umgebungslücke.
+- **F-6 / Livegang:** Hosting-Anbieter (Auftragsverarbeitung) sowie **OP-7…OP-10, OP-12, OP-13**
+  (Anrede, Firmierung, Adresse „Lörrach", Antwortzeit, Statistik, Leerzustand-Update) sind weiter
+  Kunden-/CEO-Entscheidungen. Die anwaltliche Freigabe entfällt zugunsten der **Kunden-
+  Selbstprüfung** (OP-5 geklärt). PixelForge Studio sagt **keine** anwaltliche Freigabe zu.
+
+**Geklärt durch MARAA-10/11 (damit geschlossen):** OP-1 (E-Mail), OP-2 (CTA-Ziel), OP-3
+(Verantwortlicher), OP-4 (Impressums-Pflichtangaben), OP-5 (Rechtsprüfung → Kunden-Selbstprüfung),
+OP-6 (Bildnutzungsrechte), OP-11 (keine Places-API), **F-1**, **F-2**, **OP-A**.
+
+## 8.6 Belegverzeichnis (neu)
+
+```
+tests/qa/maraa12-check.mjs                       QA-Harness MARAA-12 (KI-Transparenz, Rechtstexte, Review-CTA, Metadaten-Policy, Screenshots)
+docs/qa/evidence/maraa12/results.json            Roh-Ergebnis: 120 Prüfungen, 0 Fehlschläge (inkl. Laufzeit-Override, Metadaten)
+docs/qa/evidence/maraa12/ki-transparenz.json     Voll-/Kurzform je Seite, Sichtbarkeit, Kontrast (gemessen), kein title/aria-label-Only
+docs/qa/evidence/maraa12/legal.json              Prüfvermerk-Treffer=0, Freigabe-Hinweis, bestätigte Angaben, Data-Marker
+docs/qa/evidence/maraa12/metadata-policy.json    Quell-Chunk-Scan (PNG/JPEG) + Provenienz-Akte
+docs/qa/evidence/maraa12/dist-metadata.json      sharp.metadata() über 38 dist-Bildartefakte -> keine EXIF/XMP/IPTC
+docs/qa/evidence/maraa12/screens.json            Liste der Screenshots
+docs/qa/evidence/maraa12/screens/*.png           Home (KI-Hinweis), Impressum (Bildhinweis), Datenschutz, Bewertungen-Leerzustand+CTA,
+                                                 Footer-Kurzform 360 px, Fokus-Aufnahmen KI-Hinweis & CTA
+docs/qa/evidence/a11y.json                       (aktualisiert) axe 12 Seiten, 0 Verstöße
+docs/qa/evidence/consent.json                    (aktualisiert) 0 Dritt-Requests/Cookies, Banner-Persistenz/Widerruf/Version
+docs/qa/evidence/overflow.json                   (aktualisiert) Overflow 4 Breiten + Touch-Targets 44/24 px = 0
+```
+
+Reproduktion:
+```bash
+npm run build && PORT=4321 HOST=127.0.0.1 NODE_ENV=production node ./dist/server/entry.mjs &
+node tests/qa/qa-run.mjs a11y      # bzw. consent | overflow | keyboard | reviews
+node tests/qa/maraa12-check.mjs    # KI-Transparenz, Rechtstexte, Review-CTA, Metadaten-Policy
+# Laufzeit-Override (Kriterium 6):
+#   PORT=4399 GOOGLE_REVIEW_URL=<override> node ./dist/server/entry.mjs &
+#   QA_OVERRIDE_BASE=http://127.0.0.1:4399 QA_OVERRIDE_URL=<override> node tests/qa/maraa12-check.mjs
+```
+
+**Keine Secrets** in Protokoll oder Belegen: nur öffentliche Testdaten, Beispielwerte und
+Env-Variablennamen; der Laufzeit-Override ist ein harmloser Testlink, kein Schlüssel.
+
+## 8.7 Gesamturteil MARAA-12
+
+**Abnahme bestanden.** Alle sieben Prüfkriterien erfüllt, 120 von 120 Einzelprüfungen grün,
+die neuen Punkte (KI-Transparenz, Metadaten-Policy, finale Rechtstexte, Review-CTA) sind an
+der **gerenderten** Seite mit Messwerten und Screenshots belegt. Die Regressionen F-1/F-2 sind
+**geschlossen**; der Review-CTA zeigt auf den bestätigten Maps-Link und funktioniert auch mit
+gesetztem `GOOGLE_REVIEW_URL`.
+
+Offen bleibt ausschließlich **Nicht-Code**: F-3 (Produktionsmessung), F-4 (Umgebungslücke),
+F-6/Livegang (Hosting-Anbieter + Kundenwahl OP-7…OP-13) und die redaktionelle Anmerkung F-7.
+**Keine Rückgabe** an die Umsetzung.

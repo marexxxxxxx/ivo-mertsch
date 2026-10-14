@@ -10,7 +10,7 @@
     "reject": {
       "box": {
         "x": 304,
-        "y": 779.3125,
+        "y": 754.8125,
         "width": 216,
         "height": 45.1875
       },
@@ -24,7 +24,7 @@
     "accept": {
       "box": {
         "x": 532,
-        "y": 779.3125,
+        "y": 754.8125,
         "width": 216,
         "height": 45.1875
       },
@@ -46,7 +46,7 @@
         "statistik": false,
         "externe_medien": false
       },
-      "zeitstempel": "2026-10-13T22:23:20.972Z",
+      "zeitstempel": "2026-10-14T06:08:19.816Z",
       "methode": "banner-ablehnen",
       "textfassung": "2026-10-13.1",
       "widerruf_zaehler": 1
@@ -74,7 +74,7 @@
         "statistik": true,
         "externe_medien": true
       },
-      "zeitstempel": "2026-10-13T22:23:21.674Z",
+      "zeitstempel": "2026-10-14T06:08:20.530Z",
       "methode": "banner-alle",
       "textfassung": "2026-10-13.1",
       "widerruf_zaehler": 1
@@ -90,7 +90,7 @@
         "statistik": false,
         "externe_medien": false
       },
-      "zeitstempel": "2026-10-13T22:23:22.228Z",
+      "zeitstempel": "2026-10-14T06:08:21.112Z",
       "methode": "footer-einstellungen",
       "textfassung": "2026-10-13.1",
       "widerruf_zaehler": 2

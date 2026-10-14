@@ -1,0 +1,681 @@
+{
+  "failures": 0,
+  "results": [
+    {
+      "id": "Provenienz-Akte deckt alle 7 Quellbilder",
+      "status": "pass",
+      "detail": "foto10.png,foto11.png,foto3.png,foto6.png,foto7.png,foto8.png,foto9.png"
+    },
+    {
+      "id": "Provenienz-Akte: alle ki_generiert=true und offenlegung=true",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Quellen tragen KEINE Provenienz-Tags (nichts zu entfernen)",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "id": "dist: 38 Bild-Artefakte ohne EXIF/XMP/IPTC",
+      "status": "pass",
+      "detail": "[]"
+    },
+    {
+      "id": "Kein Entfernen: keine Quelle mit Provenienz fehlt im dist (Regressionsschutz ADR 0002 §5.2)",
+      "status": "pass",
+      "detail": "Quellen ohne Provenienz -> nichts zu bewahren"
+    },
+    {
+      "id": "Kurzform im Footer sichtbar  /",
+      "status": "pass",
+      "detail": "Bildhinweis: Einzelne Bilder dieser Webs"
+    },
+    {
+      "id": "Kurzform kein title/aria-label-Only  /",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kurzform Kontrast >= 4.5:1  /",
+      "status": "pass",
+      "detail": "ratio=10.47"
+    },
+    {
+      "id": "Vollform an der Bildstelle sichtbar (5 Bilder)  /",
+      "status": "pass",
+      "detail": "Ein Teil der hier gezeigten Bilder wurde mit Künst"
+    },
+    {
+      "id": "Vollform ist echter Textknoten (kein title/aria-label)  /",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Vollform Kontrast >= 4.5:1  /",
+      "status": "pass",
+      "detail": "ratio=8.61"
+    },
+    {
+      "id": "Vollform Schriftgroesse >= 16px (Fliesstext)  /",
+      "status": "pass",
+      "detail": "16px"
+    },
+    {
+      "id": "Keine doppelte id=ki-bildhinweis  /",
+      "status": "pass",
+      "detail": "1"
+    },
+    {
+      "id": "Keine Referenzbehauptung im Hinweis  /",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kurzform im Footer sichtbar  /leistungen/",
+      "status": "pass",
+      "detail": "Bildhinweis: Einzelne Bilder dieser Webs"
+    },
+    {
+      "id": "Kurzform kein title/aria-label-Only  /leistungen/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kurzform Kontrast >= 4.5:1  /leistungen/",
+      "status": "pass",
+      "detail": "ratio=10.47"
+    },
+    {
+      "id": "Vollform an der Bildstelle sichtbar (4 Bilder)  /leistungen/",
+      "status": "pass",
+      "detail": "Ein Teil der hier gezeigten Bilder wurde mit Künst"
+    },
+    {
+      "id": "Vollform ist echter Textknoten (kein title/aria-label)  /leistungen/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Vollform Kontrast >= 4.5:1  /leistungen/",
+      "status": "pass",
+      "detail": "ratio=8.04"
+    },
+    {
+      "id": "Vollform Schriftgroesse >= 16px (Fliesstext)  /leistungen/",
+      "status": "pass",
+      "detail": "16px"
+    },
+    {
+      "id": "Keine doppelte id=ki-bildhinweis  /leistungen/",
+      "status": "pass",
+      "detail": "0"
+    },
+    {
+      "id": "Keine Referenzbehauptung im Hinweis  /leistungen/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kurzform im Footer sichtbar  /leistungen/fugenlose-bäder/",
+      "status": "pass",
+      "detail": "Bildhinweis: Einzelne Bilder dieser Webs"
+    },
+    {
+      "id": "Kurzform kein title/aria-label-Only  /leistungen/fugenlose-bäder/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kurzform Kontrast >= 4.5:1  /leistungen/fugenlose-bäder/",
+      "status": "pass",
+      "detail": "ratio=10.47"
+    },
+    {
+      "id": "Vollform an der Bildstelle sichtbar (1 Bilder)  /leistungen/fugenlose-bäder/",
+      "status": "pass",
+      "detail": "Ein Teil der hier gezeigten Bilder wurde mit Künst"
+    },
+    {
+      "id": "Vollform ist echter Textknoten (kein title/aria-label)  /leistungen/fugenlose-bäder/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Vollform Kontrast >= 4.5:1  /leistungen/fugenlose-bäder/",
+      "status": "pass",
+      "detail": "ratio=8.61"
+    },
+    {
+      "id": "Vollform Schriftgroesse >= 16px (Fliesstext)  /leistungen/fugenlose-bäder/",
+      "status": "pass",
+      "detail": "16px"
+    },
+    {
+      "id": "Keine doppelte id=ki-bildhinweis  /leistungen/fugenlose-bäder/",
+      "status": "pass",
+      "detail": "1"
+    },
+    {
+      "id": "Keine Referenzbehauptung im Hinweis  /leistungen/fugenlose-bäder/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kurzform im Footer sichtbar  /leistungen/fugenlose-böden/",
+      "status": "pass",
+      "detail": "Bildhinweis: Einzelne Bilder dieser Webs"
+    },
+    {
+      "id": "Kurzform kein title/aria-label-Only  /leistungen/fugenlose-böden/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kurzform Kontrast >= 4.5:1  /leistungen/fugenlose-böden/",
+      "status": "pass",
+      "detail": "ratio=10.47"
+    },
+    {
+      "id": "Vollform an der Bildstelle sichtbar (1 Bilder)  /leistungen/fugenlose-böden/",
+      "status": "pass",
+      "detail": "Ein Teil der hier gezeigten Bilder wurde mit Künst"
+    },
+    {
+      "id": "Vollform ist echter Textknoten (kein title/aria-label)  /leistungen/fugenlose-böden/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Vollform Kontrast >= 4.5:1  /leistungen/fugenlose-böden/",
+      "status": "pass",
+      "detail": "ratio=8.61"
+    },
+    {
+      "id": "Vollform Schriftgroesse >= 16px (Fliesstext)  /leistungen/fugenlose-böden/",
+      "status": "pass",
+      "detail": "16px"
+    },
+    {
+      "id": "Keine doppelte id=ki-bildhinweis  /leistungen/fugenlose-böden/",
+      "status": "pass",
+      "detail": "1"
+    },
+    {
+      "id": "Keine Referenzbehauptung im Hinweis  /leistungen/fugenlose-böden/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kurzform im Footer sichtbar  /leistungen/innenausbau/",
+      "status": "pass",
+      "detail": "Bildhinweis: Einzelne Bilder dieser Webs"
+    },
+    {
+      "id": "Kurzform kein title/aria-label-Only  /leistungen/innenausbau/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kurzform Kontrast >= 4.5:1  /leistungen/innenausbau/",
+      "status": "pass",
+      "detail": "ratio=10.47"
+    },
+    {
+      "id": "Vollform an der Bildstelle sichtbar (1 Bilder)  /leistungen/innenausbau/",
+      "status": "pass",
+      "detail": "Ein Teil der hier gezeigten Bilder wurde mit Künst"
+    },
+    {
+      "id": "Vollform ist echter Textknoten (kein title/aria-label)  /leistungen/innenausbau/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Vollform Kontrast >= 4.5:1  /leistungen/innenausbau/",
+      "status": "pass",
+      "detail": "ratio=8.61"
+    },
+    {
+      "id": "Vollform Schriftgroesse >= 16px (Fliesstext)  /leistungen/innenausbau/",
+      "status": "pass",
+      "detail": "16px"
+    },
+    {
+      "id": "Keine doppelte id=ki-bildhinweis  /leistungen/innenausbau/",
+      "status": "pass",
+      "detail": "1"
+    },
+    {
+      "id": "Keine Referenzbehauptung im Hinweis  /leistungen/innenausbau/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kurzform im Footer sichtbar  /leistungen/fassaden/",
+      "status": "pass",
+      "detail": "Bildhinweis: Einzelne Bilder dieser Webs"
+    },
+    {
+      "id": "Kurzform kein title/aria-label-Only  /leistungen/fassaden/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kurzform Kontrast >= 4.5:1  /leistungen/fassaden/",
+      "status": "pass",
+      "detail": "ratio=10.47"
+    },
+    {
+      "id": "Vollform an der Bildstelle sichtbar (1 Bilder)  /leistungen/fassaden/",
+      "status": "pass",
+      "detail": "Ein Teil der hier gezeigten Bilder wurde mit Künst"
+    },
+    {
+      "id": "Vollform ist echter Textknoten (kein title/aria-label)  /leistungen/fassaden/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Vollform Kontrast >= 4.5:1  /leistungen/fassaden/",
+      "status": "pass",
+      "detail": "ratio=8.61"
+    },
+    {
+      "id": "Vollform Schriftgroesse >= 16px (Fliesstext)  /leistungen/fassaden/",
+      "status": "pass",
+      "detail": "16px"
+    },
+    {
+      "id": "Keine doppelte id=ki-bildhinweis  /leistungen/fassaden/",
+      "status": "pass",
+      "detail": "1"
+    },
+    {
+      "id": "Keine Referenzbehauptung im Hinweis  /leistungen/fassaden/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kurzform im Footer sichtbar  /über-uns/",
+      "status": "pass",
+      "detail": "Bildhinweis: Einzelne Bilder dieser Webs"
+    },
+    {
+      "id": "Kurzform kein title/aria-label-Only  /über-uns/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kurzform Kontrast >= 4.5:1  /über-uns/",
+      "status": "pass",
+      "detail": "ratio=10.47"
+    },
+    {
+      "id": "Vollform an der Bildstelle sichtbar (1 Bilder)  /über-uns/",
+      "status": "pass",
+      "detail": "Ein Teil der hier gezeigten Bilder wurde mit Künst"
+    },
+    {
+      "id": "Vollform ist echter Textknoten (kein title/aria-label)  /über-uns/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Vollform Kontrast >= 4.5:1  /über-uns/",
+      "status": "pass",
+      "detail": "ratio=8.61"
+    },
+    {
+      "id": "Vollform Schriftgroesse >= 16px (Fliesstext)  /über-uns/",
+      "status": "pass",
+      "detail": "16px"
+    },
+    {
+      "id": "Keine doppelte id=ki-bildhinweis  /über-uns/",
+      "status": "pass",
+      "detail": "1"
+    },
+    {
+      "id": "Keine Referenzbehauptung im Hinweis  /über-uns/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kurzform im Footer sichtbar  /bewertungen/",
+      "status": "pass",
+      "detail": "Bildhinweis: Einzelne Bilder dieser Webs"
+    },
+    {
+      "id": "Kurzform kein title/aria-label-Only  /bewertungen/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kurzform Kontrast >= 4.5:1  /bewertungen/",
+      "status": "pass",
+      "detail": "ratio=10.47"
+    },
+    {
+      "id": "Keine KI-Bilder im main -> keine Vollform erwartet  /bewertungen/",
+      "status": "pass",
+      "detail": "fullCount=0"
+    },
+    {
+      "id": "Keine doppelte id=ki-bildhinweis  /bewertungen/",
+      "status": "pass",
+      "detail": "0"
+    },
+    {
+      "id": "Keine Referenzbehauptung im Hinweis  /bewertungen/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kurzform im Footer sichtbar  /kontakt/",
+      "status": "pass",
+      "detail": "Bildhinweis: Einzelne Bilder dieser Webs"
+    },
+    {
+      "id": "Kurzform kein title/aria-label-Only  /kontakt/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kurzform Kontrast >= 4.5:1  /kontakt/",
+      "status": "pass",
+      "detail": "ratio=10.47"
+    },
+    {
+      "id": "Keine KI-Bilder im main -> keine Vollform erwartet  /kontakt/",
+      "status": "pass",
+      "detail": "fullCount=0"
+    },
+    {
+      "id": "Keine doppelte id=ki-bildhinweis  /kontakt/",
+      "status": "pass",
+      "detail": "0"
+    },
+    {
+      "id": "Keine Referenzbehauptung im Hinweis  /kontakt/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kurzform im Footer sichtbar  /impressum/",
+      "status": "pass",
+      "detail": "Bildhinweis: Einzelne Bilder dieser Webs"
+    },
+    {
+      "id": "Kurzform kein title/aria-label-Only  /impressum/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kurzform Kontrast >= 4.5:1  /impressum/",
+      "status": "pass",
+      "detail": "ratio=10.47"
+    },
+    {
+      "id": "Keine KI-Bilder im main -> keine Vollform erwartet  /impressum/",
+      "status": "pass",
+      "detail": "fullCount=0"
+    },
+    {
+      "id": "Keine doppelte id=ki-bildhinweis  /impressum/",
+      "status": "pass",
+      "detail": "0"
+    },
+    {
+      "id": "Keine Referenzbehauptung im Hinweis  /impressum/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kurzform im Footer sichtbar  /datenschutzerklaerung/",
+      "status": "pass",
+      "detail": "Bildhinweis: Einzelne Bilder dieser Webs"
+    },
+    {
+      "id": "Kurzform kein title/aria-label-Only  /datenschutzerklaerung/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kurzform Kontrast >= 4.5:1  /datenschutzerklaerung/",
+      "status": "pass",
+      "detail": "ratio=10.47"
+    },
+    {
+      "id": "Keine KI-Bilder im main -> keine Vollform erwartet  /datenschutzerklaerung/",
+      "status": "pass",
+      "detail": "fullCount=0"
+    },
+    {
+      "id": "Keine doppelte id=ki-bildhinweis  /datenschutzerklaerung/",
+      "status": "pass",
+      "detail": "0"
+    },
+    {
+      "id": "Keine Referenzbehauptung im Hinweis  /datenschutzerklaerung/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Footer-Link 'Bildhinweis' -> /impressum/#bildhinweis",
+      "status": "pass",
+      "detail": "/impressum/#bildhinweis"
+    },
+    {
+      "id": "Impressum-Anker #bildhinweis sichtbar",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Impressum-Bildhinweis traegt die Vollform",
+      "status": "pass",
+      "detail": "Bildhinweis Bildhinweis. Ein Teil der auf dieser Website gezeigten Bil"
+    },
+    {
+      "id": "Kein Pruefvermerk mehr  /impressum/",
+      "status": "pass",
+      "detail": "[]"
+    },
+    {
+      "id": "Kunden-Selbstpruefung dokumentiert  /impressum/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Bestaetigte E-Mail gerendert  /impressum/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Bestaetigte Adresse/Verantwortlicher  /impressum/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "USt-IdNr. korrekt negativ  /impressum/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Kein Pruefvermerk mehr  /datenschutzerklaerung/",
+      "status": "pass",
+      "detail": "[]"
+    },
+    {
+      "id": "Kunden-Selbstpruefung dokumentiert  /datenschutzerklaerung/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Bestaetigte E-Mail gerendert  /datenschutzerklaerung/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "Bestaetigte Adresse/Verantwortlicher  /datenschutzerklaerung/",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "[statisch (kein Env)] CTA zeigt auf bestaetigtes Ziel",
+      "status": "pass",
+      "detail": "https://maps.app.goo.gl/4w3i7sVLrrs8di5v9 (erwartet https://maps.app.goo.gl/4w3i7sVLrrs8di5v9)"
+    },
+    {
+      "id": "[statisch (kein Env)] CTA sichtbar (nicht hidden)",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "[statisch (kein Env)] CTA oeffnet neuen Tab sicher",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "[statisch (kein Env)] Leerzustand: 0 Bewertungskarten",
+      "status": "pass",
+      "detail": "0"
+    },
+    {
+      "id": "[statisch (kein Env)] Leerzustand: 0 Sterne, 0 Attribution",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "[statisch (kein Env)] API 200, 0 erfundene Bewertungen",
+      "status": "pass",
+      "detail": "{\"reviews\":[],\"quelle\":\"static_export\",\"aktualisiert_am\":\"2026-10-13T00:00:00.000Z\",\"leer\":true,\"sortierung_hinweis\":\"An"
+    },
+    {
+      "id": "[statisch (kein Env)] 0 Dritt-Requests auf /bewertungen/",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "id": "[Laufzeit GOOGLE_REVIEW_URL] CTA zeigt auf bestaetigtes Ziel",
+      "status": "pass",
+      "detail": "https://maps.app.goo.gl/qaOverrideTest123 (erwartet https://maps.app.goo.gl/qaOverrideTest123)"
+    },
+    {
+      "id": "[Laufzeit GOOGLE_REVIEW_URL] CTA sichtbar (nicht hidden)",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "[Laufzeit GOOGLE_REVIEW_URL] CTA oeffnet neuen Tab sicher",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "[Laufzeit GOOGLE_REVIEW_URL] Leerzustand: 0 Bewertungskarten",
+      "status": "pass",
+      "detail": "0"
+    },
+    {
+      "id": "[Laufzeit GOOGLE_REVIEW_URL] Leerzustand: 0 Sterne, 0 Attribution",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "id": "[Laufzeit GOOGLE_REVIEW_URL] API 200, 0 erfundene Bewertungen",
+      "status": "pass",
+      "detail": "{\"reviews\":[],\"quelle\":\"static_export\",\"aktualisiert_am\":\"2026-10-13T00:00:00.000Z\",\"leer\":true,\"sortierung_hinweis\":\"An"
+    },
+    {
+      "id": "[Laufzeit GOOGLE_REVIEW_URL] 0 Dritt-Requests auf /bewertungen/",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "id": "Laufzeit: /api/reviews liefert X-Google-Review-Url = Env-Wert",
+      "status": "pass",
+      "detail": "https://maps.app.goo.gl/qaOverrideTest123"
+    },
+    {
+      "id": "Screenshots erzeugt",
+      "status": "pass",
+      "detail": "8 Dateien"
+    }
+  ],
+  "staticCta": {
+    "measured": {
+      "href": "https://maps.app.goo.gl/4w3i7sVLrrs8di5v9",
+      "hidden": false,
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "reviewCards": 0,
+      "stars": 0,
+      "attribution": 0
+    },
+    "api": {
+      "status": 200,
+      "header": "",
+      "leer": true
+    },
+    "thirdParty": []
+  },
+  "overrideCta": {
+    "measured": {
+      "href": "https://maps.app.goo.gl/qaOverrideTest123",
+      "hidden": false,
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "reviewCards": 0,
+      "stars": 0,
+      "attribution": 0
+    },
+    "api": {
+      "status": 200,
+      "header": "https://maps.app.goo.gl/qaOverrideTest123",
+      "leer": true
+    },
+    "thirdParty": []
+  },
+  "meta": {
+    "sources": [
+      {
+        "datei": "foto10.png",
+        "provenance": []
+      },
+      {
+        "datei": "foto11.png",
+        "provenance": []
+      },
+      {
+        "datei": "foto3.png",
+        "provenance": []
+      },
+      {
+        "datei": "foto6.png",
+        "provenance": []
+      },
+      {
+        "datei": "foto7.png",
+        "provenance": []
+      },
+      {
+        "datei": "foto8.png",
+        "provenance": []
+      },
+      {
+        "datei": "foto9.png",
+        "provenance": []
+      },
+      {
+        "datei": "logo_ivo.jpeg",
+        "provenance": []
+      }
+    ],
+    "akteBilder": 7,
+    "sourcesWithProv": 0
+  },
+  "distMeta": {
+    "imagesScanned": 38,
+    "withMeta": []
+  }
+}

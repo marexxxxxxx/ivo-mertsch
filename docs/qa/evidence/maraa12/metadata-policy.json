@@ -1,0 +1,50 @@
+{
+  "sources": [
+    {
+      "datei": "foto10.png",
+      "provenance": []
+    },
+    {
+      "datei": "foto11.png",
+      "provenance": []
+    },
+    {
+      "datei": "foto3.png",
+      "provenance": []
+    },
+    {
+      "datei": "foto6.png",
+      "provenance": []
+    },
+    {
+      "datei": "foto7.png",
+      "provenance": []
+    },
+    {
+      "datei": "foto8.png",
+      "provenance": []
+    },
+    {
+      "datei": "foto9.png",
+      "provenance": []
+    },
+    {
+      "datei": "logo_ivo.jpeg",
+      "provenance": []
+    }
+  ],
+  "sourcesWithProvenance": [],
+  "akte": {
+    "bilder": [
+      "foto10.png",
+      "foto11.png",
+      "foto3.png",
+      "foto6.png",
+      "foto7.png",
+      "foto8.png",
+      "foto9.png"
+    ],
+    "anzahl": 7
+  },
+  "distNote": "dist-Scan ueber sharp.metadata() (siehe results.json.meta.distScan)"
+}

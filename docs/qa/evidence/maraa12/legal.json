@@ -1,0 +1,24 @@
+{
+  "/impressum/": {
+    "markers": [],
+    "internalMarker": null,
+    "hasFreigabeHinweis": true,
+    "hasSelbstpruefung": true,
+    "hasEmail": true,
+    "hasAdresse": true,
+    "hasUstNegativ": true,
+    "hasVerantwortlicher": true,
+    "textLength": 2736
+  },
+  "/datenschutzerklaerung/": {
+    "markers": [],
+    "internalMarker": "Offener Kundenpunkt",
+    "hasFreigabeHinweis": true,
+    "hasSelbstpruefung": true,
+    "hasEmail": true,
+    "hasAdresse": true,
+    "hasUstNegativ": false,
+    "hasVerantwortlicher": true,
+    "textLength": 7716
+  }
+}

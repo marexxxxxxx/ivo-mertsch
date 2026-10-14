@@ -1,11 +1,13 @@
 /**
- * Bewertungs-Client: ergaenzt den serverseitig vorgerenderten Leerzustand um das
- * Laufzeit-Ziel des CTA "Jetzt bei Google bewerten".
+ * Bewertungs-Client: ueberschreibt das statische CTA-Ziel des Buttons
+ * "Jetzt bei Google bewerten" mit einem zur Laufzeit gesetzten GOOGLE_REVIEW_URL.
  *
- * Der Wert kommt aus der Laufzeit-Env GOOGLE_REVIEW_URL und wird von /api/reviews
- * als Response-Header `X-Google-Review-Url` geliefert (same-origin, kein
- * Cross-Origin-Request, nicht consent-pflichtig). Fehlt der Wert, bleibt der CTA
- * ausgeblendet (ADR §5.4) — kein toter Link.
+ * Der statische Standard steht in content/site.json (`reviews.cta_url`) und ist
+ * serverseitig gerendert. Der Laufzeitwert kommt aus der Env GOOGLE_REVIEW_URL und
+ * wird von /api/reviews als Response-Header `X-Google-Review-Url` geliefert
+ * (same-origin, kein Cross-Origin-Request, nicht consent-pflichtig). Fehlt der
+ * Wert, bleibt das statische Ziel unveraendert; ist auch kein statisches Ziel
+ * gesetzt, bleibt der CTA ausgeblendet (ADR §5.4) — kein toter Link.
  */
 const cta = document.querySelector<HTMLAnchorElement>("[data-google-review-cta]");
 

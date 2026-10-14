@@ -20,10 +20,10 @@ const site = getSite();
 
       <div class="pf-notice pf-mt-7">
         <p>
-          <strong>Prüfvermerk (Abnahmekriterium):</strong> Dieses Impressum ist ein Entwurf, inhaltlich
-          aus dem bestehenden Auftritt übernommen. Es muss vor Livegang von einem Rechtsanwalt bzw. einem
-          IT-Recht-Dienstleister des Kunden final geprüft und freigegeben werden. Ohne diese Freigabe darf
-          die Seite nicht öffentlich erreichbar sein.
+          <strong>Freigabe-Hinweis (Stand 2026-10-14).</strong> Die Angaben dieses Impressums werden
+          vom Kunden selbst geprüft und freigegeben. Die Pflichtangaben sind mit dem Kunden
+          abgeglichen, der Verantwortliche ist bestätigt. Es wird keine anwaltliche Freigabe durch
+          PixelForge Studio zugesagt.
         </p>
       </div>
 
@@ -47,10 +47,6 @@ const site = getSite();
         <li>E-Mail: <a href={`mailto:${site.kontakt.email}`}>{site.kontakt.email}</a></li>
         <li>Telefon: <a href={`tel:${site.kontakt.telefon_tel}`}>{site.kontakt.telefon_anzeige}</a></li>
       </ul>
-      <p>
-        Offener Kundenpunkt OP-1: Der Alt-Auftritt nennt drei verschiedene E-Mail-Adressen. Hier muss die
-        korrekte, erreichbare Adresse stehen; der Wert kommt zentral aus content/site.json.
-      </p>
 
       <h3>Registereintrag</h3>
       <p>Es besteht keine Registereintragung.</p>
@@ -58,8 +54,7 @@ const site = getSite();
       <h3>Umsatzsteuer-Identifikationsnummer / Wirtschafts-Identifikationsnummer</h3>
       <p>
         Eine Umsatzsteuer-Identifikationsnummer (USt-IdNr.) oder Wirtschafts-Identifikationsnummer
-        (W-IdNr.) ist nicht vorhanden. Offener Kundenpunkt OP-4: Diese Angabe ist vor Livegang zu
-        bestätigen.
+        (W-IdNr.) ist nicht vorhanden.
       </p>
 
       <h3>Aufsichtsbehörde</h3>
@@ -87,17 +82,29 @@ const site = getSite();
 
       <h2>Streitschlichtung / EU-Plattform</h2>
       <p>
-        Offener Kundenpunkt OP-4: Die EU-Plattform zur Online-Streitbeilegung (OS) wurde zum 20.07.2025
-        eingestellt; ein entsprechender Standardhinweis entfällt. Ob ein Hinweis nach dem
-        Verbraucherstreitbeilegungsgesetz (VSBG) erforderlich ist, klärt der Rechtsprüfer.
+        Die EU-Plattform zur Online-Streitbeilegung (OS) wurde zum 20.07.2025 eingestellt; ein
+        entsprechender Standardhinweis entfällt. Ob darüber hinaus ein Hinweis nach dem
+        Verbraucherstreitbeilegungsgesetz (VSBG) erforderlich ist, prüft der Kunde im Rahmen seiner
+        Freigabe.
+      </p>
+
+      <h2 id="bildhinweis">Bildhinweis</h2>
+      <p>
+        <strong>Bildhinweis.</strong> Ein Teil der auf dieser Website gezeigten Bilder wurde mit
+        Künstlicher Intelligenz erzeugt oder bearbeitet. Die Aufnahmen sind beispielhafte Darstellungen
+        von Räumen, Materialien und Oberflächen — keine Abbildungen konkret ausgeführter Kundenprojekte.
+      </p>
+      <p>
+        Der dauerhaft sichtbare Hinweis steht an jeder Bildstelle und als Kurzform im Fuß jeder Seite.
+        Grundlage ist ADR 0002 (docs/adr/0002-ki-bilder-transparenz.md); Wortlaut und Alt-Texte stehen in
+        content/ki-bildhinweis.md.
       </p>
 
       <h2>Bildnachweise</h2>
       <p>
         Bilder und Logo stammen aus dem bestehenden Auftritt des Diensteanbieters (foto3, foto6, foto7,
-        foto8, foto9, foto10, foto11, logo_ivo). Die Nutzungsrechte klärt offener Kundenpunkt OP-6. Ein
-        gesonderter Bildnachweis wird ergänzt, sobald externe Quellen verwendet werden — derzeit sind
-        keine geplant.
+        foto8, foto9, foto10, foto11, logo_ivo). Die Nutzungsrechte liegen beim Kunden. Ein gesonderter
+        Bildnachweis wird ergänzt, sobald externe Quellen verwendet werden — derzeit sind keine geplant.
       </p>
 
       <h2>Technische Umsetzung</h2>

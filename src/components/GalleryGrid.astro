@@ -2,6 +2,7 @@
 /** GalleryGrid (komponenten.md §7) — Originalbilder ohne Referenzbehauptung. */
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
+import KiBildHinweis from "./KiBildHinweis.astro";
 
 interface GalleryItem {
   image: ImageMetadata;
@@ -42,5 +43,9 @@ const { title, id, items } = Astro.props;
         ))
       }
     </ul>
+    <!-- KI-Transparenz: Vollform im selben Landmark wie die Bildliste (ADR 0002 §5.1.1). -->
+    <div class="pf-mt-7">
+      <KiBildHinweis variant="full" />
+    </div>
   </div>
 </section>

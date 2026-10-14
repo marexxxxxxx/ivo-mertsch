@@ -36,7 +36,6 @@ const PAGES = [
 ];
 
 const section = process.argv[2];
-const results = {};
 let failures = 0;
 
 function save(name, data) {

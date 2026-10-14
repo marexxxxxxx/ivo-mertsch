@@ -107,9 +107,10 @@ export const REVIEWS_COPY = {
     "Die folgenden Bewertungen stammen von Nutzerinnen und Nutzern von Google Maps. " +
     "Sie geben die persönliche Meinung der jeweiligen Person wieder — nicht die Bewertung durch uns.",
   emptyText:
-    "Aktuell liegen uns keine Google-Bewertungen für die Anzeige vor.\n\n" +
-    "Das lässt sich ändern: Wenn Sie mit meiner Arbeit zufrieden waren, freue ich mich über Ihre " +
-    "Bewertung bei Google. Sie hilft anderen in der Region, eine Entscheidung zu treffen.",
+    "Aktuell liegen für diese Website keine Google-Bewertungen zur Anzeige vor.\n\n" +
+    "Wenn Sie mit meiner Arbeit zufrieden waren, freue ich mich über Ihre Bewertung bei Google. " +
+    "Sie hilft anderen in der Region, eine Entscheidung zu treffen. Über den Knopf unten gelangen " +
+    "Sie direkt zum Google-Maps-Profil dieses Betriebs.",
   attribution: "Bewertungen von Google Maps",
   ctaReview: "Jetzt bei Google bewerten",
   ctaContact: "Beratung anfragen",
@@ -151,4 +152,24 @@ export const CTA_COPY = {
   call: "Anrufen: +49 174 2164071",
   whatsapp: "WhatsApp schreiben",
   ctaBandHeading: "Projekt vor? Ich höre zu und sage Ihnen, was möglich ist.",
+} as const;
+
+/**
+ * content/ki-bildhinweis.md §1.1/§1.2 — KI-Transparenzhinweis (ADR 0002 §5.1).
+ * Wortlaut verbindlich; Sichtbarkeit und Platzierung sind nicht verhandelbar:
+ * Vollform an jeder Bildstelle, Kurzform dauerhaft im Footer. Beides ist ein
+ * echter, sichtbarer Textknoten — nie nur `title`, `aria-label` oder Caption.
+ */
+export const KI_BILD_COPY = {
+  /** §1.2 — dauerhaft im Footer (jede Seite). */
+  short:
+    "Bildhinweis: Einzelne Bilder dieser Website sind KI-generiert " +
+    "(beispielhafte Darstellungen, keine realen Projekte).",
+  /** §1.1 — an jeder Bildstelle (Hero, Galerie/Leistungs-Sektion). */
+  full:
+    "Ein Teil der hier gezeigten Bilder wurde mit Künstlicher Intelligenz erzeugt oder bearbeitet. " +
+    "Die Aufnahmen sind beispielhafte Darstellungen von Räumen, Materialien und Oberflächen — " +
+    "keine Abbildungen konkret ausgeführter Kundenprojekte.",
+  /** Anker-Ziel im Impressum (Vollform), content/ki-bildhinweis.md §1.2. */
+  impressumAnchor: "bildhinweis",
 } as const;

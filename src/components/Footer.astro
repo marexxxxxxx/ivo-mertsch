@@ -1,7 +1,8 @@
 ---
 /** Footer (komponenten.md §11) — invertierte Flaeche, themenunabhaengig dunkel. */
-import { CONSENT_COPY } from "../lib/copy";
+import { CONSENT_COPY, KI_BILD_COPY } from "../lib/copy";
 import { ROUTES } from "../lib/pages";
+import KiBildHinweis from "./KiBildHinweis.astro";
 import type { SiteConfig } from "../lib/content";
 
 interface Props {
@@ -62,6 +63,9 @@ const year = new Date().getFullYear();
           <li><a href={ROUTES.impressum.path}>Impressum</a></li>
           <li><a href={ROUTES.datenschutz.path}>Datenschutzerklärung</a></li>
           <li>
+            <a href={`${ROUTES.impressum.path}#${KI_BILD_COPY.impressumAnchor}`}>Bildhinweis</a>
+          </li>
+          <li>
             <button
               class="pf-footer__link"
               type="button"
@@ -74,6 +78,9 @@ const year = new Date().getFullYear();
         </ul>
       </div>
     </div>
+
+    <!-- Kurzform des KI-Hinweises, dauerhaft auf jeder Seite (ADR 0002 §5.1.2). -->
+    <KiBildHinweis variant="short" />
 
     <p class="pf-footer__bottom">
       © {year} {site.firma.anzeige_name} · {site.firma.claim}

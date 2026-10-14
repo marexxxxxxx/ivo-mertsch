@@ -11,7 +11,9 @@ export const prerender = true;
 
 const site = getSite();
 // Renderer fuer den statischen Pfad (Quelle A). Die Sektion stellt beide Zustaende
-// datengetrieben dar; der CTA-Zielwert kommt zur Laufzeit aus /api/reviews.
+// datengetrieben dar; das CTA-Ziel ist der bestaetigte Google-Maps-Profil-Link aus
+// content/site.json (OP-2 geklaert). Ein zur Laufzeit gesetztes GOOGLE_REVIEW_URL
+// kann es clientseitig ueberschreiben (same-origin, siehe reviews-client.ts).
 const document = readStaticReviews();
 const breadcrumb = findSchemaNode((node) => node["@id"] === "https://ivo-mertsch.de/bewertungen/#breadcrumb");
 const schema = [breadcrumb].filter((node): node is SchemaOrgNode => node !== null);
@@ -22,7 +24,7 @@ const schema = [breadcrumb].filter((node): node is SchemaOrgNode => node !== nul
     <Breadcrumb items={[{ label: "Start", href: ROUTES.home.path }, { label: "Bewertungen", href: ROUTES.bewertungen.path }]} />
   </div>
 
-  <ReviewSection document={document} level={1} />
+  <ReviewSection document={document} googleReviewUrl={site.reviews.cta_url} level={1} />
 
   <CtaBand heading="Lieber direkt sprechen? Das ist der schnellste Weg.">
     <Button href={`tel:${site.kontakt.telefon_tel}`} variant="primary">

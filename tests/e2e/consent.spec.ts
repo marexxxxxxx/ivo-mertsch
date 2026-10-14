@@ -58,7 +58,12 @@ test("Leerzustand: keine Sterne, keine Attribution, CTA nur mit Ziel", async ({ 
 
   // Keine irrefuehrende Herkunftsangabe ohne Google-Inhalt.
   await expect(page.getByText("Bewertungen von Google Maps")).toHaveCount(0);
-  await expect(page.getByText("Aktuell liegen uns keine Google-Bewertungen")).toBeVisible();
+  await expect(page.getByText("Aktuell liegen für diese Website keine Google-Bewertungen")).toBeVisible();
+
+  // CTA zeigt auf den bestaetigten Google-Maps-Profil-Link (OP-2 geklaert).
+  const reviewCta = page.getByRole("link", { name: /Jetzt bei Google bewerten/i });
+  await expect(reviewCta).toBeVisible();
+  await expect(reviewCta).toHaveAttribute("href", "https://maps.app.goo.gl/4w3i7sVLrrs8di5v9");
 });
 
 test("Einwilligung: Persistenz, sofortige Wirkung und Widerruf", async ({ page }) => {

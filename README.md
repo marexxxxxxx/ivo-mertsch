@@ -51,9 +51,15 @@ node tests/contracts/verify-contracts.cjs   # 14/14 bestanden, Exit 0
 
 - Attribution „Quelle: Google" vs. die von Google für neue Implementierungen geforderte
   „Google Maps"-Attribution
-- Kosten-/EEA-Klärung Places-API: Quelle B aktivieren oder nur statischer Pfad
-- Korrekte Kunden-E-Mail-Adresse (der Alt-Auftritt nennt drei verschiedene)
 - Statistik-Kategorie ist reserviert, aber ohne Werkzeug
+- Hosting-Anbieter / Auftragsverarbeitung (Datenschutzerklärung, Abschnitt 3) — nicht Teil
+  der Kundenantwort `950f0d46`
+- Nennung der ausführenden Agentur im Impressum (nur, wenn der Kunde sie wünscht)
+
+**Geklärt (Kundenantwort Interaktion `950f0d46`):** E-Mail `info@ivo-mertsch.de` (OP-1),
+CTA-Ziel Google-Maps-Profil (OP-2), Verantwortlicher (OP-3), Impressums-Pflichtangaben (OP-4),
+Rechtsprüfung als Kunden-Selbstprüfung (OP-5), Bildrechte (OP-6), **kein** Places-API-Abruf
+(OP-11). Details: `content/offene-kundenpunkte.md`.
 
 ## Noch nicht gebaut
 
@@ -152,8 +158,10 @@ curl -s http://localhost:8080/api/healthz
 Vollständig dokumentiert in `.env.example` (nur Namen, keine Werte) und in ADR §8.4.
 Kurz: `PORT` (4321), `HOST` (0.0.0.0), `REVIEWS_SOURCE` (`static_export`),
 `GOOGLE_PLACES_API_KEY` (**geheim, nur Laufzeit**), `GOOGLE_PLACE_ID`,
-`GOOGLE_REVIEW_URL`, `REVIEWS_CACHE_TTL_S` (max. 2592000), `REVIEWS_CACHE_DIR`,
-`SMTP_*` (**geheim**), `MAIL_TO`, `CONTACT_*`, `TRUST_PROXY`.
+`GOOGLE_REVIEW_URL` (optionale Laufzeit-Übersteuerung; Standard aus
+`content/site.json` → `reviews.cta_url`), `REVIEWS_CACHE_TTL_S` (max. 2592000),
+`REVIEWS_CACHE_DIR`, `SMTP_*` (**geheim**), `MAIL_TO` (Laufzeit; auf die bestätigte
+Adresse `info@ivo-mertsch.de` setzen, Wert nur als Env), `CONTACT_*`, `TRUST_PROXY`.
 
 **Secrets** werden nie gebacken: kein `ARG` im Dockerfile, kein Wert im Repo, im
 Issue, im Kommentar oder im Log. `.env` ist in `.gitignore` und `.dockerignore`.
@@ -161,16 +169,39 @@ Issue, im Kommentar oder im Log. `.env` ist in `.gitignore` und `.dockerignore`.
 ### Bekannte Einschränkungen
 
 - **Vorgerenderte Seiten lesen keine Laufzeit-Env.** Der CTA „Jetzt bei Google
-  bewerten" wird deshalb clientseitig über den Header `X-Google-Review-Url` aus
-  `GET /api/reviews` nachgerüstet (same-origin). Fehlt der Wert, bleibt der CTA
-  ausgeblendet.
+  bewerten" wird deshalb **statisch** mit dem bestätigten Google-Maps-Profil-Link
+  aus `content/site.json` (`reviews.cta_url`) gerendert. Ein zur Laufzeit
+  gesetztes `GOOGLE_REVIEW_URL` überschreibt das Ziel clientseitig über den
+  Response-Header `X-Google-Review-Url` aus `GET /api/reviews` (same-origin, kein
+  Cross-Origin-Request, nicht consent-pflichtig). Ist kein Ziel vorhanden, bleibt
+  der CTA ausgeblendet (kein toter Link).
 - **Bewertungsliste** wird zur Build-Zeit aus `content/reviews.json` (Quelle A)
-  gerendert. Quelle B (Places) steht vollständig über `GET /api/reviews` bereit
-  (Cache + Normalisierung); für die vorgerenderte Seite ist der statische Export
-  der unterstützte Pfad.
+  gerendert. Die Places-API ist **nicht** beauftragt (OP-11: rein statischer Pfad);
+  der Proxy-Code in `src/lib/reviews.server.ts` bleibt ungenutzt verfügbar.
 - **Kontaktformular ohne JavaScript** sendet als nativer POST; ohne SMTP-Config
   liefert der Server dann eine HTML-Seite mit mailto-Link. Der mailto-Fallback mit
   JavaScript ist der primäre Weg.
-- **Rechtsseiten** sind Entwürfe mit Prüfvermerk (OP-4/OP-5) und dürfen erst nach
-  anwaltlicher Freigabe live gehen.
+- **Konfiguration der Laufzeit:** `MAIL_TO` wird zur Laufzeit auf die bestätigte
+  Adresse gesetzt (Wert nur als Env, nie im Repo) — die sichtbare Adresse kommt aus
+  `content/site.json` (`kontakt.email`).
+- **Rechtsseiten** tragen den Freigabe-Hinweis (Kunden-Selbstprüfung, OP-5) statt
+  eines Studio-Prüfvermerks. PixelForge Studio sagt **keine** anwaltliche Freigabe
+  zu; die endgültige Würdigung liegt beim Kunden.
+
+### KI-Transparenz (ADR 0002)
+
+Die Bilder sind KI-generiert (Kundenangabe Interaktion `950f0d46`). Umgesetzt ist
+der sichtbare Hinweis nach ADR 0002 §5.1: die **Vollform** an jeder Bildstelle
+(`KiBildHinweis.astro` in Hero, Leistungs-Sektion und `GalleryGrid`) und die
+**Kurzform** dauerhaft im Footer — beides echter, sichtbarer Text (kein
+`title`/`aria-label`-Only), Kontrast und Schriftgröße ≥ Fließtext. Der
+Impressum-Abschnitt „Bildhinweis" (`#bildhinweis`) trägt die Vollform.
+
+**Bild-Metadaten-Policy (ADR 0002 §5.2):** Vorhandene Provenienz wird nie
+entfernt, fehlende nie vorgetäuscht. Die Quell-Assets tragen **keine**
+Provenienz-Metadaten (belegt in ADR 0002 §4.1); die Bildpipeline (`sharp`) entfernt
+PNG-Text-/XMP-Chunks beim Transkodieren ohnehin (ADR 0002 §4.2), weshalb **keine**
+maschinenlesbare Kennzeichnung zugesagt wird. Der prüfbare Nachweis liegt in
+`content/bild-provenienz.json`; der Regressionsnachweis im `dist`-Output ist Teil
+der QA-Abnahme (MARAA-12).
 

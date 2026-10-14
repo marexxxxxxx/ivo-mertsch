@@ -57,14 +57,20 @@ const Heading = (`h${level}`) as "h1" | "h2";
           <p>{REVIEWS_COPY.emptyText}</p>
           <div class="pf-hero__actions">
             {reviewUrl ? (
-              <a class="pf-btn pf-btn--primary" href={reviewUrl} target="_blank" rel="noopener noreferrer">
+              <a
+                class="pf-btn pf-btn--primary"
+                href={reviewUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-google-review-cta
+              >
                 {REVIEWS_COPY.ctaReview}
                 <span class="pf-visually-hidden"> (öffnet Google in neuem Tab)</span>
               </a>
             ) : (
-              // Ohne Ziel wird der CTA nicht ausgeliefert (kein toter Link). Ist
-              // GOOGLE_REVIEW_URL zur Laufzeit gesetzt, blendet das Client-Script
-              // (src/scripts/reviews-client.ts) ihn nach.
+              // Ohne (statisches) Ziel wird der CTA nicht ausgeliefert (kein toter
+              // Link). Ist GOOGLE_REVIEW_URL zur Laufzeit gesetzt, blendet das
+              // Client-Script (src/scripts/reviews-client.ts) ihn nach.
               <a class="pf-btn pf-btn--primary" href="#" data-google-review-cta hidden>
                 {REVIEWS_COPY.ctaReview}
                 <span class="pf-visually-hidden"> (öffnet Google in neuem Tab)</span>

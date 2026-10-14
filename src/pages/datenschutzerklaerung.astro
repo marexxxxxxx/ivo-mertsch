@@ -20,10 +20,17 @@ const site = getSite();
 
       <div class="pf-notice pf-mt-7">
         <p>
-          <strong>Prüfvermerk (Abnahmekriterium):</strong> Diese Datenschutzerklärung ist ein Entwurf für
-          die neue Website. Sie beschreibt die tatsächlich implementierte Consent-Architektur und den
-          Kontaktweg. Sie muss vor Livegang von einem Rechtsanwalt bzw. einem IT-Recht-Dienstleister des
-          Kunden final geprüft und freigegeben werden. Stand des Entwurfs: 2026-10-13.
+          <strong>Freigabe-Hinweis (Stand 2026-10-14).</strong> Diese Datenschutzerklärung beschreibt
+          die tatsächlich implementierte Consent-Architektur und den Kontaktweg. Sie wird vom Kunden
+          selbst geprüft und freigegeben. Es wird keine anwaltliche Freigabe durch PixelForge Studio
+          zugesagt. Bestätigt: Verantwortlicher ist der Betreiber, Ivo Mertsch; die sichtbare E-Mail
+          ist info@ivo-mertsch.de. Offen bleibt der Hosting-Anbieter (siehe Abschnitt 3).
+        </p>
+        <p>
+          <strong>KI-Bilder.</strong> Die verwendeten KI-Bilder zeigen Räume, Materialien und Fassaden
+          — keine Personen — und sind synthetisch. Es werden dadurch keine personenbezogenen Daten
+          verarbeitet; eine Erweiterung dieser Erklärung ist deshalb nicht erforderlich. Der
+          Transparenzhinweis steht separat im <a href={`${ROUTES.impressum.path}#bildhinweis`}>Impressum</a>.
         </p>
       </div>
 
@@ -44,10 +51,6 @@ const site = getSite();
         <br />
         E-Mail: <a href={`mailto:${site.kontakt.email}`}>{site.kontakt.email}</a>
       </address>
-      <p>
-        Offener Kundenpunkt OP-3: Die Datenschutzerklärung des Alt-Auftritts nannte als Verantwortlichen
-        eine dritte Person. Für die neue Seite ist der tatsächliche Verantwortliche zu bestätigen.
-      </p>
 
       <h2>2. Ihre Rechte</h2>
       <p>Ihnen stehen gegenüber dem Verantwortlichen folgende Rechte zu:</p>
@@ -97,17 +100,19 @@ const site = getSite();
         Diese Angabe wird nicht an einen Server und nicht an Dritte übertragen. Rechtsgrundlage ist
         § 25 Abs. 2 Nr. 2 TDDDG.
       </p>
-      <table>
-        <caption>Kategorien</caption>
-        <thead>
-          <tr><th scope="col">Kategorie</th><th scope="col">Zweck</th><th scope="col">Zustand</th></tr>
-        </thead>
-        <tbody>
-          <tr><th scope="row">Technisch notwendig</th><td>Auslieferung der Seite, Speicherung Ihrer Auswahl</td><td>immer aktiv, nicht abwählbar</td></tr>
-          <tr><th scope="row">Statistik</th><td>Anonyme Auswertung der Seitennutzung</td><td>zurzeit kein Werkzeug im Einsatz; Kategorie vorbereitet</td></tr>
-          <tr><th scope="row">Externe Medien</th><td>Nachladen fremder Inhalte, z. B. Google-Avatare in Bewertungen</td><td>nur nach Ihrer Zustimmung</td></tr>
-        </tbody>
-      </table>
+      <div class="pf-table-wrap" role="region" aria-label="Kategorien" tabindex="0">
+        <table>
+          <caption>Kategorien</caption>
+          <thead>
+            <tr><th scope="col">Kategorie</th><th scope="col">Zweck</th><th scope="col">Zustand</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Technisch notwendig</th><td>Auslieferung der Seite, Speicherung Ihrer Auswahl</td><td>immer aktiv, nicht abwählbar</td></tr>
+            <tr><th scope="row">Statistik</th><td>Anonyme Auswertung der Seitennutzung</td><td>zurzeit kein Werkzeug im Einsatz; Kategorie vorbereitet</td></tr>
+            <tr><th scope="row">Externe Medien</th><td>Nachladen fremder Inhalte, z. B. Google-Avatare in Bewertungen</td><td>nur nach Ihrer Zustimmung</td></tr>
+          </tbody>
+        </table>
+      </div>
       <p>
         <strong>Widerruf.</strong> Sie können Ihre Auswahl jederzeit über den Eintrag
         „Cookie-Einstellungen" im Fuß jeder Seite ändern. Nach einem Widerruf werden bereits nachgeladene
@@ -165,6 +170,13 @@ const site = getSite();
       <p>
         Liegen keine Bewertungen vor (aktueller Stand), zeigen wir keinen Inhalt von Google. Dann wird auch
         keine Attribution angezeigt, weil kein Google-Inhalt dargestellt wird.
+      </p>
+      <p>
+        Stattdessen verlinken wir auf das Google-Maps-Profil des Betriebs („Jetzt bei Google bewerten").
+        Dies ist ein einfacher Link: Beim Besuch unserer Website werden keine Daten an Google übertragen.
+        Erst mit Ihrem Klick verlassen Sie unsere Seite; ab dann gilt die Datenschutzerklärung von Google
+        (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>).
+        Eine Places-API wird nicht eingesetzt.
       </p>
 
       <h2>7. Instagram</h2>

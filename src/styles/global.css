@@ -442,6 +442,20 @@
 @media (hover: hover) { .pf-footer a:hover, .pf-footer button.pf-footer__link:hover { color: var(--pf-accent-text); text-decoration: underline; } }
 .pf-footer__bottom { margin-top: var(--pf-space-8); color: var(--pf-text-muted); font-size: var(--pf-text-xs); }
 
+/* ---------- KI-Transparenzhinweis (ADR 0002 §5.1) ------------------------- */
+/* Sichtbarer, nicht ausblendbarer Absatz: Kontrast ≥ 4,5:1 (text-secondary),
+   Schriftgröße ≥ Fließtext (--pf-text-base), max. Lesebreite. Die Kurzform im
+   Footer erbt den invertierten Textton über .pf-invert. */
+.pf-ki-hinweis {
+  margin: 0;
+  max-width: var(--pf-measure-text);
+  color: var(--pf-text-secondary);
+  font-size: var(--pf-text-base);
+  line-height: var(--pf-leading-relaxed);
+}
+.pf-hero .pf-ki-hinweis { margin-block-start: var(--pf-space-7); }
+.pf-footer .pf-ki-hinweis { margin-block-start: var(--pf-space-8); }
+
 /* ---------- Kontaktwege / Action-Bar -------------------------------------- */
 .pf-ways { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--pf-space-3); }
 .pf-ways a { display: flex; align-items: center; gap: var(--pf-space-3); min-height: var(--pf-touch-target); color: var(--pf-text-primary); text-decoration: none; }
@@ -666,6 +680,13 @@ html[data-pf-consent="unbekannt"] .pf-footer { padding-bottom: var(--pf-breathe-
 
 /* ---------- Rechtsseiten / Prosa ------------------------------------------ */
 .pf-prose { max-width: var(--pf-container-prose); }
+/* Lange deutsche Komposita ("Datenschutzerklärung") koennen bei 360 px breiter
+   als der Container sein und dann die ganze Seite horizontal aufziehen. Silben-
+   trennung (lang="de") loest das typografisch korrekt; overflow-wrap bleibt als
+   Rueckfall, falls keine Trennwoerterbuch-Daten vorliegen. */
+.pf-prose h1,
+.pf-prose h2,
+.pf-prose h3 { hyphens: auto; overflow-wrap: break-word; }
 .pf-prose h2 { margin-block-start: var(--pf-space-9); }
 .pf-prose h2:first-child { margin-block-start: 0; }
 .pf-prose p, .pf-prose li { max-width: var(--pf-measure-text); }
@@ -699,6 +720,16 @@ html[data-pf-consent="unbekannt"] .pf-footer { padding-bottom: var(--pf-breathe-
   border-collapse: collapse;
   margin-block: var(--pf-space-5);
   font-size: var(--pf-text-base);
+}
+/* Die Kategorien-Tabelle (Datenschutz) traegt laengere deutsche Woerter und kann
+   bei 360 px nicht unter ihre min-content-Breite schrumpfen. Ein Fokus-erfassbarer
+   Scroll-Container verhindert den Seiten-Overflow (WCAG 2.1.1, axe
+   scrollable-region-focusable); die Tabelle selbst bleibt unveraendert. */
+.pf-table-wrap { overflow-x: auto; }
+.pf-table-wrap:focus-visible {
+  outline: var(--pf-focus-ring-width) solid var(--pf-focus-ring);
+  outline-offset: var(--pf-focus-ring-offset);
+  border-radius: var(--pf-radius-sm);
 }
 .pf-prose caption {
   text-align: start;

@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import ServiceCard from "../../components/ServiceCard.astro";
+import KiBildHinweis from "../../components/KiBildHinweis.astro";
 import CtaBand from "../../components/CtaBand.astro";
 import Button from "../../components/Button.astro";
 import { IMAGES } from "../../lib/images";
@@ -88,6 +89,10 @@ const services = [
             />
           ))
         }
+      </div>
+      <!-- KI-Bilder in dieser Sektion: Vollform benachbart (ADR 0002 §5.1.1). -->
+      <div class="pf-mt-7">
+        <KiBildHinweis variant="full" />
       </div>
     </div>
   </section>

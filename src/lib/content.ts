@@ -45,9 +45,9 @@ export interface SiteKontakt {
   telefon_tel: string;
   whatsapp_url: string;
   email: string;
+  /** "bestaetigt" seit Kundenantwort 950f0d46 (loest OP-1 ab). */
   email_status: string;
-  email_konflikt: string[];
-  email_hinweis: string;
+  email_quelle?: string;
 }
 
 export interface SiteConfig {
@@ -66,8 +66,14 @@ export interface SiteConfig {
     attribution_translate: string;
     cta_label: string;
     cta_url_env: string;
+    /** Statisches CTA-Ziel aus content/site.json (Kundenantwort 950f0d46, loest OP-2 ab). */
+    cta_url: string;
     cta_url_status: string;
-    cta_url_hinweis: string;
+    cta_url_quelle?: string;
+    cta_url_typ?: string;
+    /** "nein" = kein Places-API-Abruf, rein statischer Pfad (Kundenantwort 950f0d46, OP-11). */
+    places_api: string;
+    places_api_hinweis?: string;
   };
   beschaffung: { hosting: string; bilder: string[]; logo: string };
 }
@@ -94,9 +100,8 @@ const SITE_FALLBACK: SiteConfig = {
     telefon_tel: "+491742164071",
     whatsapp_url: "https://wa.me/491742164071",
     email: "info@ivo-mertsch.de",
-    email_status: "offener_kundenpunkt",
-    email_konflikt: [],
-    email_hinweis: "OFFENER KUNDENPUNKT OP-1.",
+    email_status: "bestaetigt",
+    email_quelle: "Kundenantwort Interaktion 950f0d46 (2026-10-14). Loest OP-1 ab.",
   },
   instagram: {
     url: "https://www.instagram.com/ivomertsch_hal/",
@@ -107,8 +112,12 @@ const SITE_FALLBACK: SiteConfig = {
     attribution_translate: "no",
     cta_label: "Jetzt bei Google bewerten",
     cta_url_env: "GOOGLE_REVIEW_URL",
-    cta_url_status: "offener_kundenpunkt",
-    cta_url_hinweis: "OFFENER KUNDENPUNKT OP-2.",
+    cta_url: "https://maps.app.goo.gl/4w3i7sVLrrs8di5v9",
+    cta_url_status: "bestaetigt",
+    cta_url_quelle: "Kundenantwort Interaktion 950f0d46 (2026-10-14). Loest OP-2 ab.",
+    cta_url_typ: "Google-Maps-Profil-Link (statisch verlinkt; keine Places-API)",
+    places_api: "nein",
+    places_api_hinweis: "Kundenantwort Interaktion 950f0d46 (OP-11): keine Places-API, rein statischer Pfad.",
   },
   beschaffung: {
     hosting: "eigener Docker-Container, keine Drittanbieter-Ressource vor Consent",

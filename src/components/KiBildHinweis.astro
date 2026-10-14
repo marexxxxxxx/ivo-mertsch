@@ -1,0 +1,29 @@
+---
+/**
+ * KiBildHinweis (ADR 0002 §5.1, content/ki-bildhinweis.md §1) — sichtbarer
+ * KI-Transparenzhinweis.
+ *
+ *  - variant="full"  → Vollform, an jeder Bildstelle (Hero, Leistungs-Sektion,
+ *                      Galerie). Sichtbarer Absatz im selben Landmark wie das
+ *                      Bild, optional mit `id` (Empfehlung: `ki-bildhinweis`).
+ *  - variant="short" → Kurzform, dauerhaft im Footer jeder Seite.
+ *
+ * Verbindlich: echter Textknoten (kein `title`/`aria-label`-Only), sichtbar ohne
+ * Interaktion, Kontrast ≥ 4,5:1 und Schriftgröße ≥ Fließtext. Nur semantische
+ * Tokens aus dem Design-System — keine Farb-/Abstands-Literale.
+ */
+import { KI_BILD_COPY } from "../lib/copy";
+
+interface Props {
+  variant: "full" | "short";
+  /** Nur bei genau einem Vollform-Vorkommen je Seite setzen (sonst doppelte IDs). */
+  id?: string;
+}
+
+const { variant, id } = Astro.props;
+const text = variant === "short" ? KI_BILD_COPY.short : KI_BILD_COPY.full;
+---
+
+<p class={`pf-ki-hinweis pf-ki-hinweis--${variant}`} id={id}>
+  {text}
+</p>

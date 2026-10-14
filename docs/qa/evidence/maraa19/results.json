@@ -1,12 +1,572 @@
 [
   {
-    "id": "Bewertungen: Inhalt-Zustand rendert Bewertungskarten als Karten-Grid (1/2/3 Spalten)",
+    "id": "Light-Pflicht  /: dark-OS rendert hell (body != #15120D)",
     "status": "pass",
-    "detail": "1440: 3 Karten, 3 Spalten"
+    "detail": "dark=rgb(251, 250, 246) light=rgb(251, 250, 246)"
   },
   {
-    "id": "Bewertungen: Inhalt-Zustand ohne horizontalen Overflow (360/768/1440)",
+    "id": "Light-Pflicht  /leistungen/: dark-OS rendert hell (body != #15120D)",
+    "status": "pass",
+    "detail": "dark=rgb(251, 250, 246) light=rgb(251, 250, 246)"
+  },
+  {
+    "id": "Light-Pflicht  /kontakt/: dark-OS rendert hell (body != #15120D)",
+    "status": "pass",
+    "detail": "dark=rgb(251, 250, 246) light=rgb(251, 250, 246)"
+  },
+  {
+    "id": "Light-Pflicht  /bewertungen/: dark-OS rendert hell (body != #15120D)",
+    "status": "pass",
+    "detail": "dark=rgb(251, 250, 246) light=rgb(251, 250, 246)"
+  },
+  {
+    "id": "Light-Pflicht  /impressum/: dark-OS rendert hell (body != #15120D)",
+    "status": "pass",
+    "detail": "dark=rgb(251, 250, 246) light=rgb(251, 250, 246)"
+  },
+  {
+    "id": "axe WCAG 2.2 AA ohne serious/critical  /",
+    "status": "pass",
+    "detail": "0 Verstoss/Verstoesse"
+  },
+  {
+    "id": "genau ein h1  /",
+    "status": "pass",
+    "detail": "h1=1"
+  },
+  {
+    "id": "Landmarks  /",
+    "status": "pass",
+    "detail": "{\"header\":1,\"main\":1,\"footer\":1}"
+  },
+  {
+    "id": "lang=de  /",
+    "status": "pass",
+    "detail": "lang=de"
+  },
+  {
+    "id": "axe WCAG 2.2 AA ohne serious/critical  /leistungen/",
+    "status": "pass",
+    "detail": "0 Verstoss/Verstoesse"
+  },
+  {
+    "id": "genau ein h1  /leistungen/",
+    "status": "pass",
+    "detail": "h1=1"
+  },
+  {
+    "id": "Landmarks  /leistungen/",
+    "status": "pass",
+    "detail": "{\"header\":1,\"main\":1,\"footer\":1}"
+  },
+  {
+    "id": "lang=de  /leistungen/",
+    "status": "pass",
+    "detail": "lang=de"
+  },
+  {
+    "id": "axe WCAG 2.2 AA ohne serious/critical  /leistungen/fugenlose-bäder/",
+    "status": "pass",
+    "detail": "0 Verstoss/Verstoesse"
+  },
+  {
+    "id": "genau ein h1  /leistungen/fugenlose-bäder/",
+    "status": "pass",
+    "detail": "h1=1"
+  },
+  {
+    "id": "Landmarks  /leistungen/fugenlose-bäder/",
+    "status": "pass",
+    "detail": "{\"header\":1,\"main\":1,\"footer\":1}"
+  },
+  {
+    "id": "lang=de  /leistungen/fugenlose-bäder/",
+    "status": "pass",
+    "detail": "lang=de"
+  },
+  {
+    "id": "axe WCAG 2.2 AA ohne serious/critical  /leistungen/fugenlose-böden/",
+    "status": "pass",
+    "detail": "0 Verstoss/Verstoesse"
+  },
+  {
+    "id": "genau ein h1  /leistungen/fugenlose-böden/",
+    "status": "pass",
+    "detail": "h1=1"
+  },
+  {
+    "id": "Landmarks  /leistungen/fugenlose-böden/",
+    "status": "pass",
+    "detail": "{\"header\":1,\"main\":1,\"footer\":1}"
+  },
+  {
+    "id": "lang=de  /leistungen/fugenlose-böden/",
+    "status": "pass",
+    "detail": "lang=de"
+  },
+  {
+    "id": "axe WCAG 2.2 AA ohne serious/critical  /leistungen/innenausbau/",
+    "status": "pass",
+    "detail": "0 Verstoss/Verstoesse"
+  },
+  {
+    "id": "genau ein h1  /leistungen/innenausbau/",
+    "status": "pass",
+    "detail": "h1=1"
+  },
+  {
+    "id": "Landmarks  /leistungen/innenausbau/",
+    "status": "pass",
+    "detail": "{\"header\":1,\"main\":1,\"footer\":1}"
+  },
+  {
+    "id": "lang=de  /leistungen/innenausbau/",
+    "status": "pass",
+    "detail": "lang=de"
+  },
+  {
+    "id": "axe WCAG 2.2 AA ohne serious/critical  /leistungen/fassaden/",
+    "status": "pass",
+    "detail": "0 Verstoss/Verstoesse"
+  },
+  {
+    "id": "genau ein h1  /leistungen/fassaden/",
+    "status": "pass",
+    "detail": "h1=1"
+  },
+  {
+    "id": "Landmarks  /leistungen/fassaden/",
+    "status": "pass",
+    "detail": "{\"header\":1,\"main\":1,\"footer\":1}"
+  },
+  {
+    "id": "lang=de  /leistungen/fassaden/",
+    "status": "pass",
+    "detail": "lang=de"
+  },
+  {
+    "id": "axe WCAG 2.2 AA ohne serious/critical  /über-uns/",
+    "status": "pass",
+    "detail": "0 Verstoss/Verstoesse"
+  },
+  {
+    "id": "genau ein h1  /über-uns/",
+    "status": "pass",
+    "detail": "h1=1"
+  },
+  {
+    "id": "Landmarks  /über-uns/",
+    "status": "pass",
+    "detail": "{\"header\":1,\"main\":1,\"footer\":1}"
+  },
+  {
+    "id": "lang=de  /über-uns/",
+    "status": "pass",
+    "detail": "lang=de"
+  },
+  {
+    "id": "axe WCAG 2.2 AA ohne serious/critical  /kontakt/",
+    "status": "pass",
+    "detail": "0 Verstoss/Verstoesse"
+  },
+  {
+    "id": "genau ein h1  /kontakt/",
+    "status": "pass",
+    "detail": "h1=1"
+  },
+  {
+    "id": "Landmarks  /kontakt/",
+    "status": "pass",
+    "detail": "{\"header\":1,\"main\":1,\"footer\":1}"
+  },
+  {
+    "id": "lang=de  /kontakt/",
+    "status": "pass",
+    "detail": "lang=de"
+  },
+  {
+    "id": "axe WCAG 2.2 AA ohne serious/critical  /bewertungen/",
+    "status": "pass",
+    "detail": "0 Verstoss/Verstoesse"
+  },
+  {
+    "id": "genau ein h1  /bewertungen/",
+    "status": "pass",
+    "detail": "h1=1"
+  },
+  {
+    "id": "Landmarks  /bewertungen/",
+    "status": "pass",
+    "detail": "{\"header\":1,\"main\":1,\"footer\":1}"
+  },
+  {
+    "id": "lang=de  /bewertungen/",
+    "status": "pass",
+    "detail": "lang=de"
+  },
+  {
+    "id": "axe WCAG 2.2 AA ohne serious/critical  /impressum/",
+    "status": "pass",
+    "detail": "0 Verstoss/Verstoesse"
+  },
+  {
+    "id": "genau ein h1  /impressum/",
+    "status": "pass",
+    "detail": "h1=1"
+  },
+  {
+    "id": "Landmarks  /impressum/",
+    "status": "pass",
+    "detail": "{\"header\":1,\"main\":1,\"footer\":1}"
+  },
+  {
+    "id": "lang=de  /impressum/",
+    "status": "pass",
+    "detail": "lang=de"
+  },
+  {
+    "id": "axe WCAG 2.2 AA ohne serious/critical  /datenschutzerklaerung/",
+    "status": "pass",
+    "detail": "0 Verstoss/Verstoesse"
+  },
+  {
+    "id": "genau ein h1  /datenschutzerklaerung/",
+    "status": "pass",
+    "detail": "h1=1"
+  },
+  {
+    "id": "Landmarks  /datenschutzerklaerung/",
+    "status": "pass",
+    "detail": "{\"header\":1,\"main\":1,\"footer\":1}"
+  },
+  {
+    "id": "lang=de  /datenschutzerklaerung/",
+    "status": "pass",
+    "detail": "lang=de"
+  },
+  {
+    "id": "axe WCAG 2.2 AA ohne serious/critical  /gibt-es-nicht/",
+    "status": "pass",
+    "detail": "0 Verstoss/Verstoesse"
+  },
+  {
+    "id": "Landmarks  /gibt-es-nicht/",
+    "status": "pass",
+    "detail": "{\"header\":1,\"main\":1,\"footer\":1}"
+  },
+  {
+    "id": "lang=de  /gibt-es-nicht/",
+    "status": "pass",
+    "detail": "lang=de"
+  },
+  {
+    "id": "Touch-Targets >= 44px (Projekt-Gate)",
+    "status": "pass",
+    "detail": "0: []"
+  },
+  {
+    "id": "Touch-Targets >= 24px (WCAG 2.2 AA 2.5.8)",
+    "status": "pass",
+    "detail": "0: []"
+  },
+  {
+    "id": "Sichtbarer Fokus bei 30 Tab-Schritten",
+    "status": "pass",
+    "detail": "30 Schritte, 0 ohne Indikator"
+  },
+  {
+    "id": "prefers-reduced-motion: --pf-duration-fast = 1ms",
+    "status": "pass",
+    "detail": "1ms"
+  },
+  {
+    "id": "Kein horizontaler Overflow  / @360px",
+    "status": "pass",
+    "detail": "scrollW=360 clientW=360"
+  },
+  {
+    "id": "Kein horizontaler Overflow  /leistungen/ @360px",
+    "status": "pass",
+    "detail": "scrollW=360 clientW=360"
+  },
+  {
+    "id": "Kein horizontaler Overflow  /leistungen/fugenlose-bäder/ @360px",
+    "status": "pass",
+    "detail": "scrollW=360 clientW=360"
+  },
+  {
+    "id": "Kein horizontaler Overflow  /kontakt/ @360px",
+    "status": "pass",
+    "detail": "scrollW=360 clientW=360"
+  },
+  {
+    "id": "Kein horizontaler Overflow  /bewertungen/ @360px",
+    "status": "pass",
+    "detail": "scrollW=360 clientW=360"
+  },
+  {
+    "id": "Kein horizontaler Overflow  /über-uns/ @360px",
+    "status": "pass",
+    "detail": "scrollW=360 clientW=360"
+  },
+  {
+    "id": "Kein horizontaler Overflow  /impressum/ @360px",
+    "status": "pass",
+    "detail": "scrollW=360 clientW=360"
+  },
+  {
+    "id": "Kein horizontaler Overflow  /datenschutzerklaerung/ @360px",
+    "status": "pass",
+    "detail": "scrollW=360 clientW=360"
+  },
+  {
+    "id": "Kein horizontaler Overflow  / @768px",
+    "status": "pass",
+    "detail": "scrollW=768 clientW=768"
+  },
+  {
+    "id": "Kein horizontaler Overflow  /leistungen/ @768px",
+    "status": "pass",
+    "detail": "scrollW=768 clientW=768"
+  },
+  {
+    "id": "Kein horizontaler Overflow  /leistungen/fugenlose-bäder/ @768px",
+    "status": "pass",
+    "detail": "scrollW=768 clientW=768"
+  },
+  {
+    "id": "Kein horizontaler Overflow  /kontakt/ @768px",
+    "status": "pass",
+    "detail": "scrollW=768 clientW=768"
+  },
+  {
+    "id": "Kein horizontaler Overflow  /bewertungen/ @768px",
+    "status": "pass",
+    "detail": "scrollW=768 clientW=768"
+  },
+  {
+    "id": "Kein horizontaler Overflow  /über-uns/ @768px",
+    "status": "pass",
+    "detail": "scrollW=768 clientW=768"
+  },
+  {
+    "id": "Kein horizontaler Overflow  /impressum/ @768px",
+    "status": "pass",
+    "detail": "scrollW=768 clientW=768"
+  },
+  {
+    "id": "Kein horizontaler Overflow  /datenschutzerklaerung/ @768px",
+    "status": "pass",
+    "detail": "scrollW=768 clientW=768"
+  },
+  {
+    "id": "Kein horizontaler Overflow  / @1440px",
+    "status": "pass",
+    "detail": "scrollW=1440 clientW=1440"
+  },
+  {
+    "id": "Kein horizontaler Overflow  /leistungen/ @1440px",
+    "status": "pass",
+    "detail": "scrollW=1440 clientW=1440"
+  },
+  {
+    "id": "Kein horizontaler Overflow  /leistungen/fugenlose-bäder/ @1440px",
+    "status": "pass",
+    "detail": "scrollW=1440 clientW=1440"
+  },
+  {
+    "id": "Kein horizontaler Overflow  /kontakt/ @1440px",
+    "status": "pass",
+    "detail": "scrollW=1440 clientW=1440"
+  },
+  {
+    "id": "Kein horizontaler Overflow  /bewertungen/ @1440px",
+    "status": "pass",
+    "detail": "scrollW=1440 clientW=1440"
+  },
+  {
+    "id": "Kein horizontaler Overflow  /über-uns/ @1440px",
+    "status": "pass",
+    "detail": "scrollW=1440 clientW=1440"
+  },
+  {
+    "id": "Kein horizontaler Overflow  /impressum/ @1440px",
+    "status": "pass",
+    "detail": "scrollW=1440 clientW=1440"
+  },
+  {
+    "id": "Kein horizontaler Overflow  /datenschutzerklaerung/ @1440px",
+    "status": "pass",
+    "detail": "scrollW=1440 clientW=1440"
+  },
+  {
+    "id": "Consent: 0 Dritt-Requests vor Einwilligung",
+    "status": "pass",
+    "detail": ""
+  },
+  {
+    "id": "Consent: keine Cookies vor Einwilligung",
+    "status": "pass",
+    "detail": ""
+  },
+  {
+    "id": "Consent: kein Consent-Key vor Einwilligung",
+    "status": "pass",
+    "detail": ""
+  },
+  {
+    "id": "Consent: Banner beim Erstbesuch sichtbar",
     "status": "pass",
     "detail": null
+  },
+  {
+    "id": "Consent: Ablehnen >= 44px hoch",
+    "status": "pass",
+    "detail": "45.1875"
+  },
+  {
+    "id": "Consent: Ablehnen gleichwertig gross/Prominenz wie Akzeptieren",
+    "status": "pass",
+    "detail": "reject 216x45.1875 / accept 216x45.1875"
+  },
+  {
+    "id": "Consent: Ablehnen in 1 Klick (Banner entfernt, Zustand gespeichert)",
+    "status": "pass",
+    "detail": "{\"version\":1,\"entscheidung\":\"abgelehnt\",\"kategorien\":{\"essenziell\":true,\"statistik\":false,\"externe_medien\":false},\"zeitstempel\":\"2026-10-14T08:29:45.840Z\",\"methode\":\"banner-ablehnen\",\"textfassung\":\"2026-10-13.1\",\"widerruf_zaehler\":1}"
+  },
+  {
+    "id": "Consent: Zustand uebersteht Reload und Seitenwechsel",
+    "status": "pass",
+    "detail": "{\"afterReload\":{\"banner\":0,\"state\":\"decided\"},\"afterNav\":{\"banner\":0,\"state\":\"decided\"}}"
+  },
+  {
+    "id": "Consent: optionale Kategorien nicht vorausgewaehlt",
+    "status": "pass",
+    "detail": "stat=false ext=false"
+  },
+  {
+    "id": "Consent: Footer-Link 'Cookie-Einstellungen' vorhanden",
+    "status": "pass",
+    "detail": null
+  },
+  {
+    "id": "Consent: Widerruf setzt Kategorien zurueck und stoppt aktive Gates",
+    "status": "pass",
+    "detail": "{\"footerVisible\":1,\"record\":{\"version\":1,\"entscheidung\":\"abgelehnt\",\"kategorien\":{\"essenziell\":true,\"statistik\":false,\"externe_medien\":false},\"zeitstempel\":\"2026-10-14T08:29:46.990Z\",\"methode\":\"footer-einstellungen\",\"textfassung\":\"2026-10-13.1\",\"widerruf_zaehler\":2},\"gateSlotsActive\":0}"
+  },
+  {
+    "id": "Consent: Policy-Versionswechsel -> Banner kommt wieder",
+    "status": "pass",
+    "detail": null
+  },
+  {
+    "id": "Kontakt: Fehlerfall zeigt Meldung (nicht leerer Screen)",
+    "status": "pass",
+    "detail": "Bitte prüfen Sie die markierten Felder. Bitte geben Sie Ihre E-Mail-Adresse ein. Bitte schreiben Sie kurz, worum es geht"
+  },
+  {
+    "id": "Kontakt: Fehler markiert Feld (aria-invalid) und behaelt Eingaben",
+    "status": "pass",
+    "detail": "aria-invalid=true name=Behalten"
+  },
+  {
+    "id": "Kontakt: Ladezustand sichtbar (aria-busy + disabled)",
+    "status": "pass",
+    "detail": "{\"busy\":\"true\",\"disabled\":true}"
+  },
+  {
+    "id": "Kontakt: Erfolg ersetzt das Formular (Submit-Button weg)",
+    "status": "pass",
+    "detail": null
+  },
+  {
+    "id": "Kontakt: Erfolgszustand zeigt 'Anfrage gesendet'",
+    "status": "pass",
+    "detail": "✓ Anfrage gesendet. Ich melde mich in der Regel innerhalb von zwei Werktagen."
+  },
+  {
+    "id": "Kontakt: Rate-Limit zeigt Meldung mit Wartezeit/Telefonweg",
+    "status": "pass",
+    "detail": "Sie haben gerade mehrere Anfragen gesendet. Bitte warten Sie einen Moment — oder rufen Sie einfach an: +49 174 2164071."
+  },
+  {
+    "id": "Kontakt: echter Submit fuehrt zu Ergebnis (mailto-Erfolg, kein leerer Screen)",
+    "status": "pass",
+    "detail": "✓ Ihr E-Mail-Programm öffnet sich mit der fertigen Nachricht. Bitte senden Sie sie dort ab."
+  },
+  {
+    "id": "Header/Drawer: Drawer oeffnet und aria-expanded=true",
+    "status": "pass",
+    "detail": null
+  },
+  {
+    "id": "Header/Drawer: Fokus geht in den Drawer",
+    "status": "pass",
+    "detail": null
+  },
+  {
+    "id": "Header/Drawer: Escape schliesst und gibt Fokus zurueck",
+    "status": "pass",
+    "detail": "{\"open\":true,\"expandedOpen\":\"true\",\"escapeSeen\":true,\"closed\":true,\"expandedClosed\":\"false\",\"focusReturned\":true}"
+  },
+  {
+    "id": "Header: Desktop-Hauptnavigation sichtbar",
+    "status": "pass",
+    "detail": null
+  },
+  {
+    "id": "Bewertungen: Leerzustand ohne erfundene Bewertungen (0 Karten, 0 Sterne)",
+    "status": "pass",
+    "detail": "reviews=0 stars=0"
+  },
+  {
+    "id": "Bewertungen: Leerzustand ehrlicher Hinweis + Google-CTA",
+    "status": "pass",
+    "detail": "Start Bewertungen Bewertungen Aktuell liegen für diese Website keine Google-Bewertungen zur Anzeige "
+  },
+  {
+    "id": "Briefing Mode: Seite rendert hell (body = neutral.50)",
+    "status": "pass",
+    "detail": "rgb(251, 250, 246)"
+  },
+  {
+    "id": "Briefing Karten: Flaeche neutral.0, Radius 16px, genau ein Kartenschatten",
+    "status": "pass",
+    "detail": "bg=rgb(255, 255, 255) radius=16px"
+  },
+  {
+    "id": "Briefing Hero: Bild rechts (media.x > body.x)",
+    "status": "pass",
+    "detail": "media.x=693.765625 body.x=160"
+  },
+  {
+    "id": "Briefing Typo: nur Instrument Sans (kein Fraunces)",
+    "status": "pass",
+    "detail": "faces=Instrument Sans"
+  },
+  {
+    "id": "Briefing Bento: asymmetrisches 12-Spalten-Raster, Karte 1 breiter als 2–4",
+    "status": "pass",
+    "detail": "grid=71.3281px 71.3281px 71.3281px 71.3281px 71.3281px 71.3281px 71.3281px 71.3281px 71.3281px 71.3281px 71.3281px 71.3281px widths=1120,357,357,357"
+  },
+  {
+    "id": "Briefing Formular: Formular als Karte (Radius 16px, Schatten)",
+    "status": "pass",
+    "detail": "radius=16px"
+  },
+  {
+    "id": "Briefing Formular: Eingaben Radius 12px",
+    "status": "pass",
+    "detail": "12px"
+  },
+  {
+    "id": "Briefing Formular: Formular neben Kontaktwegen (ab md zweispaltig)",
+    "status": "pass",
+    "detail": "cols=514.281px 565.719px waysX=160 formX=714.28125"
+  },
+  {
+    "id": "Briefing Footer: 3-Spalten-Layout ab md",
+    "status": "pass",
+    "detail": "428.234px 305.875px 305.891px"
   }
 ]

@@ -36,7 +36,7 @@
 
 | # | Kriterium (Quelle) | Status | Beleg |
 |---|---|---|---|
-| **1** | **Light-Pflicht (P1/ADR 0003):** Render bei `prefers-color-scheme: dark` MUSS hell sein; `body`-Hintergrund ≠ `#15120D` | **Pass** | `evidence/maraa19/light-pflicht.json`, `screens/light-*-{dark,light}-1440.png` |
+| **1** | **Light-Pflicht (P1/ADR 0003):** Render bei `prefers-color-scheme: dark` MUSS hell sein; `body`-Hintergrund ≠ `#15120D` | **Pass** | `evidence/maraa19/light-pflicht.json`, `screens/light-*-{dark,light}-1440.jpg` |
 | 1a | Keine Auto-Dark-At-Regel im erzeugten **und** gebauten CSS | **Pass** | `grep`-Zähler (0 / 0), s. §3.1 |
 | 1b | `body`-Fläche dark-OS = light-OS = `rgb(251,250,246)` (`#FBFAF6`), `color-scheme: light` | **Pass** | `light-pflicht.json` (`identical: true`, 5 Seiten) |
 | **2** | **Kontrast:** `python3 tools/audit-tokens.py` Exit 0 | **Pass** | Audit-Ausgabe (§3.2); 62 Paare, alle ≥ Minimum |
@@ -48,7 +48,7 @@
 | **4** | **Browser/Responsive:** Chromium 360 / 768 / 1440, kein horizontales Scrollen | **Pass** | `evidence/maraa19/responsive.json` — 24/24 Messungen ohne Overflow, Screens |
 | **5** | **Regression:** Consent-Banner/-Dialog/Widerruf | **Pass** | `evidence/maraa19/consent.json` (11 Prüfungen) |
 | 5a | Kontaktformular: Erfolg + Fehler + Rate-Limit | **Pass** | `evidence/maraa19/contact.json`, `evidence/maraa19/rate-limit.json` |
-| 5b | Bewertungs-Grid **und** Leerzustand | **Pass** | `evidence/maraa19/reviews.json`, `reviews-filled.json`, `screens/bewertungen-filled-*.png` |
+| 5b | Bewertungs-Grid **und** Leerzustand | **Pass** | `evidence/maraa19/reviews.json`, `reviews-filled.json`, `screens/bewertungen-filled-*.jpg` |
 | 5c | Header/Drawer (mobil) + Desktop-Navigation | **Pass** | `evidence/maraa19/drawer.json` |
 | **6** | **Briefing-Abgleich:** jeder Briefing-Punkt erfüllt oder als Abweichung dokumentiert | **Pass** | `evidence/maraa19/briefing.json` + §3.6 (gemessen, nicht geschätzt) |
 
@@ -89,7 +89,7 @@ Beide Schemata liefern **dasselbe helle** Ergebnis; `data-theme` wird **nicht** 
 `#15120D` = `rgb(21,18,13)` ist der frühere Auto-Dark-Wert — **nirgends** gemessen.
 Beleg-Screens: die `dark`- und `light`-Aufnahmen der Startseite sind **byte-identisch**
 (`md5 d7af8276786790de0ad70a92bafe946b`, 1.979.206 B je Datei).
-`docs/qa/evidence/maraa19/screens/light-start-{dark,light}-1440.png`.
+`docs/qa/evidence/maraa19/screens/light-start-{dark,light}-1440.jpg`.
 
 ### 3.2 Kontrast (WCAG 2.2 AA)
 
@@ -117,8 +117,13 @@ Beleg-Screens: die `dark`- und `light`-Aufnahmen der Startseite sind **byte-iden
 24 Messungen (8 Seiten × 3 Breiten) — **kein** horizontaler Overflow
 (`scrollWidth == clientWidth`, Toleranz 1 px): 360 / 768 / 1440 px auf Start, Leistungen,
 Leistungs-Detail, Kontakt, Bewertungen, Über uns, Impressum, Datenschutz.
-Screens: `screens/{start,leistungen,kontakt,bewertungen}-{360,768,1440}.png` (12 Bilder,
-angesehen — Card/Bento, Hero mit Bild rechts, Formular-Karte, Footer).
+Screens: **alle 12 Seiten** (Start, Leistungen + 4 Detailseiten, Über uns, Kontakt,
+Bewertungen, Impressum, Datenschutz, 404) bei **360 / 768 / 1440 px** als
+`screens/<seite>-<breite>.jpg` (36 Bilder, angesehen — Card/Bento, Hero mit Bild rechts,
+Formular-Karte, Footer). Die viewport-fixierte Mobile-Chrome (Action-Bar, floating
+„Cookie-Einstellungen") ist in den Vollseiten-Belegen ausgeblendet (sie würde von Chromium
+mitten ins gestitchte Bild gesetzt) und in ihrer **echten** Position als
+`screens/mobile-chrome-360.jpg` dokumentiert.
 `responsive.json`.
 
 > Abgrenzung: Der Auftrag nennt **Chromium** 360/768/1440; das ist erfüllt. Firefox/WebKit
@@ -154,7 +159,7 @@ angesehen — Card/Bento, Hero mit Bild rechts, Formular-Karte, Footer).
 **Bewertungen:** Leerzustand = ehrlicher Hinweis als Karte, **0** Karten, **0** Sterne,
 Google-CTA vorhanden, keine erfundenen Bewertungen (`reviews.json`). Inhalt-Zustand
 (Fixture-Build, 3 QA-Bewertungen): Karten-Grid **1 / 2 / 3 Spalten** (360/768/1440),
-Radius 16 px, ohne Overflow (`reviews-filled.json`, Screens `bewertungen-filled-*.png`).
+Radius 16 px, ohne Overflow (`reviews-filled.json`, Screens `bewertungen-filled-*.jpg`).
 `content/reviews.json` blieb unverändert (Working Tree sauber).
 
 **Header/Drawer:** Drawer öffnet (mobil), `aria-expanded="true"`, Fokus geht in den Drawer,
@@ -199,6 +204,20 @@ Hinweise (nicht abnahmerelevant, kein Fail):
 - Der **floating Revoke-Button** „Cookie-Einstellungen" (`ConsentRevoke.astro`, nur < lg,
   komponenten §10.3) erscheint auf 360 px auch über Bildstellen. Das ist die spezifizierte
   Komponente; es entsteht **kein** Overflow und das Touch-Ziel ist ≥ 44 px.
+- **Viewport-fixierte Mobile-Chrome im Vollseiten-Beleg (Board-Hinweis 2026-10-14):** Der
+  floating Revoke-Button und die Kontakt-Action-Bar sind `position: fixed`; Chromium setzt
+  fixe Elemente in einem `fullPage`-Screenshot auf Viewport-Höhe und damit „mitten ins Bild".
+  Das war ein **Beleg-Artefakt der Aufnahme**, kein Fehler der Seite. Der Harness blendet
+  beide für die Vollseiten-Belege aus und zeigt ihre **echte** Position separat:
+  `screens/mobile-chrome-360.jpg`. In der echten Ansicht liegt der floating Button über dem
+  gerade sichtbaren Inhalt (z. B. über einem Formularfeld) — das ist die bewusst schwebende
+  Komponente (§10.3); für den Action-Bar reserviert die Seite Platz
+  (`main { padding-bottom: var(--pf-action-bar-height) }`), der Button selbst nicht.
+  Bewertung durch F1/CEO, ob das Verhalten so bleiben soll — QA meldet, ändert nicht.
+- Die Seiten **Impressum/Datenschutz** tragen (inhaltsbedingt) **keine** Fotos; alle
+  inhaltstragenden Seiten (Start, Leistungen + Detail, Über uns) rendern ihre Bilder —
+  nachgewiesen durch die 36 Vollseiten-Belege (Bilder werden vor der Aufnahme auf
+  `naturalWidth > 0` geprüft).
 - Die Kontakt-/Startseite hat unter dem jeweiligen Kartenblock großzügigen Sektions­abstand.
   Gemessen an `main > *` ist **keine** leere/überdimensionierte Sektion vorhanden; es ist die
   designkonforme `--pf-section-y`-Rhythmik.
@@ -224,7 +243,7 @@ Hinweise (nicht abnahmerelevant, kein Fail):
 | `docs/qa/evidence/maraa19/reviews-filled.json` | Inhalt-Zustand (Fixture) |
 | `docs/qa/evidence/maraa19/drawer.json` | Header/Drawer |
 | `docs/qa/evidence/maraa19/briefing.json` | gemessene Design-Werte |
-| `docs/qa/evidence/maraa19/screens/` | 25 Screenshots (360/768/1440 + erzwungenes dark/light, + Inhalt-Zustand) |
+| `docs/qa/evidence/maraa19/screens/` | **50 JPEG-Belege**: 12 Seiten × {360,768,1440} + 10 Light-Pflicht (erzwungenes dark/light) + 3 Inhalt-Zustand + `mobile-chrome-360.jpg` |
 | `tests/qa/maraa19-verify.mjs` | QA-Harness (reproduzierbar) |
 
 Reproduktion (aus dem Projekt-Wurzelverzeichnis):

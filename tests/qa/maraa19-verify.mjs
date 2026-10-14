@@ -87,6 +87,26 @@ async function dismissConsent(page) {
     await reject.click().catch(() => {});
   }
 }
+/** Vollseiten-Belege: viewport-fixierte Mobile-Chrome (Action-Bar und floating
+ *  "Cookie-Einstellungen", komponenten §10.3) wird von Chromium mitten ins
+ *  gestitchte Bild gesetzt (fixe Elemente liegen auf Viewport-Hoehe). Fuer die
+ *  Design-Belege ausblenden und die echte Position separat als Viewport-
+ *  Screenshot zeigen (`mobile-chrome-360.png`). Nur fuer Screenshots, nie fuer
+ *  Messungen (A11y/Overflow/Touch). */
+async function hideFixedChrome(page) {
+  await page.addStyleTag({
+    content: ".pf-action-bar{display:none !important} #pf-consent-floating{display:none !important}",
+  });
+}
+
+/** Screenshot-Beleg schreiben. JPEG (q82) haelt die vollstaendige Belegdecke
+ *  (13 Seiten x 3 Breiten + Problem-/Zustandsbelege) klein; die massgeblichen
+ *  Messwerte stehen in den JSON-Belegen, nicht im Bildformat. */
+async function shot(page, name, fullPage = true) {
+  const file = join(SCR, `${name}.jpg`);
+  await page.screenshot({ path: file, type: "jpeg", quality: 82, fullPage });
+  return file;
+}
 
 // ---------------------------------------------------------------- light-pflicht
 async function light() {
@@ -101,8 +121,9 @@ async function light() {
       await page.goto(path, { waitUntil: "load" });
       await dismissConsent(page);
       await settle(page);
-      await page.screenshot({ path: join(SCR, `light-${label}-${scheme}-1440.png`), fullPage: true });
-      if (label === "start") darkScreens.push(join(SCR, `light-${label}-${scheme}-1440.png`));
+      await hideFixedChrome(page);
+      const file = await shot(page, `light-${label}-${scheme}-1440`);
+      if (label === "start") darkScreens.push(file);
       rec[scheme] = await page.evaluate(() => ({
         bodyBackground: getComputedStyle(document.body).backgroundColor,
         bodyColor: getComputedStyle(document.body).color,
@@ -307,19 +328,28 @@ async function responsive() {
     }
     await ctx.close();
   }
-  // Screens der Kernseiten je Breite (gerendert + angesehen)
+  // Screens: ALLE Inhaltsseiten bei 360/768/1440 (gerendert + angesehen) —
+  // vollstaendige Belegdecke statt nur Kernseiten.
   const scr = [];
   for (const w of widths) {
     const ctx = await browser.newContext({ baseURL: BASE, viewport: { width: w, height: 900 } });
     const page = await ctx.newPage();
-    for (const [label, path] of KEY.map((k) => PAGES.find((p) => p[0] === k))) {
+    for (const [label, path] of PAGES) {
       await page.goto(path, { waitUntil: "load" });
       await dismissConsent(page);
       await settle(page);
-      const file = join(SCR, `${label}-${w}.png`);
-      await page.screenshot({ path: file, fullPage: true });
-      scr.push(file);
+      await hideFixedChrome(page);
+      scr.push(await shot(page, `${label}-${w}`));
     }
+    await ctx.close();
+  }
+  // Echte Position der fixen Mobile-Chrome (in der Vollseite nicht darstellbar).
+  {
+    const ctx = await browser.newContext({ baseURL: BASE, viewport: { width: 360, height: 720 } });
+    const page = await ctx.newPage();
+    await page.goto("/kontakt/#formular", { waitUntil: "load" });
+    await dismissConsent(page);
+    scr.push(await shot(page, "mobile-chrome-360", false));
     await ctx.close();
   }
   save("responsive.json", { overflow: out, screens: scr });
@@ -652,7 +682,8 @@ async function reviews() {
         overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
       };
     });
-    await page.screenshot({ path: join(SCR, `bewertungen-filled-${w}.png`), fullPage: true });
+    await hideFixedChrome(page);
+    await shot(page, `bewertungen-filled-${w}`);
   }
   out.filled = rec;
   ok(

@@ -1,0 +1,1 @@
+{"status":"ok","checks":{"render":"ok","config":"ok","smtp":"unconfigured"},"version":"dev","uptime":6.1}

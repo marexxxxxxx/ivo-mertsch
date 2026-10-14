@@ -1,0 +1,15 @@
+
+#17 [runtime 6/6] RUN mkdir -p /app/.cache && chown -R node:node /app/.cache
+#17 DONE 0.3s
+
+#18 exporting to image
+#18 exporting layers
+#18 exporting layers 7.2s done
+#18 exporting manifest sha256:9565920e71eca21dd87b77ef3a86eb6d66f67dfeaf8980a2c7401a7e441aede7 0.0s done
+#18 exporting config sha256:df029680f87d2051cc62534c9fd454ef7145b18730571abb00c035b1fe6cd145 done
+#18 exporting attestation manifest sha256:08f58fae17c041eca8430d472b6a19da966e0cccdfb03881a04d29a8f930904f 0.0s done
+#18 exporting manifest list sha256:27285a7a61ad4b7bc5b901bf1acc5d07076f89b02c7a13416a647efac7d1b853 0.0s done
+#18 naming to docker.io/library/ivo-mertsch:1.0.0 done
+#18 unpacking to docker.io/library/ivo-mertsch:1.0.0
+#18 unpacking to docker.io/library/ivo-mertsch:1.0.0 3.2s done
+#18 DONE 10.5s

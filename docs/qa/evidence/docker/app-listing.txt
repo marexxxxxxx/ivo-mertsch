@@ -1,0 +1,7 @@
+total 24
+drwxr-xr-x    1 root     root          4096 Oct 14 05:51 .
+drwxr-xr-x    1 root     root          4096 Oct 14 05:52 ..
+drwxr-xr-x    2 node     node          4096 Oct 14 05:51 .cache
+drwxr-xr-x    4 node     node          4096 Oct 14 05:51 dist
+drwxr-xr-x  197 node     node          4096 Oct 14 05:50 node_modules
+-rw-rw-r--    1 node     node          1320 Oct 13 21:43 package.json

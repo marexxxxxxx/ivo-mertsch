@@ -1,0 +1,11 @@
+MARAA-7 Docker-Abnahme — 2026-10-14T05:52:01Z
+Image: ivo-mertsch:1.0.0   Host-Port: 4321
+PASS=7 FAIL=0 SKIP=0
+
+PASS  1:docker build             build-tail.txt (15 Zeilen)
+PASS  6a:Image-Groesse           image-size.txt — 469MB
+PASS  2:docker run               container=maraa7-docker-acceptance-1108316, host-port=4321
+PASS  3:Healthcheck healthy      healthcheck.json — Status=healthy
+PASS  3b:GET /api/healthz=200    healthz-body.txt HTTP 200
+PASS  4:GET /=200                root-body.html HTTP 200
+PASS  5:Keine Artefakte/Secrets  app-listing.txt + history.txt — keine Treffer

@@ -5,9 +5,9 @@
 | **Issue** | MARAA-6 — QA: Abnahme A11y, DSGVO, Browser & Docker-Container |
 | **Prüfobjekt** | Ivo-Mertsch-Relaunch (MARAA-1), Implementierung aus MARAA-5 |
 | **Autor** | QA Engineer, PixelForge Studio |
-| **Datum** | 2026-10-13 |
+| **Datum** | 2026-10-13 (Nachtrag 2026-10-14) |
 | **Geprüfter Stand** | Commit `0397479` (`main`), frisch gebaut mit `npm run build` |
-| **Gesamturteil** | **Abnahme mit Mängeln** — 4 von 6 Prüfbereichen vollständig bestanden, 1 teilweise (WebKit), 1 nicht verifizierbar (Docker); zusätzlich 1 Ziel-Verfehlung (mobiler LCP) und offene Rechts-/Kundenpunkte vor Livegang |
+| **Gesamturteil** | **Abnahme mit Mängeln** — 5 von 6 Prüfbereichen vollständig bestanden, 1 teilweise (WebKit nicht prüfbar); Docker nach Unblock am 2026-10-14 **bestanden** (F-5 Nachtrag 2); zusätzlich 1 Ziel-Verfehlung (mobiler LCP) und offene Rechts-/Kundenpunkte vor Livegang |
 
 > Grundsatz dieses Protokolls: Jeder „Pass" hat einen Beleg (JSON, Screenshot, Messwert,
 > Netzwerkaufzeichnung). Nicht gerendert und angesehen = nicht verifiziert. Bei Zweifel
@@ -29,7 +29,8 @@
 | QA-Harness | `tests/qa/qa-run.mjs` (eigenständig, unabhängig vom Entwickler-E2E-Set) |
 
 Ausgangslage: MARAA-5 ist `done` (Commit `0397479`). Der Docker-Build war bereits in
-MARAA-5 umgebungsbedingt offen und ist es weiterhin (F-5).
+MARAA-5 umgebungsbedingt offen (F-5) und wurde am **2026-10-14** nach Bereitstellung des
+Docker-Zugriffs durch die Infrastruktur **erfolgreich verifiziert** (F-5 Nachtrag 2, MARAA-7).
 
 ---
 
@@ -57,7 +58,7 @@ MARAA-5 umgebungsbedingt offen und ist es weiterhin (F-5).
 | 4b | CLS ≤ 0,1 · TBT ≤ 200 ms | **Pass** | `evidence/lighthouse-mobil.json`, `lighthouse-desktop.json` |
 | 5 | **Browser-Matrix** — Chromium Desktop, Chromium Mobil, Firefox: Navigation, Consent, Formular, Mobile-Nav | **Pass** | `evidence/browser-matrix.json` |
 | 5a | WebKit/Safari | **Nicht verifizierbar** | F-4 |
-| 6 | **Docker** — `docker build`, `docker run`, Healthcheck, Seite aus Container, keine Artefakte/Secrets, Image-Größe | **Nicht verifizierbar** | F-5 |
+| 6 | **Docker** — `docker build`, `docker run`, Healthcheck, Seite aus Container, keine Artefakte/Secrets, Image-Größe | **Pass** (2026-10-14) | `evidence/docker/` → F-5 Nachtrag 2 |
 | 7 | **Abnahmeprotokoll** (dieses Dokument) + Belege | **Pass** | `docs/qa/abnahmeprotokoll-maraa-1.md`, `docs/qa/evidence/` |
 
 Legende: **Pass** = verifiziert mit Beleg · **Fail** = Kriterium nicht erfüllt (mit Beleg) ·
@@ -196,6 +197,45 @@ derselben Sandbox; eine rollengenaue Beschränkung auf QA existiert derzeit nich
 Beide Wege erfüllen den Abnahmezweck; die Wahl ist eine **Infrastruktur-/Security-Entscheidung**,
 keine des QA. Nach Unblock: Skript ausführen, Belege an MARAA-6.
 
+#### F-5 Nachtrag 2 — Docker-Abnahme BESTANDEN (2026-10-14, MARAA-7)
+
+Nach der Rückmeldung „teste nochmal, eigentlich sollte es jetzt mit docker funktionieren" wurde
+der Daemon-Zugriff erneut geprüft und war **freigeschaltet**: Der Sandbox-Nutzer `user` ist
+jetzt Mitglied der Gruppe `docker` (`getent group docker` → `docker:x:983:user`); der Socket
+bleibt `root:docker` (660). Die bereits laufende Session kannte die neue Gruppe noch nicht,
+darum liefen alle Docker-Kommandos über `sg docker -c '…'` (`id` → `gid=983(docker)`).
+
+`tests/qa/docker-acceptance.sh` lief **vollständig durch — 7/7 PASS, Exit 0**:
+
+| # | Punkt | Ergebnis | Beleg |
+|---|---|---|---|
+| 1 | `docker build -t ivo-mertsch:1.0.0 .` | **Pass** | `evidence/docker/build-tail.txt`, `build.log` |
+| 6a | Image-Größe | **469 MB** | `evidence/docker/image-size.txt` |
+| 2 | `docker run -p 4321:4321 ivo-mertsch:1.0.0` | **Pass** | `evidence/docker/run-id.txt` |
+| 3 | Healthcheck-Status (`docker inspect`) | **healthy** (ExitCode 0) | `evidence/docker/healthcheck.json` |
+| 3b | `GET /api/healthz` | **HTTP 200** (`{"status":"ok",…}`) | `evidence/docker/healthz-body.txt` |
+| 4 | `GET /` aus dem Container | **HTTP 200** | `evidence/docker/root-body.html` |
+| 5 | Keine Buildzeit-Artefakte/Secrets im Image | **Pass** | `evidence/docker/app-listing.txt`, `history.txt` |
+
+**Zusätzliche, unabhängige Prüfungen (nicht Teil des Skripts):**
+
+- **Image-Config** (`docker image inspect`): `User=node` (**non-root**), genau ein
+  `Cmd=["node","./dist/server/entry.mjs"]`, `Healthcheck` gegen `/api/healthz`, `Exposed 4321/tcp`,
+  `Env` ohne Secrets.
+- **`/app`-Inhalt**: ausschließlich `.cache`, `dist`, `node_modules`, `package.json` — **kein**
+  `src`, `tests`, `.git` oder `.env`.
+- **Gerendert und angesehen** (`evidence/docker/render-from-container.mjs`, Chromium): 5 Seiten ×
+  2 Viewports (1280 px / 360 px) → **alle HTTP 200**, korrekte Titel/H1, Cookie-Einstellungen-Button
+  sichtbar, **0 Console-Fehler, 0 fehlgeschlagene Requests**, alle Bilder geladen (z. B. 6/6 auf `/`).
+  Belege: `evidence/docker/screens/*.jpg`, `render-from-container.json`.
+  *Hinweis:* Ein erster Capture-Lauf zeigte leere Bildflächen unter dem Falz — Ursache war
+  Lazy-Loading (`loading="lazy"`) beim Vollbild-Screenshot, **kein** Seiten-/Containerfehler; die
+  Bilder wurden nachweislich mit HTTP 200/`image/webp` aus dem Container ausgeliefert. Nach
+  deterministischem Warten auf `img.complete` sauber.
+
+**Prüfobjekt:** Commit `987e7d4` (`main`), Image `ivo-mertsch:1.0.0`.
+**Ergebnis:** Das Goal-Kriterium „fertiger Docker-Container" ist damit **abgenommen** (F-5 geschlossen).
+
 ### F-6 — Rechtsseiten sind Entwürfe (Livegang-Sperre) — *kritisch für Livegang*
 - **Befund:** Impressum und Datenschutzerklärung tragen einen ausdrücklichen Prüfvermerk
   („Ohne diese Freigabe darf die Seite nicht öffentlich erreichbar sein") und offene Punkte
@@ -279,8 +319,12 @@ docs/qa/evidence/lighthouse-mobil.json   Lighthouse mobil (Lauf 1)
 docs/qa/evidence/lighthouse-mobil-run2.json, -run3.json   Wiederholungen (Varianz)
 docs/qa/evidence/lighthouse-desktop.json Lighthouse desktop
 docs/qa/evidence/screens/*.jpg           Screenshots 360/768/1024/1440 (Home/Kontakt/Bewertungen) + Banner + Filled-Review
-docs/qa/evidence/docker/results.tsv      MARAA-7: Prolog-Guard (Docker-Zugriff) — aktuell FAIL (F-5 Nachtrag)
-tests/qa/docker-acceptance.sh            MARAA-7: idempotentes Docker-Abnahmeskript (6 Punkte, Belege nach evidence/docker/)
+docs/qa/evidence/docker/                 MARAA-7 Docker-Abnahme (F-5 Nachtrag 2): results.tsv (7/7 PASS),
+                                         build.log + build-tail.txt, image-size.txt (469 MB), run-id.txt,
+                                         healthcheck.json, healthz-body.txt, root-body.html, app-listing.txt,
+                                         history.txt, summary.txt, render-from-container.json
+                                         (+ render-from-container.mjs + screens/*.jpg = Render-Nachweis)
+tests/qa/docker-acceptance.sh            MARAA-7: idempotentes Docker-Abnahmeskript (build/run/healthcheck/…), Exit 0 = 6/6
 ```
 
 Reproduktion:
@@ -306,7 +350,7 @@ Firefox. Offen bzw. mangelhaft:
 
 | Priorität | Punkt | Owner |
 |---|---|---|
-| **Blocker** | F-5 Docker-Build/-Run/-Healthcheck/-Größe nicht verifizierbar → Goal-Kriterium „fertiger Docker-Container" nicht abgenommen (Follow-up **MARAA-7**) | Umgebung mit Docker-Zugriff (CEO/Infrastruktur) |
+| **Erledigt** | F-5 Docker-Build/-Run/-Healthcheck/-Größe — **bestanden** am 2026-10-14 (MARAA-7, F-5 Nachtrag 2); Goal-Kriterium „fertiger Docker-Container" **abgenommen** | QA / Infrastruktur |
 | **Kritisch (Livegang)** | F-6 Rechtstexte ohne anwaltliche Freigabe; offene Kundenpunkte OP-1…OP-13 | Kunde + CEO |
 | **Mittel** | F-2 Banner-Links < 24 px (WCAG 2.2 AA 2.5.8) | Frontend Developer (MARAA-5) |
 | **Mittel** | F-3 Mobiler LCP 2,1–2,3 s > Ziel 2,0 s (unter Blocker 2,5 s) | Produktionsmessung; ggf. MARAA-5 |
@@ -315,5 +359,6 @@ Firefox. Offen bzw. mangelhaft:
 | **Konfiguration** | OP-A `GOOGLE_REVIEW_URL`/`GOOGLE_PLACE_ID` setzen | CEO/Kunde |
 
 **Empfehlung:** F-2 und F-1 als kleine Fixes an MARAA-5 zurückgeben (beide betreffen nur
-Padding/min-height). F-5 und F-4 erfordern Umgebungszugriff und sind keine Code-Mängel.
-Ein **Go-live** ist erst nach F-6 (Rechtsfreigabe) und F-5 (verifizierter Container) möglich.
+Padding/min-height). F-4 erfordert Umgebungszugriff und ist kein Code-Mangel (F-5 ist seit
+2026-10-14 abgenommen).
+Ein **Go-live** ist erst nach F-6 (Rechtsfreigabe) möglich; F-5 (verifizierter Container) ist am 2026-10-14 abgenommen.

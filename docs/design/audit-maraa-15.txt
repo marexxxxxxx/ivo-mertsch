@@ -1,0 +1,94 @@
+# Audit-Beleg — Delta MARAA-15 (D1)
+
+Erzeugt am 2026-10-14T07:22:53Z. Aufruf: `python3 tools/build-tokens.py --audit` und `python3 tools/build-tokens.py --check`.
+
+```
+Audit — Kontrastwerte werden neu berechnet (WCAG 2.1, rel. Luminanz)
+
+[text]
+  ok    neutral-900 on neutral-50    behauptet  15.65  real  15.65  Koerpertext, Ueberschriften
+  ok    neutral-700 on neutral-50    behauptet   8.61  real   8.61  Sekundaertext
+  ok    neutral-600 on neutral-50    behauptet   5.81  real   5.81  Meta, Attribution, Bildunterschrift
+  ok    neutral-600 on neutral-100   behauptet   5.42  real   5.42  Meta auf vertiefter Flaeche
+  ok    neutral-900 on neutral-0     behauptet  16.34  real  16.34  Kartentitel/-text auf Karte (Delta MARAA-15)
+  ok    neutral-700 on neutral-0     behauptet   8.99  real   8.99  Sekundaertext auf Karte (Delta MARAA-15)
+  ok    neutral-600 on neutral-0     behauptet   6.06  real   6.06  Meta auf Karte (Delta MARAA-15)
+  ok     accent-600 on neutral-0     behauptet   9.74  real   9.74  Link auf Karte (Delta MARAA-15)
+  ok     accent-600 on neutral-50    behauptet   9.32  real   9.32  Linktext
+  ok     accent-700 on neutral-50    behauptet  11.99  real  11.99  Link-Hover
+  ok      neutral-0 on accent-700    behauptet  12.52  real  12.52  Text auf primaerem CTA
+  ok      neutral-0 on accent-800    behauptet  15.29  real  15.29  Text auf CTA-Hover
+  ok      neutral-0 on accent-900    behauptet  17.67  real  17.67  Text auf CTA-Active
+  ok    success-700 on neutral-50    behauptet   8.74  real   8.74  Erfolg-Text
+  ok      error-700 on neutral-50    behauptet   8.67  real   8.67  Fehler-Text
+  ok    warning-700 on neutral-50    behauptet   8.19  real   8.19  Warn-Text
+  ok    success-700 on success-100   behauptet   7.69  real   7.69  Erfolg-Text auf Fuellflaeche
+  ok      error-700 on error-100     behauptet   7.71  real   7.71  Fehler-Text auf Fuellflaeche
+  ok    warning-700 on warning-100   behauptet   7.57  real   7.57  Warn-Text auf Fuellflaeche
+  ok     neutral-50 on neutral-900   behauptet  15.65  real  15.65  Text im invertierten Footer
+
+[nonText]
+  ok     accent-700 on neutral-50    behauptet  11.99  real  11.99  focus.ring gegen page
+  ok     accent-700 on neutral-100   behauptet  11.19  real  11.19  focus.ring gegen sunken
+  ok     accent-700 on neutral-0     behauptet  12.52  real  12.52  focus.ring gegen raised
+  ok      neutral-0 on accent-700    behauptet  12.52  real  12.52  focus.ring-on-accent gegen accent
+  ok     accent-200 on neutral-900   behauptet   8.75  real   8.75  focus.ring-on-inverted gegen inverted
+  ok    neutral-500 on neutral-50    behauptet   3.67  real   3.67  border.input gegen page
+  ok    neutral-500 on neutral-100   behauptet   3.42  real   3.42  border.input gegen sunken
+  ok    neutral-700 on neutral-50    behauptet   8.61  real   8.61  border.input-hover gegen page
+  ok     accent-700 on neutral-50    behauptet  11.99  real  11.99  accent.default gegen page
+  ok     accent-600 on neutral-50    behauptet   9.32  real   9.32  accent.text gegen page
+  ok     accent-800 on neutral-50    behauptet  14.64  real  14.64  border.on-accent gegen page
+  ok     accent-200 on neutral-950   behauptet   10.0  real   10.0  focus.ring gegen page
+  ok     accent-200 on neutral-900   behauptet   8.75  real   8.75  focus.ring gegen sunken
+  ok     accent-200 on neutral-800   behauptet   6.99  real   6.99  focus.ring gegen raised
+  ok      neutral-0 on accent-400    behauptet    4.9  real    4.9  focus.ring-on-accent gegen accent
+  ok     accent-200 on neutral-900   behauptet   8.75  real   8.75  focus.ring-on-inverted gegen inverted
+  ok    neutral-500 on neutral-950   behauptet   4.88  real   4.88  border.input gegen page
+  ok    neutral-500 on neutral-900   behauptet   4.27  real   4.27  border.input gegen sunken
+  ok    neutral-300 on neutral-950   behauptet  11.96  real  11.96  border.input-hover gegen page
+  ok     accent-400 on neutral-950   behauptet   3.81  real   3.81  accent.default gegen page
+  ok     accent-300 on neutral-950   behauptet   6.41  real   6.41  accent.text gegen page
+  ok     accent-300 on neutral-950   behauptet   6.41  real   6.41  border.on-accent gegen page
+
+[darkMode]
+  ok     neutral-50 on neutral-950   behauptet  17.89  real  17.89  Koerpertext, Ueberschriften
+  ok    neutral-300 on neutral-950   behauptet  11.96  real  11.96  Sekundaertext
+  ok    neutral-400 on neutral-950   behauptet   8.03  real   8.03  Meta, Attribution, Bildunterschrift
+  ok    neutral-400 on neutral-900   behauptet   7.03  real   7.03  Meta auf vertiefter Flaeche
+  ok     neutral-50 on neutral-800   behauptet   12.5  real   12.5  Kartentitel/-text auf Karte (Delta MARAA-15)
+  ok    neutral-300 on neutral-800   behauptet   8.36  real   8.36  Sekundaertext auf Karte (Delta MARAA-15)
+  ok    neutral-400 on neutral-800   behauptet   5.61  real   5.61  Meta auf Karte (Delta MARAA-15)
+  ok     accent-200 on neutral-800   behauptet   6.99  real   6.99  Link auf Karte (Delta MARAA-15)
+  ok     accent-200 on neutral-950   behauptet   10.0  real   10.0  Linktext
+  ok     accent-100 on neutral-950   behauptet   13.6  real   13.6  Link-Hover
+  ok      neutral-0 on accent-400    behauptet    4.9  real    4.9  Text auf primaerem CTA
+  ok      neutral-0 on accent-500    behauptet   7.41  real   7.41  Text auf CTA-Hover
+  ok      neutral-0 on accent-600    behauptet   9.74  real   9.74  Text auf CTA-Active
+  ok    success-300 on neutral-950   behauptet   8.16  real   8.16  Erfolg-Text
+  ok      error-300 on neutral-950   behauptet   7.76  real   7.76  Fehler-Text
+  ok    warning-300 on neutral-950   behauptet   8.31  real   8.31  Warn-Text
+  ok    success-300 on neutral-800   behauptet    5.7  real    5.7  Erfolg-Text auf Fuellflaeche
+  ok      error-300 on neutral-800   behauptet   5.42  real   5.42  Fehler-Text auf Fuellflaeche
+  ok    warning-300 on neutral-800   behauptet    5.8  real    5.8  Warn-Text auf Fuellflaeche
+  ok     neutral-50 on neutral-900   behauptet  15.65  real  15.65  Text im invertierten Footer
+
+[Mindestwerte]
+  Text >= 4.5:1 und Non-Text >= 3.0:1 — alle Paare geprueft.
+
+[Hue-Spreizung]
+  ok  accent-700    hue behauptet  174.5  real  174.5
+  ok  warning-500   hue behauptet   38.2  real   38.2
+  ok  success-500   hue behauptet  125.9  real  125.9
+  ok  error-500     hue behauptet    7.1  real    7.1
+
+AUDIT BESTANDEN
+EXIT=0
+```
+
+## --check
+
+```
+[check] tokens.css ist aktuell
+EXIT=0
+```

@@ -225,9 +225,10 @@ def build_css(data: dict) -> str:
     A(f"  --pf-grid-gap: {lay['gridGap']['sm']['px'] / 16:.4f}rem;")
     A(f"  --pf-grid-gap-md: {lay['gridGap']['md']['px'] / 16:.4f}rem;")
     A("")
-    A("  /* Schatten — NUR fuer Overlays (Header beim Scrollen, Drawer, Modal, Banner).")
-    A("     Karten und Sektionen trennen sich ueber Ton und Korn, nie ueber Schatten —")
-    A("     das ist die Fugenlos-Regel. Schattenfarbe ist warmes Neutral, nie Schwarz. */")
+    A("  /* Schatten — Kartenschatten (soft / soft-hover, Delta MARAA-15) plus Overlays")
+    A("     (Header beim Scrollen, Drawer, Modal, Banner). Der Kartenschatten ist warmes")
+    A("     Neutral (neutral-900) und bleibt dezent; Sektionen trennen sich weiterhin")
+    A("     ueber Ton und Korn. Nie reines Schwarz. */")
     for name, sh in iter_steps(data["primitives"]["shadow"]):
         A(f"  --pf-shadow-{name}: {sh['value']};")
     A("")
@@ -344,24 +345,32 @@ def build_css(data: dict) -> str:
     A("  .pf-seam[data-drawn=\"true\"] .pf-seam__line { transform: scaleX(1); }")
     A("}")
     A("")
-    A("/* ---------- 6. Dunkelmodus per Systempraeferenz --------------------------- */")
-    A("/* Default bleibt Light (Produktentscheidung des Designers: der Auftritt ist")
-    A("   auf helle Werkstoffbilder gebaut — ein Dunkelmodus wuerde die Bildsprache")
-    A("   brechen, nicht verbessern). Dark bleibt vollstaendig spezifiziert, damit jede")
-    A("   Komponente ohne Zusatzarbeit umschaltbar ist. Aktivierung per data-theme. */")
-    A("@media (prefers-color-scheme: dark) {")
-    A("  :root:not([data-theme=\"light\"]) {")
-    for group, entries in iter_entries(data["alias"]["dark"]):
-        if isinstance(entries, str):
-            A(f"    --pf-{group}: {resolve(entries, data)};")
-            continue
-        for role, target in iter_entries(entries):
-            if isinstance(target, dict):
+    A("/* ---------- 6. Dunkelmodus — Auto-Dark ist AUS (P1, Delta MARAA-15) --------- */")
+    A("/* Light ist die EINZIGE automatische Auslieferungsansicht. Kein")
+    A("   prefers-color-scheme-Auto-Dark, kein UI-Umschalter. Die Dark-Tokens sind in")
+    A("   Abschnitt 2 vollstaendig unter [data-theme=\"dark\"] spezifiziert und nur")
+    A("   dort erreichbar. A1 (ADR 0003) entscheidet das Wie — beide Wege")
+    A("   (Generator-Flag meta.colorScheme.autoDark bzw. data-theme=\"light\")")
+    A("   liefern mit dieser Datei dasselbe helle Ergebnis. */")
+    scheme = data.get("meta", {}).get("colorScheme", {})
+    auto_dark = bool(scheme.get("autoDark", False))
+    if auto_dark:
+        A("@media (prefers-color-scheme: dark) {")
+        A("  :root:not([data-theme=\"light\"]) {")
+        for group, entries in iter_entries(data["alias"]["dark"]):
+            if isinstance(entries, str):
+                A(f"    --pf-{group}: {resolve(entries, data)};")
                 continue
-            A(f"    --pf-{group}-{role}: {resolve(target, data)};")
-    A("    color-scheme: dark;")
-    A("  }")
-    A("}")
+            for role, target in iter_entries(entries):
+                if isinstance(target, dict):
+                    continue
+                A(f"    --pf-{group}-{role}: {resolve(target, data)};")
+        A("    color-scheme: dark;")
+        A("  }")
+        A("}")
+    else:
+        A("/* meta.colorScheme.autoDark = false → KEIN Media-Block. Dark bleibt")
+        A("   ausschliesslich per [data-theme=\"dark\"] aktivierbar (Abschnitt 2). */")
     A(":root { color-scheme: light; }")
     A("")
 

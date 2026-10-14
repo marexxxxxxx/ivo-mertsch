@@ -28,6 +28,13 @@ Kante aufeinanderzutreffen. Die Gestaltung übersetzt das Produktversprechen in 
 Oberfläche der Seite selbst. Ein Besucher, der das versteht, hat die Leistung schon
 verstanden, bevor er die Leistungsseite öffnet.
 
+> **Delta MARAA-15 (2026-10-14):** Der Richtungssatz gilt weiter, bekommt aber eine
+> zweite Hälfte. Wo Richtung A Flächen **ohne** Schatten über Ton trennte, liegen die
+> Module jetzt als **angehobene Platten auf Licht** (genau ein Radius, genau ein warmer
+> Schatten). Außerdem ist **Light die einzige automatische Auslieferungsansicht** und die
+> Display-Schrift ist **eine Sans** statt Fraunces. Vollständig, mit Begründung und den
+> Abweichungen vom Nutzer-Briefing: **§16 Delta MARAA-15**.
+
 ---
 
 ## 1. Zwei Richtungen, eine Empfehlung
@@ -141,6 +148,11 @@ wechseln zwischen ihnen und dem Korn; es gibt keine `border-bottom` zwischen Sek
 ---
 
 ## 4. Typografie-Prinzip
+
+> **Überholt durch §16 (Delta MARAA-15, P3):** Die Display-Familie ist **nicht mehr
+> Fraunces**. Display und Text nutzen seither **eine** Familie — **Instrument Sans**.
+> Der Abschnitt bleibt als Herkunft der Skala stehen; die Familienachse unten gilt nicht
+> mehr. Fraunces ist aus dem Bundle entfernt.
 
 **Serif/Sans-Mix.** Zwei Familien, beide self-hosted, beide OFL, **kein Google-Fonts-
 Request — auch nicht nach Consent** (ADR §7.4).
@@ -297,12 +309,12 @@ Standard-Tokenset. Sie sind für MARAA-5 verbindlich.
 | `surface.page` | `#FFFFFF` | **`neutral.50 #FBFAF6`** + Korn (`grain` 3,5 %) | Weiß ist kein Werkstoff; der warme Ton trägt die Materialität, das Korn nimmt das digitale „Blanken". |
 | Sektions-Trennung | `border-bottom`/Divider | **Tondifferenz** (`page`/`sunken`/`raised`) + Korn | Fugenlos-Prinzip; kein Linienraster. |
 | Waagerechte Linie | viele | **genau eine** (`seam`: `neutral.300`, 1 px) am CTA-Übergang | Die Ausnahme macht die Regel sichtbar. |
-| Kartenschatten | `box-shadow` für Karten | **kein Kartenschatten**; nur `shadow-header/overlay/modal` | Karten trennen sich über Ton, nicht über Höhe. Schatten ist Overlay-only. |
-| Radius | einheitlich 8 px | **Buttons `full` (Pill)**, Karten `lg` (20 px), Inputs `md` (12 px), Media `xl` (28 px) | Das Logo ist ein rundes Abzeichen → das Pill-Motiv ist begründet, nicht dekorativ. |
+| Kartenschatten | `box-shadow` für Karten | **`--pf-shadow-card`** (Delta §16): warmes `neutral.900`, dezent (Nah 4 %, Fern 12 %) + Hover-Stufe | P2: das Nutzer-Briefing schlägt die Altregel „kein Kartenschatten". Trennung jetzt über **Licht** statt Kante; Sektionen weiter über Ton/Korn. |
+| Radius | einheitlich 8 px | **Buttons `full` (Pill)**, Karten/Media **`radius-card` 16 px**, Inputs **`radius-input` 12 px**, Overlay-Panels `radius-panel` 28 px | Delta §16 (P2): Karten/Inputs im Band 12–16 px. Das Logo ist ein rundes Abzeichen → das Pill-Motiv ist begründet, nicht dekorativ. |
 | Akzent | Primärblau | **ein** Akzent: Tiefpetrol `accent.700` | Farbe als Marke, nicht als Standard-CTA-Blau. |
 | Semantikfarbe | frei nutzbar | **nie als Markenfarbe, nie in Validierung mit Akzent** | Hue-Distanz Akzent↔Success nur 49°. |
 | Fokus | `outline: none` / dünn | **3 px Ring, außen, `accent.700`**, auf Akzentfüllung `neutral.0`, auf invertiert `accent.200` | WCAG 2.4.7/2.4.11; Ring nie „Border-Ersatz". |
-| Dunkelmodus | aufhellen | **Rolle umbelegen**: Dark *dunkelt* auf Hover ab; CTA-Füllung wird `accent.400` (weißer Text 4,90:1, Fläche 3,81:1 gegen Seite) | Ein einziger Wert erfüllt beide Kontrastbedingungen. Default bleibt **Light** (Bildsprache ist hell), Dark ist vollständig spezifiziert und per `data-theme` aktivierbar. |
+| Dunkelmodus | aufhellen | **Rolle umbelegen**: Dark *dunkelt* auf Hover ab; CTA-Füllung wird `accent.400` (weißer Text 4,90:1, Fläche 3,81:1 gegen Seite) | Ein einziger Wert erfüllt beide Kontrastbedingungen. **Delta §16 (P1): Light ist die einzige automatische Ansicht — kein `prefers-color-scheme`-Auto-Dark, kein UI-Umschalter.** Dark bleibt vollständig spezifiziert und nur per `data-theme="dark"` aktivierbar. |
 | Invertierte Fläche | theme-abhängig | **themenunabhängig dunkel** (`neutral.900`), genau eine im Produkt (Footer) | Der Footer ist in beiden Themes dunkel; spart eine zweite geprüfte Belegung. |
 | Typo-Skala | statische px | **fluid `clamp()`** 360–1440, `base` bleibt fix 16 px | Skaliert ruhig, ohne iOS-Input-Zoom. |
 | Motion | Übergänge überall | **zwei erlaubte Bewegungen** (Naht zeichnen, Oberfläche heben/senken); `prefers-reduced-motion` setzt alle Dauer auf 1 ms | Bewegung muss etwas erklären. |
@@ -326,9 +338,11 @@ Genau eines pro Seite. Zwei wären keins.
 | **Kontakt** | **Die Direktwahl-Bar.** Mobil eine sticky Action-Bar (Anrufen / WhatsApp) mit der Nummer in `tabular-nums`, die den Inhalt nie überdeckt; ab `md` löst sie sich in die Kontaktwege-Liste auf. |
 | **Impressum / Datenschutz** | **Die Randspalte.** Rechtsseiten bekommen ab `lg` eine sticky Inhalts-Randspalte mit Sprungmarken; mobil eine aufklappbare Sektionsliste. Nur bei Rechtstexten — sonst nie. |
 
-**Der eine Überschriftentyp, der nicht in das Schema passt:** Alle Überschriften sind
-Fraunces — **außer** der Eyebrow über der H2, die Sans ist. Damit markiert die
-Familienachse den Übergang von der Ordnung (Sans) zur Aussage (Serif).
+**Der eine Überschriftentyp, der nicht in das Schema passt** *(Delta §16: Familienachse
+entfällt — alle Ebenen sind Instrument Sans; das Delta markiert den Übergang stattdessen
+über Gewicht + Laufweite)*: Alle Überschriften trugen in Richtung A Fraunces — **außer**
+der Eyebrow über der H2, die Sans war. Damit markierte die Familienachse den Übergang von
+der Ordnung (Sans) zur Aussage (Serif).
 
 ---
 
@@ -370,7 +384,7 @@ erzwingbar; „Messbar" = erst am gebauten Artefakt prüfbar, Gate für MARAA-6.
 | T3 | Hierarchie über mehr als Größe | Spec | §4-Tabelle: Familie+Gewicht+Laufweite+Farbe |
 | T4 | Groß-/Kleinschreibung geregelt | Spec | Nur Eyebrow uppercase (`tx` 13 px, ≥7:1); H1–H4 in Normalschreibung |
 | T5 | `tabular-nums` bei Zahlen | Spec | `--pf-numeric-tabular`, Klasse `.pf-numeric` |
-| T6 | max. 2 Familien | Spec | Fraunces + Instrument Sans, keine dritte |
+| T6 | max. 2 Familien | Spec | **Delta §16 (P3): genau EINE Familie** — Instrument Sans für Display und Text. Keine dritte, keine Mono. |
 | T7 | kein Text < 16 px ohne Kontrastkompensation | Spec | nur `text.xs`=13 px, nur uppercase-Meta, ≥7:1 |
 | T8 | Zeilenhöhe an Größe gekoppelt *(ergänzt)* | Spec | Rollen: Hero `tight` 1,08 → Body `normal` 1,5 → Lead `relaxed` 1,62 |
 | T9 | Umbruchqualität statt Silbentrennung *(ergänzt)* | Spec | `text-wrap: balance` für H1–H4; kein `hyphens: auto` |
@@ -446,6 +460,8 @@ behaupten, was erst der Build beweist.
    bleiben. Erreicht der Subset das nicht, ist die im Konzept hinterlegte Rückfalllinie
    „Serif auf latin-basic reduzieren, Instrument Sans latin" — **nicht** eine dritte
    Familie und **nicht** eine Google-Fonts-Anfrage.
+   *(Delta §16/P3: Fraunces entfällt — es bleibt genau **eine** Familie, Instrument Sans.
+   Das Budget ist damit unkritisch; der Lead Architect kann die Fraunces-woff2 streichen.)*
 4. **Bildrechte + Logo.** Sind die sieben Originalfotos und `logo_ivo.jpeg` lizenzfrei
    verwendbar? Das Logo liegt nur als JPEG vor (kein transparenter/hintergrundfreier
    Vektor); für die runde Abzeichen-Darstellung wird eine freigestellte Fassung (SVG
@@ -478,10 +494,11 @@ python3 tools/build-tokens.py          # schreibt tokens.css + prueft Audit
 python3 tools/build-tokens.py --check  # Exit 0 = aktuell
 ```
 
-Zum Abgabezeitpunkt:
+Zum Abgabezeitpunkt (MARAA-4) — **Delta MARAA-15 (2026-10-14)** in Klammern:
 
-- `python3 tools/audit-tokens.py` → **54 Paare** (16 Text, 22 Non-Text, 16 Dark) über dem
-  Minimum, Exit 0.
+- `python3 tools/audit-tokens.py` → **62 Paare** (20 Text, 22 Non-Text, 20 Dark) über dem
+  Minimum, Exit 0. *(Delta: von 54 auf 62 Paare — die Kartenfläche `raised` ist jetzt
+  als realer Hintergrund mitgeprüft: Kartentitel/-text, Sekundärtext, Meta und Link.)*
 - `python3 tools/build-tokens.py` → `AUDIT BESTANDEN`, Exit 0.
 - `python3 tools/build-tokens.py --check` → `tokens.css ist aktuell`, Exit 0.
 
@@ -505,5 +522,88 @@ ein Blocker).
 
 ---
 
-*Ende des Design-Konzepts. Änderungen an der Richtung brauchen ein Update dieses
-Dokuments und ein neues Token-Audit — keine stille Abweichung im Commit.*
+## 16. Delta MARAA-15 — Professionalisierung (P1–P4)
+
+| | |
+|---|---|
+| **Status** | Abgabe MARAA-16 (Design-Delta). Ersetzt die Altregeln in §0, §4, §9 und §10 dort, wo sie kollidieren — **keine stille Abweichung**. |
+| **Datum** | 2026-10-14 |
+| **Autor** | Designer, PixelForge Studio, Issue MARAA-16 (D1) |
+| **Quelle** | Board-Auftrag MARAA-15 (Nutzer-Briefing) + CEO-Produktentscheidungen P1–P4 (2026-10-14) |
+| **Umsetzung** | **F1 (MARAA-18)** — nicht dieses Dokument. A1 (MARAA-17, ADR 0003) entscheidet nur das *Wie* von P1. |
+
+### 16.1 Richtungssatz (Delta)
+
+> **Fugenlos bleibt — aber ab hier trennt das Licht, nicht die Linie: eine warm-weiße
+> Werkstofffläche, auf der jedes Modul als angehobene Platte mit GENAU EINEM Radius
+> (16 px) und GENAU EINEM warmen Schatten (`neutral.900`, ≤ 12 % Deckung) liegt.**
+
+Das ist eine Entscheidung, keine Stimmung: **eine** Radiusstufe für Karten und Media
+(`--pf-radius-card`/`--pf-radius-media` = 16 px), **eine** Kartenschatten-Rezeptur
+(`--pf-shadow-card`) auf der ganzen Seite, **kein** Schwarz im Schatten, **kein** Verlauf
+als „Höhe". Wer fragt „was war die Idee?", bekommt: *Module werden über Licht gehoben,
+nicht über Linien getrennt* — nicht „modern, clean, hochwertig".
+
+### 16.2 Was sich gegenüber Richtung A ändert
+
+| # | Altregel (Richtung A) | Delta MARAA-15 | Grund |
+|---|---|---|---|
+| D-Mode | Auto-Dark per `prefers-color-scheme` schaltet auf dunkel | **Light ist die einzige automatische Auslieferungsansicht.** `@media (prefers-color-scheme: dark)` entfällt aus `tokens.css`; Dark bleibt per `[data-theme="dark"]` erreichbar, **ohne** UI-Umschalter | P1 |
+| D-Radius | Karten `lg` 20 px, Media `xl` 28 px | **Karten/Media 16 px** (`--pf-radius-card`, `--pf-radius-media`), Inputs 12 px (`--pf-radius-input`); Buttons `full`, Overlay-Panels 28 px (`--pf-radius-panel`) | P2 |
+| D-Schatten | „kein Kartenschatten; Karten trennen sich über Ton" | **`--pf-shadow-card`** (Nahschatten 1 px/4 %, Fernschatten 28 px/12 %, warmes `neutral.900`) + `--pf-shadow-card-hover` für echten Hover-Lift | P2 |
+| D-Layout | Register-/Bildraster, Karten flach | **Bento-/Card-Raster** für Leistungen und Galerie — **asymmetrisch** (Template-Test §11 bleibt bestanden) | P2 |
+| D-Typo | Serif/Sans-Mix: Fraunces (Display) + Instrument Sans (Text) | **Eine Familie — Instrument Sans** für Display **und** Text. Hierarchie über Größe + Gewicht + Laufweite + Farbe. Fraunces wird aus dem Bundle entfernt (kein neues Byte) | P3 |
+| D-Dark-Link | Dark-Link `accent-300` | **Dark-Link `accent-200`, Hover `accent-100`** — `accent-300` erreichte auf der gehobenen Kartenfläche (`neutral-800`) nur 4,48:1 | P4 |
+| D-Audit | 54 Paare (16/22/16) | **62 Paare (20/22/20)** — die Kartenfläche `raised` ist als realer Hintergrund mitgeprüft | P4 |
+
+### 16.3 Abweichungen vom Nutzer-Briefing (jede benannt und begründet)
+
+- **„Akzent: elegantes, gedecktes Grün oder Teal"** → bleibt **Tiefpetrol `accent.700 #0E3A36`**.
+  Das Briefing lässt „Grün oder Teal" offen; Tiefpetrol erfüllt es, ist die Markenfarbe
+  und bereits auditiert. Kein neuer Farbwert, kein zweiter Akzent.
+- **„z. B. Inter oder Plus Jakarta Sans"** → **Instrument Sans** (bereits gebündelt, OFL,
+  self-hosted). Das Briefing nennt Beispiele („z. B."), keine Pflicht. P3 verbietet
+  ausdrücklich eine dritte Familie; Instrument Sans ist eine moderne, gut lesbare Sans.
+  Ein Wechsel auf Plus Jakarta wäre möglich, kostet aber ein neues Font (self-hosted,
+  OFL, Budget ≤ 120 KB woff2, A1 rechnet nach) **bei gleichem Ergebnis** — deshalb nicht.
+- **„frisches Weiß"** → die **Seitenfläche bleibt warm-weiß `neutral.50 #FBFAF6`**, nicht
+  reines `#FFFFFF`; **Karten und Eingaben liegen auf `neutral.0 #FFFFFF`**. Reines Weiß
+  als ganze Fläche wirkt neben den warmen Fotos kalt und nimmt dem Material das Korn; als
+  *Kartenfläche* hebt sich Weiß dagegen klar gegen die warm-weiße Seite ab. Die
+  Kartenfläche ist damit der hellste Punkt der Seite — genau die „gehobene Platte".
+- **„border-radius 12px–16px"** → Karten/Inputs liegen im Band (16 / 12). **Pill-Buttons**
+  behalten `full` (das Logo ist ein rundes Abzeichen) und **Overlay-Panels** 28 px
+  (`--pf-radius-panel`). Begründung: das Briefing adressiert Karten und Eingaben; ein
+  16-px-Radius an einer 44-px-Pille oder einem Vollflächen-Dialog wirkt wie ein Fehler.
+- **„Bento-Grid … für Leistungen und Galerie"** → umgesetzt, aber **asymmetrisch**: auf
+  der Startseite spannt die erste Leistungskarte (das differenzierende 2K-Thema) ab `md`
+  volle Breite, die übrigen drei füllen darunter; die Galerie nutzt zwei Kartengrößen.
+  Ein uniformes 3×2-Bento wäre Template-Niveau (Template-Test §11, Signal 3).
+
+### 16.4 A1-Kompatibilität — beide Kodierungen liefern dasselbe
+
+- **(a) Generator-Flag:** `meta.colorScheme.autoDark` in `tokens.json` steuert, ob
+  `tools/build-tokens.py` den `@media (prefers-color-scheme: dark)`-Block erzeugt.
+  Ausgeliefert ist `false` → **kein** Auto-Dark-Block in `tokens.css`.
+- **(b) Attribut:** `<html data-theme="light">`. Die Regel lautet historisch
+  `:root:not([data-theme="light"])`; mit gesetztem Attribut hätte sie nie gegriffen.
+- Beide Wege enden im **gleichen hellen** Ergebnis. Nachweis: die Screens in
+  `docs/design/screens/` wurden mit **erzwungenem** `prefers-color-scheme: dark`
+  aufgenommen und bleiben hell.
+
+### 16.5 A11y-/DSGVO-Gates (P4) — überlebten
+
+Kontrast-Audit **Exit 0** (jetzt inkl. Kartenfläche `raised`), Touch-Targets ≥ 44 px,
+sichtbarer Fokus, `prefers-reduced-motion`, 16-px-Fließtext — unverändert. Der
+Kartenschatten ist **dekorativ** und trägt nie allein eine Information; die neue
+Kartenfläche ist als realer Hintergrund auditiert, nicht behauptet.
+
+### 16.6 Wow-Detail (unverändert aus §10) — Start
+
+**Die eine Fuge** bleibt das Wow-Detail der Startseite: die einzige waagerechte Linie des
+Auftritts zeichnet sich am Übergang in das CTA-Band. Das Delta fügt **kein** zweites
+Wow-Detail hinzu — der Kartenschatten ist Struktur, keine Inszenierung.
+
+---
+
+

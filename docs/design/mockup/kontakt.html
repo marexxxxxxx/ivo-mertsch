@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="de" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mock-Up · Kontakt · Delta MARAA-15</title>
+  <link rel="stylesheet" href="mockup.css" />
+</head>
+<body>
+  <header class="mock-header">
+    <div class="mock-shell" style="display:flex;align-items:center;gap:var(--pf-space-6);width:100%">
+      <a class="mock-brand" href="#"><img src="../../../src/assets/img/logo_ivo.jpeg" alt="" />Ivo Mertsch</a>
+      <nav class="mock-nav" aria-label="Hauptnavigation">
+        <a href="#">Start</a>
+        <a href="#">Leistungen</a>
+        <a href="#">Über uns</a>
+        <a href="#">Bewertungen</a>
+        <a href="#" aria-current="page">Kontakt</a>
+      </nav>
+      <a class="mock-phone" href="tel:+491742164071">Anrufen: +49 174 2164071</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="mock-shell">
+        <div class="section-head">
+          <p class="eyebrow">Kontakt</p>
+          <h1>Erzählen Sie mir von Ihrem Vorhaben — den Rest klären wir im Gespräch.</h1>
+          <p class="lead">Telefon, WhatsApp, E-Mail oder Formular — suchen Sie sich den Weg aus, der Ihnen am liebsten ist.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div>
+            <h2 style="font-size:var(--pf-text-xl)">Direkt erreichen</h2>
+            <ul class="ways" style="margin-top:var(--pf-space-5)">
+              <li><span class="label">Telefon</span><a class="phone-link" href="tel:+491742164071">Anrufen: +49 174 2164071</a></li>
+              <li><span class="label">WhatsApp</span><a class="link" href="https://wa.me/491742164071">WhatsApp schreiben</a></li>
+              <li><span class="label">E-Mail</span><a class="link" href="mailto:info@ivo-mertsch.de">E-Mail schreiben</a></li>
+            </ul>
+          </div>
+
+          <form class="form" id="formular" method="post" action="#" novalidate>
+            <div class="field">
+              <label for="name">Ihr Name</label>
+              <input id="name" name="name" autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="email">Ihre E-Mail-Adresse</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="name@beispiel.de" aria-describedby="email-help" />
+              <span class="help" id="email-help">Pflichtfeld. Wir nutzen die Adresse nur, um Ihnen zu antworten.</span>
+            </div>
+            <div class="field">
+              <label for="telefon">Telefon (optional)</label>
+              <input id="telefon" name="telefon" type="tel" autocomplete="tel" placeholder="z. B. 07742 123456" aria-describedby="tel-help" />
+              <span class="help" id="tel-help">Nur, wenn wir Sie zurückrufen sollen.</span>
+            </div>
+            <div class="field">
+              <label for="nachricht">Ihr Anliegen</label>
+              <textarea id="nachricht" name="nachricht" rows="4" aria-describedby="n-help"></textarea>
+              <span class="help" id="n-help">Was soll ich mir ansehen? Ort, Raum und gewünschter Zeitraum helfen mir.</span>
+            </div>
+            <div class="check">
+              <input id="consent" name="consent" type="checkbox" />
+              <label for="consent" style="font-weight:var(--pf-font-weight-regular)">Ich habe die <a class="link" href="#">Datenschutzerklärung</a> gelesen.</label>
+            </div>
+            <button class="btn btn--primary" type="submit" style="align-self:flex-start">Anfrage senden</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pf-footer pf-invert">
+    <div class="mock-shell cols">
+      <div><h3>Ivo Mertsch</h3><address>Niederdossenbach 1<br />79739 Schwörstadt<br />Deutschland</address></div>
+      <div><h3>Kontakt</h3><ul>
+        <li><a href="tel:+491742164071">Anrufen: +49 174 2164071</a></li>
+        <li><a href="https://wa.me/491742164071">WhatsApp schreiben</a></li>
+        <li><a href="mailto:info@ivo-mertsch.de">E-Mail schreiben</a></li>
+      </ul></div>
+      <div><h3>Rechtliches</h3><ul>
+        <li><a href="#">Impressum</a></li>
+        <li><a href="#">Datenschutz</a></li>
+        <li><a href="#">Cookie-Einstellungen</a></li>
+      </ul></div>
+    </div>
+  </footer>
+</body>
+</html>

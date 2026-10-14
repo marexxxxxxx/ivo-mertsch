@@ -1,6 +1,6 @@
 /* ============================================================================
    PixelForge Studio — Design-Tokens  |  ivo-mertsch
-   Fugenlos — eine Werkstoffflaeche, die ihren Ton wechselt statt ihre Kante
+   Fugenlos — warme Werkstoffflaeche; Module liegen als gehobene Platten auf Licht statt auf Linie (Delta MARAA-15)
    GENERATED from tokens.json by tools/build-tokens.py — NICHT EDITIEREN.
    Aenderungen nur in docs/design/tokens.json.
    ==========================================================================
@@ -48,7 +48,7 @@
   --pf-color-warning-700: #6B4404;
 
   /* Schrift — genau zwei Familien, self-hosted, OFL */
-  --pf-font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --pf-font-display: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --pf-font-text: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   /* Schrift — Gewichte */
@@ -115,7 +115,7 @@
   --pf-radius-xs: 4px;
   --pf-radius-sm: 8px;
   --pf-radius-md: 12px;
-  --pf-radius-lg: 20px;
+  --pf-radius-lg: 16px;
   --pf-radius-xl: 28px;
   --pf-radius-2xl: 40px;
   --pf-radius-full: 999px;
@@ -177,18 +177,28 @@
   --pf-grid-gap: 1.0000rem;
   --pf-grid-gap-md: 1.5000rem;
 
-  /* Schatten — NUR fuer Overlays (Header beim Scrollen, Drawer, Modal, Banner).
-     Karten und Sektionen trennen sich ueber Ton und Korn, nie ueber Schatten —
-     das ist die Fugenlos-Regel. Schattenfarbe ist warmes Neutral, nie Schwarz. */
+  /* Schatten — Kartenschatten (soft / soft-hover, Delta MARAA-15) plus Overlays
+     (Header beim Scrollen, Drawer, Modal, Banner). Der Kartenschatten ist warmes
+     Neutral (neutral-900) und bleibt dezent; Sektionen trennen sich weiterhin
+     ueber Ton und Korn. Nie reines Schwarz. */
   --pf-shadow-sm: 0 1px 2px rgba(36,31,25,.06), 0 1px 1px rgba(36,31,25,.04);
   --pf-shadow-md: 0 4px 12px -2px rgba(36,31,25,.10), 0 2px 4px -2px rgba(36,31,25,.06);
   --pf-shadow-lg: 0 16px 40px -8px rgba(36,31,25,.16), 0 4px 12px -4px rgba(36,31,25,.08);
   --pf-shadow-xl: 0 28px 64px -12px rgba(36,31,25,.22), 0 8px 20px -8px rgba(36,31,25,.10);
+  --pf-shadow-soft: 0 1px 2px rgba(36,31,25,.04), 0 10px 28px -14px rgba(36,31,25,.12);
+  --pf-shadow-soft-hover: 0 2px 4px rgba(36,31,25,.05), 0 16px 36px -16px rgba(36,31,25,.16);
 
   /* Globale Rollen (themenunabhaengig). */
   --pf-shadow-header: var(--pf-shadow-sm);
   --pf-shadow-overlay: var(--pf-shadow-lg);
   --pf-shadow-modal: var(--pf-shadow-xl);
+  --pf-shadow-card: var(--pf-shadow-soft);
+  --pf-shadow-card-hover: var(--pf-shadow-soft-hover);
+  --pf-radius-card: var(--pf-radius-lg);
+  --pf-radius-input: var(--pf-radius-md);
+  --pf-radius-media: var(--pf-radius-lg);
+  --pf-radius-button: var(--pf-radius-full);
+  --pf-radius-panel: var(--pf-radius-xl);
 
   /* Struktur — die eine Fuge und das Korn. Kein Skalenwert, sondern die
      Richtung selbst: Sektionen wechseln den Ton und das Korn, nicht die Kante. */
@@ -273,8 +283,8 @@
   --pf-text-muted: #B3A996;
   --pf-text-on-accent: #FFFFFF;
   --pf-text-on-inverted: #FBFAF6;
-  --pf-text-link: #6CA19B;
-  --pf-text-link-hover: #A0C5C0;
+  --pf-text-link: #A0C5C0;
+  --pf-text-link-hover: #CDE0DC;
   --pf-text-success: #7FB984;
   --pf-text-error: #E8907F;
   --pf-text-warning: #D9A441;
@@ -321,25 +331,25 @@
 
 /* ---------- 4. Typografierollen ------------------------------------------- */
 :root {
-  --pf-type-display-hero: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --pf-type-display-hero: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --pf-type-display-hero-size: var(--pf-text-5xl);
   --pf-type-display-hero-weight: var(--pf-font-weight-semibold);
   --pf-type-display-hero-leading: var(--pf-leading-tight);
   --pf-type-display-hero-tracking: var(--pf-tracking-tight);
   --pf-type-display-hero-measure: var(--pf-measure-display);
-  --pf-type-display-section: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --pf-type-display-section: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --pf-type-display-section-size: var(--pf-text-3xl);
   --pf-type-display-section-weight: var(--pf-font-weight-semibold);
   --pf-type-display-section-leading: var(--pf-leading-snug);
   --pf-type-display-section-tracking: var(--pf-tracking-tight);
   --pf-type-display-section-measure: var(--pf-measure-display);
-  --pf-type-title-card: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --pf-type-title-card: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --pf-type-title-card-size: var(--pf-text-lg);
   --pf-type-title-card-weight: var(--pf-font-weight-medium);
   --pf-type-title-card-leading: var(--pf-leading-snug);
   --pf-type-title-card-tracking: var(--pf-tracking-normal);
   --pf-type-title-card-measure: var(--pf-measure-text);
-  --pf-type-title-detail: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --pf-type-title-detail: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --pf-type-title-detail-size: var(--pf-text-2xl);
   --pf-type-title-detail-weight: var(--pf-font-weight-semibold);
   --pf-type-title-detail-leading: var(--pf-leading-snug);
@@ -415,52 +425,15 @@
   .pf-seam[data-drawn="true"] .pf-seam__line { transform: scaleX(1); }
 }
 
-/* ---------- 6. Dunkelmodus per Systempraeferenz --------------------------- */
-/* Default bleibt Light (Produktentscheidung des Designers: der Auftritt ist
-   auf helle Werkstoffbilder gebaut — ein Dunkelmodus wuerde die Bildsprache
-   brechen, nicht verbessern). Dark bleibt vollstaendig spezifiziert, damit jede
-   Komponente ohne Zusatzarbeit umschaltbar ist. Aktivierung per data-theme. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --pf-surface-page: #15120D;
-    --pf-surface-sunken: #241F19;
-    --pf-surface-raised: #363027;
-    --pf-surface-inverted: #241F19;
-    --pf-surface-accent: #3C7B75;
-    --pf-surface-accent-hover: #1D5F59;
-    --pf-surface-accent-active: #154C47;
-    --pf-surface-accent-subtle: #363027;
-    --pf-surface-success: #363027;
-    --pf-surface-error: #363027;
-    --pf-surface-warning: #363027;
-    --pf-text-primary: #FBFAF6;
-    --pf-text-secondary: #D6CEC0;
-    --pf-text-muted: #B3A996;
-    --pf-text-on-accent: #FFFFFF;
-    --pf-text-on-inverted: #FBFAF6;
-    --pf-text-link: #6CA19B;
-    --pf-text-link-hover: #A0C5C0;
-    --pf-text-success: #7FB984;
-    --pf-text-error: #E8907F;
-    --pf-text-warning: #D9A441;
-    --pf-border-hairline: #50483D;
-    --pf-border-strong: #8B8172;
-    --pf-border-input: #8B8172;
-    --pf-border-input-hover: #D6CEC0;
-    --pf-border-on-accent: #6CA19B;
-    --pf-accent-default: #3C7B75;
-    --pf-accent-hover: #1D5F59;
-    --pf-accent-active: #154C47;
-    --pf-accent-text: #6CA19B;
-    --pf-accent-subtle: #363027;
-    --pf-focus-ring: #A0C5C0;
-    --pf-focus-ring-on-accent: #FFFFFF;
-    --pf-focus-ring-on-inverted: #A0C5C0;
-    --pf-focus-halo: color-mix(in srgb, var(--pf-color-accent-200) 26%, transparent);
-    --pf-scrim: color-mix(in srgb, var(--pf-color-neutral-950) 70%, transparent);
-    color-scheme: dark;
-  }
-}
+/* ---------- 6. Dunkelmodus — Auto-Dark ist AUS (P1, Delta MARAA-15) --------- */
+/* Light ist die EINZIGE automatische Auslieferungsansicht. Kein
+   prefers-color-scheme-Auto-Dark, kein UI-Umschalter. Die Dark-Tokens sind in
+   Abschnitt 2 vollstaendig unter [data-theme="dark"] spezifiziert und nur
+   dort erreichbar. A1 (ADR 0003) entscheidet das Wie — beide Wege
+   (Generator-Flag meta.colorScheme.autoDark bzw. data-theme="light")
+   liefern mit dieser Datei dasselbe helle Ergebnis. */
+/* meta.colorScheme.autoDark = false → KEIN Media-Block. Dark bleibt
+   ausschliesslich per [data-theme="dark"] aktivierbar (Abschnitt 2). */
 :root { color-scheme: light; }
 
 /* ---------- 7. Fokus — ueberall sichtbar, WCAG 2.4.7 / 2.4.11 ------------- */

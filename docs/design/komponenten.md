@@ -73,13 +73,17 @@ Jedes interaktive Ziel ist **≥ 44 × 44 px** (`--pf-touch-target`). Ist die si
 Form kleiner (z. B. ein Icon-Kreuz), wird die Trefferfläche über Padding oder ein
 `::before`-Overlay auf 44 px gebracht — ohne die optische Größe zu ändern.
 
-### 0.5 Dark Mode
+### 0.5 Farbschema (Delta MARAA-15, P1)
 
-Alle Komponenten sind gegen beide Belegungen spezifiziert. Sie **konsumieren nur
-semantische Tokens**, deshalb braucht keine Komponente Dark-spezifische Regeln — Dark ist
-ein Remap. Default ist **Light**; Dark wird bei `prefers-color-scheme: dark` aktiv, solange
-kein `data-theme="light"` gesetzt ist. Die invertierte Fläche (Footer) ist theme-unabhängig
-dunkel (`.pf-invert`).
+**Light ist die einzige automatische Auslieferungsansicht.** Es gibt **keinen**
+`prefers-color-scheme`-Auto-Dark und **keinen** UI-Umschalter. Die Dark-Tokens bleiben
+vollständig spezifiziert und sind **ausschließlich** über `[data-theme="dark"]` (am
+`<html>`) erreichbar — Reserve, kein Produktmerkmal. Komponenten konsumieren weiterhin
+**nur** semantische Tokens und brauchen keine eigenen Farbschema-Regeln: Dark ist ein
+Remap. Die invertierte Fläche (Footer) ist theme-unabhängig dunkel (`.pf-invert`) und in
+beiden Zuständen identisch. Das *Wie* der Abschaltung entscheidet A1 (ADR 0003); beide
+Wege (Generator-Flag `meta.colorScheme.autoDark`, `data-theme="light"`) liefern dasselbe
+helle Ergebnis. Siehe §19.
 
 ---
 
@@ -241,6 +245,10 @@ gekürzt (die Wurzel bleibt sichtbar), nicht horizontal gescrollt.
 
 ## 4. Hero
 
+> **Delta MARAA-15 (§19.2):** Bild **rechts** (breit), links Headline + Subtext +
+> Primär-CTA **„Beratung anfragen"** + **Telefon-Hotline** als `tel:`-Link. Radius/Media
+> = `--pf-radius-media`. Die folgenden Sätze gelten, wo sie nicht kollidieren.
+
 **Zweck.** In Sekunden klarmachen: wer, was, wo — und einen nächsten Schritt anbieten.
 Ein `h1`, ein Primär-CTA.
 
@@ -276,6 +284,10 @@ zweispaltig.
 ---
 
 ## 5. ServiceCard (4×)
+
+> **Delta MARAA-15 (§19.3):** Karten liegen **gehoben** (`--pf-shadow-card`), Radius
+> `--pf-radius-card` (16 px), in einem **asymmetrischen Bento-Raster**. Die Altregel
+> „kein Schatten" ist überholt. Alle sieben Zustände in §19.3.
 
 **Zweck.** Die vier Leistungen (Fugenlose Bäder, Fugenlose Böden, Innenausbau, Fassaden)
 als Werkstoffproben zeigen und auf die Detailseite führen.
@@ -354,6 +366,9 @@ stehen (Bildabfolge bleibt der Textabfolge untergeordnet).
 
 ## 7. GalleryGrid (Galerie / Werkstoffproben)
 
+> **Delta MARAA-15 (§19.4):** Galerie als **Card/Bento-Raster** auf `--pf-surface-raised`
+> mit `--pf-radius-card` und `--pf-shadow-card`; Bilder werden im Kartenradius beschnitten.
+
 **Zweck.** Die Originalbilder groß und ruhig zeigen — **ohne Referenzbehauptung** (es gibt
 keine belegbaren Referenzen).
 
@@ -382,6 +397,9 @@ existiert, muss sie per Tastatur schließbar sein (sonst weglassen).
 ---
 
 ## 8. ReviewSection + ReviewCard (+ Attribution, EmptyState)
+
+> **Delta MARAA-15 (§19.5):** Bewertungen als **Karten-Grid** (1 / 2 / 3 Spalten) auf
+> `--pf-surface-raised` mit `--pf-radius-card` und `--pf-shadow-card`.
 
 > Verbindlich: `docs/contracts/reviews.schema.json`. Pflichtfeldnamen `autor`, `sterne`,
 > `datum`, `text`, `avatar_status`, `profil_link`, `review_time`. Das Design erfindet
@@ -537,6 +555,9 @@ aus, greift der Leerzustand. `prefers-reduced-motion` deaktiviert das Skeleton-P
 ---
 
 ## 9. ContactBlock
+
+> **Delta MARAA-15 (§19.6):** Formularfelder und -karten mit `--pf-radius-input` (12 px) /
+> `--pf-radius-card` (16 px) und `--pf-shadow-card`; Kontaktwege als ruhige Liste.
 
 Zwei gleichwertige Teile: **Kontaktwege** (sofort erreichbar) und **Formular**.
 
@@ -705,6 +726,9 @@ dasselbe Ziel finden.
 ---
 
 ## 11. Footer
+
+> **Delta MARAA-15 (§19.7):** Übersichtliches Spaltenlayout, Telefon in `tabular-nums`,
+> Kontaktwege mit Icon + Text; bleibt die **eine** theme-unabhängig dunkle Fläche.
 
 **Zweck.** Identität, Adresse, alle Kontaktwege, Rechtsseiten, Consent-Widerruf.
 
@@ -973,6 +997,226 @@ Die letzten beiden Punkte sind die Verbindung zu den Gates aus ADR §9.2
 Offene Punkte, die diese Spezifikation nur als Slot enthält (Details in `konzept.md` §13):
 Attribution-Wortlaut „Google Maps" (CEO-Bestätigung), Sektion-Gating `content` vs.
 `section` (CEO), Font-Budget-Fallback, Bildrechte/Logo-Freistellung, korrekte E-Mail-Adresse.
+
+---
+
+## 19. Delta MARAA-15 — Komponenten (Card/Bento, Hero, Formular, Bewertungen, Footer)
+
+| | |
+|---|---|
+| **Status** | Abgabe MARAA-16 (D1). Umsetzungsvorgabe für **F1 (MARAA-18)**. |
+| **Datum** | 2026-10-14 |
+| **Grundlage** | `konzept.md` §16 (P1–P4), `tokens.json` (kanonisch, **v1.1.0**) |
+| **Neue Rollen** | `--pf-radius-card` 16 px · `--pf-radius-input` 12 px · `--pf-radius-media` 16 px · `--pf-radius-button` full · `--pf-radius-panel` 28 px · `--pf-shadow-card` · `--pf-shadow-card-hover` |
+
+### 19.0 Die eine Kartenregel
+
+Jede Karte (Leistung, Galerie, Bewertung, Formular) liegt als **gehobene Platte** auf der
+Seite: Fläche `--pf-surface-raised` (`neutral.0`, der hellste Punkt), Radius
+`--pf-radius-card` (16 px), **ein** Schatten `--pf-shadow-card`, Padding
+`--pf-space-6`/`--pf-space-7`. Es gibt **keine zweite** Schattenstärke; der Hover-Lift
+(`--pf-shadow-card-hover` + `translateY(-2px)`) ist die einzige Ausnahme und erklärt die
+Bedienbarkeit. Kein Kartenrand als Ergänzung — der Schatten trägt die Kante, nicht eine Linie.
+
+Regeln:
+
+- **Ein Radius, ein Schatten** über alle Karten. Keine Sonderfälle.
+- Bilder in Karten werden mit `overflow: hidden` am Kartenradius beschnitten
+  (`--pf-radius-card`), damit keine doppelte Rundung entsteht.
+- Sektionen trennen sich weiter über Ton (`page`/`sunken`/`raised`) + Korn; Karten heben
+  sich zusätzlich über den Schatten. „Fugenlos" bleibt: keine `border-bottom` zwischen
+  Sektionen.
+- **Komponenten nennen die Rolle** (`--pf-radius-card`, `--pf-shadow-card`), nie die Stufe
+  (`--pf-radius-lg`, `--pf-shadow-soft`).
+
+### 19.1 Card (Basis-Primitive)
+
+**Zweck.** Gemeinsame Fläche für ServiceCard, GalleryItem, ReviewCard, Formularblock.
+
+**Aufbau.** `<article class="pf-card">` bzw. `<li>`; optional `<div class="pf-card__media">`
+(Bild, Kartenradius, `overflow: hidden`), `<div class="pf-card__body">` (Padding),
+`<div class="pf-card__foot">` (Link/CTA).
+
+**Props.** `as` (`article`|`li`), `media` (Bild oder leer), `wide` (Bento-Spanning),
+`elevated` (Default `true`; `false` nur für den flachen Hinweis im Bewertungs-Leerzustand).
+
+**Zustände.**
+
+| # | Zustand | Darstellung |
+|---|---|---|
+| S1 | default | Fläche `--pf-surface-raised`, `--pf-shadow-card`, kein Rand |
+| S2 | hover | nur wenn die Karte **ganz** Link ist: `--pf-shadow-card-hover` + `translateY(-2px)`; sonst `—` |
+| S3 | focus-visible | globaler Ring am Link (§0.3); am Kartenrand sorgt Innenabstand dafür, dass der Ring nicht abgeschnitten wird |
+| S4 | active | Press `translateY(0)`, Schatten zurück auf `--pf-shadow-card` |
+| S5 | disabled | `—` (Karten sind nie disabled) |
+| S6 | busy | `aria-busy` am Grid; Skeleton bleibt in Kartenform (§8.5) |
+| S7 | selected/current | `—` (keine gewählten Karten in diesem Auftritt) |
+
+**A11y.** Kein `role="button"` auf der Karte; Aktionen sind echte `<a>`/`<button>`. Ein
+Karten-Ganz-Link hat einen eindeutigen zugänglichen Namen (nie „Mehr erfahren").
+
+**Responsive.** Padding `--pf-space-6` mobil, `--pf-space-7` ab `md`.
+
+**Dark.** Fläche remappt auf `neutral.800`; der Schatten bleibt (warmes `neutral.900`);
+in Dark trägt zusätzlich der Ton die Trennung — **keine** Dark-Sonderregel, weil nur
+semantische Tokens konsumiert werden.
+
+### 19.2 Hero (Bild rechts, CTA + Telefon)
+
+**Zweck.** In Sekunden: wer, was, wo + nächster Schritt. Genau ein `<h1>`, ein Primär-CTA.
+
+**Aufbau.** `<section class="pf-hero">` mit zwei Spalten ab `md`:
+
+- **links:** Eyebrow, `<h1>` (Variante A aus `content/start.md`), Vorspann, Primär-CTA
+  **„Beratung anfragen"**, direkt darunter die **Telefon-Hotline** als `tel:`-Link (Zahl in
+  `tabular-nums`), Tertiärweg WhatsApp ruhig.
+- **rechts:** **breites** Bild (`foto3`), Radius `--pf-radius-media`, festes `aspect-ratio`
+  (4:3 ab `md`, 16:10 ab `lg`), `fetchpriority="high"`, **kein** `lazy`.
+
+**Token.** Grid `--pf-grid-columns-md`, Gap `--pf-grid-gap-md`; Textmaße
+`--pf-measure-display` (H1) / `--pf-measure-lead` (Vorspann); Bild `--pf-radius-media`;
+Vertikalraum `--pf-section-y` … `--pf-breathe-y`.
+
+**Varianten.** `media-right` (Default ab `md`), `media-below` (mobil: Bild **unter** dem
+Text, damit der Textkontrast unabhängig vom Foto garantiert ist).
+
+**Zustände.** Hero nicht interaktiv; CTAs und Telefonlink tragen die Button-/Link-Zustände
+(§12, §2.2).
+
+**A11y.** Genau ein `<h1>`. DOM-Reihenfolge = Lesefluss = Tab-Reihenfolge:
+Eyebrow → H1 → Vorspann → Primär-CTA → Telefon. Der Primär-CTA ist **nicht** allein über
+Farbe ausgezeichnet, sondern Füllung **und** Position **und** Text. Telefonlink mit
+zugänglichem Namen „Anrufen: +49 174 2164071", Touch-Ziel ≥ 44 px.
+
+**Responsive.** Mobil einspaltig (Text über Bild), ab `md` zweispaltig (Bild rechts),
+ab `lg` nimmt das Bild die breitere Spalte ein.
+
+**Dark.** Textflächen remappen; das Foto bleibt, Text nie ohne Scrim auf dem Foto.
+
+### 19.3 Card/Bento-Raster — Leistungen (4)
+
+**Zweck.** Die vier Leistungen als Werkstoffproben; die Sektion, die die Erwartung bricht.
+
+**Raster (asymmetrisch, verbindlich).** Ab `md` 12 Spalten:
+
+- Karte 1 (Fugenlose Bäder, das differenzierende 2K-Thema): **volle Breite**
+  (12 Spalten), Medien-/Textfläche zweigeteilt — die Bento-Hauptzelle.
+- Karten 2–4: je **4 Spalten** darunter.
+- Mobil: eine Spalte.
+
+Das ist **kein** 3-Gleiche-Kästen-Grid (Template-Signal 3) und keine uniforme
+Sektionsrhythmik.
+
+**Karteninhalt.** Bild (4:3, im Kartenradius beschnitten), Titel `--pf-type-title-card`,
+1–2 Sätze, Finish-Streifen (dekorativ, `aria-hidden`), eindeutiger Linktext
+(„Zu fugenlosen Bädern").
+
+**Zustände.** Karte: §19.1. Link: S1 `--pf-text-link`; S2 Unterstrich sichtbar + Pfeil
+4 px nach rechts (nur `no-preference`); S3 Ring; S4 `--pf-accent-active`; S5–S7 `—`.
+
+**A11y.** Alt-Texte aus `content/start.md`; Finish-Streifen dekorativ, die Glanzgrade
+stehen als Text (nie allein Farbe/Fläche); Touch-Ziel ≥ 44 px.
+
+**Responsive.** 1 Spalte mobil → Bento ab `md`; `srcset` 400/800/1200w.
+
+**Dark.** Flächen/Text remappen; Finish-Streifen bleibt textunterstützt.
+
+### 19.4 Card/Bento-Raster — Galerie
+
+**Zweck.** Originalbilder groß und ruhig, **ohne** Referenzbehauptung.
+
+**Aufbau.** `<section aria-labelledby>` mit `<ul>` aus `<figure>`/`<img>`; jedes Bild in
+einer Karte (§19.1), im Kartenradius beschnitten, je Position feste `aspect-ratio` und
+`width`/`height` (CLS ≤ 0,1).
+
+**Raster (Bento).** Zwei Zellgrößen: **eine** große Zelle (2×2 ab `md`) und gleich große
+Nachbarn; 1 Spalte mobil → 2 ab `sm` → 3 ab `lg`. Kein Masonry-JS.
+
+**Zustände.** Kein Zoom auf dem Foto (Deko-Bewegung). Ist das Bild ein Link zur
+Großansicht: S1 Karte ruhig; S2 `--pf-shadow-card-hover` + Fläche `--pf-surface-sunken`;
+S3 Ring; S4 Press; S5–S7 `—`.
+
+**A11y.** `figure`+`figcaption` nur mit echtem Text, sonst `alt`; Deko-Bilder `alt=""` +
+`aria-hidden`. Falls eine Großansicht existiert, muss sie per Tastatur schließbar sein —
+sonst weglassen.
+
+**Dark.** Flächen remappen; Fotos bleiben.
+
+### 19.5 Bewertungs-Grid
+
+**Zweck.** Google-Bewertungen zeigen — oder ehrlich, dass keine vorliegen (ADR §5.4).
+
+**Raster.** Karten-Grid: **1 Spalte** mobil, **2 ab `md`**, **3 ab `xl`** (max. 6 sichtbar,
+Rest über den Link „Alle Bewertungen bei Google" — kein Nachladen). Jede Zelle ist eine
+`ReviewCard` (§8.2) auf `--pf-surface-raised`, `--pf-radius-card`, `--pf-shadow-card`.
+
+**Zustände.** Sektion: S1 Inhalt oder Leerzustand, S6 busy (Skeletons in Kartenform,
+`aria-busy`), sonst `—`. Karte: §8.2 und §19.1.
+
+**A11y.** Sterne als `role="img"` + `aria-label="4 von 5 Sternen"` **plus** Textzahl;
+Datum `<time datetime>`; `profil_link` normaler Link (nicht consent-pflichtig). Attribution
+als Text (mobil) oder Logo (ab `lg`), Mindesthöhe 16 px.
+
+**Dark.** Flächen/Text/Sterne remappen; Google-Avatar unverändert.
+
+### 19.6 Kontaktformular
+
+**Zweck.** Name/E-Mail/Nachricht (+ optional Telefon) ohne Drittanbieter-JS.
+
+**Aufbau.** `<form method="post" action="/api/contact" novalidate>` in einer Karte
+(§19.1, `--pf-shadow-card`): Felder `name` (Pflicht), `email` (Pflicht), `nachricht`
+(Pflicht), `telefon` (optional); Honeypot; versteckter Zeitstempel; Absende-Button. Daneben
+die Kontaktwege-Liste (Telefon `tel:`, WhatsApp `wa.me`, E-Mail `mailto:`, Instagram).
+
+**Feld (FormField).** Kontur `--pf-border-input` (1,5 px), Radius **`--pf-radius-input`
+(12 px)**, Höhe ≥ 44 px, Padding `--pf-space-3 --pf-space-4`, Text `--pf-type-body`
+(16 px fix — kein iOS-Zoom).
+
+**Zustände.** S1 default · S2 Feldkontur `--pf-border-input-hover` · S3 Ring **plus** Kontur
+· S4 Press am Button · S5 Absende-Button `disabled` **mit sichtbarem Grund** · S6
+`aria-busy`, „Wird gesendet …", Doppelklick gesperrt · S7 `—`; **invalid**
+`--pf-text-error` + Icon + Fehlertext + `aria-invalid`; **success** ersetzt das Formular
+(`role="status"`); **error** Zusammenfassung `role="alert"` + Inline-Fehler;
+**rate_limited** `--pf-surface-warning` mit Wartezeit.
+
+**A11y.** Sichtbares `<label>` (kein Placeholder-Label), `autocomplete`, `aria-describedby`;
+Fehler nennen **was** und **wie**; bei Fehlern springt der Fokus auf die Zusammenfassung;
+nichts wird geleert; keine IP, kein User-Agent.
+
+**Responsive.** Einspaltig mobil; `name`/`email` zweispaltig ab `md`; Eingaben bleiben 16 px.
+
+**Dark.** Flächen remappen; Fehler-/Erfolgsflächen aus `--pf-surface-error/success`.
+
+### 19.7 Footer
+
+**Zweck.** Identität, Adresse, alle Kontaktwege, Rechtsseiten, Consent-Widerruf.
+
+**Aufbau.** `<footer class="pf-invert">` — die **eine** theme-unabhängig dunkle Fläche:
+Adressblock, Kontaktwege (Telefon/WhatsApp/E-Mail/Instagram) mit Icon + Text, Rechtslinks,
+„Cookie-Einstellungen", Wortmarke. Ruhige Spalten: 1 mobil, 2 ab `sm`, 3 ab `md`.
+
+**Token.** `.pf-invert`-Scope: Fläche `neutral.900`, Text `neutral.50/300/400`, Linien
+`neutral.700`, Akzent `accent.200`. Abstände aus der Skala. **Keine** Linie zwischen den
+Blöcken — Ton + Korn tragen die Trennung.
+
+**Zustände.** Links: S1 `--pf-text-secondary`; S2 `--pf-accent-text` + Unterstrich;
+S3 Ring (`accent.200`, 8,75:1); S4 Press; S5–S7 `—`.
+
+**A11y.** `<footer>` = `contentinfo`, genau eines. Adresse als `<address>`. Telefon in
+`tabular-nums` mit zugänglichem Namen. Externe Links mit Hinweis im Namen. Touch-Ziele
+≥ 44 px.
+
+**Dark.** In Light und Dark **identisch** dunkel (bewusste Entscheidung, §0.5).
+
+### 19.8 Gates für F1 (unverändert verbindlich)
+
+Je Komponente: **(1)** alle zutreffenden der sieben Zustände sind unterscheidbar (nicht nur
+farblich); **(2)** Fokus sichtbar in beiden Farbschemata; **(3)** Touch-Ziel ≥ 44 px;
+**(4)** Kontrast gegen den **realen** Hintergrund — für Karten jetzt `raised` (auditiert,
+`tokens.json → audit`, §16.2); **(5)** Bewegung nur nach §14.5 und
+`prefers-reduced-motion`-fest; **(6)** nur **semantische** Tokens (`--pf-radius-card`,
+`--pf-shadow-card`), nie die Stufe; **(7)** im Consent-Zustand „unbekannt" erzeugt die
+Komponente **null** Cross-Origin-Requests.
 
 ---
 

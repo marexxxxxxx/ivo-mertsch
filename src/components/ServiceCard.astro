@@ -29,11 +29,13 @@ const { title, href, linkLabel, body, image, imageAlt, wide = false, finishes = 
       decoding="async"
     />
   </div>
-  <h3>{title}</h3>
-  <p>{body}</p>
-  {finishes && <div class="pf-finish" aria-hidden="true" />}
-  <a class="pf-card__link" href={href}>
-    {linkLabel}
-    <span class="pf-arrow" aria-hidden="true">→</span>
-  </a>
+  <div class="pf-card__body">
+    <h3>{title}</h3>
+    <p>{body}</p>
+    {finishes && <div class="pf-finish" aria-hidden="true" />}
+    <a class="pf-card__link" href={href}>
+      {linkLabel}
+      <span class="pf-arrow" aria-hidden="true">→</span>
+    </a>
+  </div>
 </article>

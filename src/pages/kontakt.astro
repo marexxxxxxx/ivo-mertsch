@@ -30,16 +30,12 @@ const schema = [breadcrumb].filter((node): node is SchemaOrgNode => node !== nul
 
   <section class="pf-section pf-section--sunken" aria-labelledby="kontaktwege-titel">
     <div class="pf-container">
-      <div class="pf-bestand">
-        <div>
-          <SectionHeading title={CONTACT_COPY.waysHeading} id="kontaktwege-titel" />
-          <div class="pf-mt-7">
-            <ContactWays site={site} />
-          </div>
-        </div>
-        <div>
-          <h2>{CONTACT_COPY.addressHeading}</h2>
-          <address class="pf-mt-7">
+      <div class="pf-contact-grid">
+        <div class="pf-contact-ways">
+          <h2 id="kontaktwege-titel">{CONTACT_COPY.waysHeading}</h2>
+          <ContactWays site={site} />
+          <h3>{CONTACT_COPY.addressHeading}</h3>
+          <address>
             {site.firma.anzeige_name}
             <br />
             {site.adresse.strasse}
@@ -50,24 +46,17 @@ const schema = [breadcrumb].filter((node): node is SchemaOrgNode => node !== nul
             <br />
             {site.adresse.land}
           </address>
-          <p class="pf-reviews__note pf-mt-7">
+          <p class="pf-reviews__note">
             Eine Karte wird nicht eingebettet, damit vor Ihrer Zustimmung keine Verbindung zu
             Kartendiensten entsteht.
           </p>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <section class="pf-section" id="formular" aria-labelledby="kontakt-formular-titel">
-    <div class="pf-container">
-      <SectionHeading
-        title={CONTACT_COPY.formHeading}
-        lead="Felder mit (Pflichtfeld) sind erforderlich. Alles andere ist freiwillig."
-        id="kontakt-formular-titel"
-      />
-      <div class="pf-mt-7">
-        <ContactForm site={site} labelledBy="kontakt-formular-titel" />
+        <div class="pf-contact-form-col" id="formular">
+          <h2 id="kontakt-formular-titel">{CONTACT_COPY.formHeading}</h2>
+          <p class="pf-lead">Felder mit (Pflichtfeld) sind erforderlich. Alles andere ist freiwillig.</p>
+          <ContactForm site={site} labelledBy="kontakt-formular-titel" />
+        </div>
       </div>
     </div>
   </section>

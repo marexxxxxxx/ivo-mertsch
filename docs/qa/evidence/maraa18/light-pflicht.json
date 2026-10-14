@@ -1,0 +1,16 @@
+{
+  "note": "Light ist die einzige automatische Auslieferungsansicht (P1, ADR 0003). Erzwungenes prefers-color-scheme:dark liefert dieselbe helle body-Flaeche (#FBFAF6) wie light.",
+  "colorSchemeDark": {
+    "bodyBackground": "rgb(251, 250, 246)",
+    "bodyColor": "rgb(36, 31, 25)",
+    "colorScheme": "light",
+    "dataTheme": null
+  },
+  "colorSchemeLight": {
+    "bodyBackground": "rgb(251, 250, 246)",
+    "bodyColor": "rgb(36, 31, 25)",
+    "colorScheme": "light",
+    "dataTheme": null
+  },
+  "identical": true
+}

@@ -26,8 +26,8 @@ const { title, id, items } = Astro.props;
     </div>
     <ul class="pf-gallery" style="margin-top: var(--pf-space-7)">
       {
-        items.map((item) => (
-          <li>
+        items.map((item, index) => (
+          <li class={index === 0 ? "pf-gallery__item pf-gallery__item--big" : "pf-gallery__item"}>
             <figure>
               <Image
                 src={item.image}

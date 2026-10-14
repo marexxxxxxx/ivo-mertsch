@@ -248,7 +248,7 @@
   padding: var(--pf-space-3);
   list-style: none;
   background-color: var(--pf-surface-raised);
-  border-radius: var(--pf-radius-md);
+  border-radius: var(--pf-radius-panel);
   box-shadow: var(--pf-shadow-overlay);
   z-index: var(--pf-z-sticky);
 }
@@ -304,36 +304,46 @@
 .pf-breadcrumb [aria-current="page"] { color: var(--pf-text-secondary); font-weight: var(--pf-font-weight-medium); }
 
 /* ---------- Hero ---------------------------------------------------------- */
+/* Delta MARAA-15 §19.2: Bild rechts (breit), links Text + CTA + Telefon.
+   Mobil steht der Text ueber dem Bild (media-below), damit der Textkontrast
+   unabhaengig vom Foto garantiert ist. Radius/Media = --pf-radius-media. */
 .pf-hero { padding-block: var(--pf-section-y); }
 @media (min-width: 48rem) { .pf-hero { padding-block: var(--pf-section-y-md); } }
-.pf-hero__grid { display: grid; gap: var(--pf-space-8); }
-@media (min-width: 48rem) { .pf-hero__grid { grid-template-columns: 1fr 1fr; align-items: center; } }
+.pf-hero__grid { display: grid; gap: var(--pf-space-8); align-items: center; }
+@media (min-width: 48rem) { .pf-hero__grid { grid-template-columns: 1fr 1.15fr; gap: var(--pf-grid-gap-md); } }
 .pf-hero h1 { margin: 0; max-width: var(--pf-measure-display); }
-.pf-hero__body { display: grid; gap: var(--pf-space-5); }
-.pf-hero__actions { display: flex; flex-wrap: wrap; gap: var(--pf-space-3); }
-.pf-hero__media { border-radius: var(--pf-radius-xl); overflow: hidden; }
-.pf-hero__media img { width: 100%; height: auto; }
-@media (max-width: 47.99rem) { .pf-hero__media { order: -1; border-radius: var(--pf-radius-lg); } }
+.pf-hero__body { display: grid; gap: var(--pf-space-5); justify-items: start; }
+.pf-hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--pf-space-3); }
+.pf-hero__media { margin: 0; border-radius: var(--pf-radius-media); overflow: hidden; box-shadow: var(--pf-shadow-card); }
+.pf-hero__media img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+@media (min-width: 48rem) { .pf-hero__media img { aspect-ratio: 4 / 3; } }
+@media (min-width: 64rem) { .pf-hero__media img { aspect-ratio: 16 / 10; } }
 
-/* ---------- Service-Card -------------------------------------------------- */
+/* ---------- Card (Basis-Primitive, Delta MARAA-15 §19.0/§19.1) ------------ */
+/* Eine Kartenregel: Flaeche --pf-surface-raised (hellster Punkt), Radius
+   --pf-radius-card (16 px), EIN Schatten --pf-shadow-card, kein Rand. Bilder
+   werden am Kartenradius beschnitten (overflow: hidden). */
 .pf-card {
   display: flex;
   flex-direction: column;
-  gap: var(--pf-space-4);
   background-color: var(--pf-surface-raised);
-  border-radius: var(--pf-radius-lg);
-  padding: var(--pf-space-6);
+  border-radius: var(--pf-radius-card);
+  box-shadow: var(--pf-shadow-card);
+  overflow: hidden;
 }
 .pf-card--wide { grid-column: 1 / -1; }
-.pf-card__media { border-radius: var(--pf-radius-md); overflow: hidden; }
-.pf-card__media img { width: 100%; height: auto; }
+.pf-card__media { margin: 0; }
+.pf-card__media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.pf-card__body { display: flex; flex-direction: column; gap: var(--pf-space-3); padding: var(--pf-space-6); flex: 1; }
+@media (min-width: 48rem) { .pf-card__body { padding: var(--pf-space-7); } }
 .pf-card h3 { margin: 0; }
-.pf-card p { margin: 0; }
+.pf-card p { margin: 0; color: var(--pf-text-secondary); }
 .pf-card__link {
   display: inline-flex;
   align-items: center;
   gap: var(--pf-space-2);
   min-height: var(--pf-touch-target);
+  margin-block-start: auto;
   color: var(--pf-text-link);
   text-decoration: none;
   font-weight: var(--pf-font-weight-medium);
@@ -356,13 +366,26 @@
 .pf-steps li { display: grid; gap: var(--pf-space-2); }
 .pf-steps h3 { margin: 0; }
 
-/* ---------- Gallery ------------------------------------------------------- */
-.pf-gallery { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--pf-grid-gap); grid-template-columns: 1fr; }
+/* ---------- Gallery (Card/Bento-Raster, Delta MARAA-15 §19.4) -------------- */
+.pf-gallery { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--pf-grid-gap-md); grid-template-columns: 1fr; }
 @media (min-width: 30rem) { .pf-gallery { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 64rem) { .pf-gallery { grid-template-columns: repeat(3, 1fr); } }
-.pf-gallery figure { margin: 0; display: grid; gap: var(--pf-space-2); }
-.pf-gallery img { width: 100%; height: auto; border-radius: var(--pf-radius-md); }
-.pf-gallery figcaption { color: var(--pf-text-muted); font-size: var(--pf-text-xs); }
+@media (min-width: 64rem) {
+  .pf-gallery { grid-template-columns: repeat(3, 1fr); }
+  .pf-gallery__item--big { grid-column: span 2; grid-row: span 2; }
+}
+.pf-gallery__item {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background-color: var(--pf-surface-raised);
+  border-radius: var(--pf-radius-card);
+  box-shadow: var(--pf-shadow-card);
+  overflow: hidden;
+}
+.pf-gallery figure { margin: 0; display: flex; flex-direction: column; height: 100%; }
+.pf-gallery img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+.pf-gallery__item--big img { aspect-ratio: auto; height: 100%; }
+.pf-gallery figcaption { padding: var(--pf-space-4) var(--pf-space-6); color: var(--pf-text-muted); font-size: var(--pf-text-xs); }
 
 /* ---------- Reviews ------------------------------------------------------- */
 .pf-reviews__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--pf-grid-gap); }
@@ -373,7 +396,8 @@
   display: grid;
   gap: var(--pf-space-3);
   background-color: var(--pf-surface-raised);
-  border-radius: var(--pf-radius-lg);
+  border-radius: var(--pf-radius-card);
+  box-shadow: var(--pf-shadow-card);
   padding: var(--pf-space-6);
 }
 .pf-review__head { display: flex; align-items: center; gap: var(--pf-space-3); }
@@ -404,7 +428,8 @@
 
 .pf-empty {
   background-color: var(--pf-surface-raised);
-  border-radius: var(--pf-radius-lg);
+  border-radius: var(--pf-radius-card);
+  box-shadow: var(--pf-shadow-card);
   padding: var(--pf-space-8) var(--pf-space-6);
   display: grid;
   gap: var(--pf-space-5);
@@ -421,8 +446,9 @@
 
 /* ---------- Footer -------------------------------------------------------- */
 .pf-footer { color: var(--pf-text-secondary); padding-block: var(--pf-space-10); }
-.pf-footer__grid { display: grid; gap: var(--pf-space-8); }
-@media (min-width: 48rem) { .pf-footer__grid { grid-template-columns: repeat(3, 1fr); } }
+.pf-footer__grid { display: grid; gap: var(--pf-space-8); grid-template-columns: 1fr; }
+@media (min-width: 30rem) { .pf-footer__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 48rem) { .pf-footer__grid { grid-template-columns: 1.4fr 1fr 1fr; } }
 .pf-footer h2 { font-size: var(--pf-text-base); margin: 0 0 var(--pf-space-3); color: var(--pf-text-primary); }
 .pf-footer address { font-style: normal; line-height: var(--pf-leading-relaxed); }
 .pf-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--pf-space-1); }
@@ -480,8 +506,26 @@
 body:has(.pf-action-bar) main { padding-bottom: var(--pf-action-bar-height); }
 body:has(.pf-action-bar) .pf-floating-consent { bottom: calc(var(--pf-action-bar-height) + var(--pf-space-4)); }
 
-/* ---------- Formular ------------------------------------------------------ */
-.pf-form { display: grid; gap: var(--pf-space-6); max-width: 40rem; }
+/* ---------- Formular (Karte, Delta MARAA-15 §19.6) ------------------------ */
+/* Das Formular liegt als gehobene Platte (§19.1) neben der Kontaktwege-Liste. */
+.pf-form {
+  display: grid;
+  gap: var(--pf-space-6);
+  background-color: var(--pf-surface-raised);
+  border-radius: var(--pf-radius-card);
+  box-shadow: var(--pf-shadow-card);
+  padding: var(--pf-space-6);
+}
+@media (min-width: 48rem) { .pf-form { padding: var(--pf-space-7); } }
+
+/* Kontaktblock: Kontaktwege + Formular nebeneinander (komponenten.md §9, §19.6). */
+.pf-contact-grid { display: grid; gap: var(--pf-space-8); }
+@media (min-width: 48rem) { .pf-contact-grid { grid-template-columns: 1fr 1.1fr; align-items: start; } }
+.pf-contact-ways { display: grid; gap: var(--pf-space-5); }
+.pf-contact-ways h2,
+.pf-contact-ways h3 { margin: 0; }
+.pf-contact-form-col { display: grid; gap: var(--pf-space-5); scroll-margin-top: var(--pf-header-height-md); }
+
 .pf-form__grid { display: grid; gap: var(--pf-space-5); }
 @media (min-width: 48rem) { .pf-form__grid { grid-template-columns: 1fr 1fr; } .pf-form__grid .pf-field--full { grid-column: 1 / -1; } }
 .pf-field { display: grid; gap: var(--pf-space-2); }
@@ -503,7 +547,7 @@ body:has(.pf-action-bar) .pf-floating-consent { bottom: calc(var(--pf-action-bar
   color: var(--pf-text-primary);
   background-color: var(--pf-surface-raised);
   border: var(--pf-border-width-input) solid var(--pf-border-input);
-  border-radius: var(--pf-radius-md);
+  border-radius: var(--pf-radius-input);
 }
 .pf-textarea { min-height: calc(var(--pf-space-14) + var(--pf-space-6)); resize: vertical; }
 @media (hover: hover) { .pf-input:hover, .pf-textarea:hover { border-color: var(--pf-border-input-hover); } }
@@ -579,7 +623,7 @@ body:has(.pf-action-bar) .pf-floating-consent { bottom: calc(var(--pf-action-bar
   gap: var(--pf-space-2);
   background-color: var(--pf-surface-success);
   color: var(--pf-text-success);
-  border-radius: var(--pf-radius-lg);
+  border-radius: var(--pf-radius-card);
   padding: var(--pf-space-6);
 }
 .pf-form__status p { margin: 0; }
@@ -633,13 +677,13 @@ html[data-pf-consent="unbekannt"] .pf-consent-banner { display: block; }
   max-height: 90vh;
   overflow-y: auto;
   background-color: var(--pf-surface-raised);
-  border-start-start-radius: var(--pf-radius-xl);
-  border-start-end-radius: var(--pf-radius-xl);
+  border-start-start-radius: var(--pf-radius-panel);
+  border-start-end-radius: var(--pf-radius-panel);
   padding: var(--pf-space-6);
   display: grid;
   gap: var(--pf-space-5);
 }
-@media (min-width: 48rem) { .pf-consent-dialog { place-items: center; } .pf-consent-dialog__panel { border-radius: var(--pf-radius-xl); } }
+@media (min-width: 48rem) { .pf-consent-dialog { place-items: center; } .pf-consent-dialog__panel { border-radius: var(--pf-radius-panel); } }
 .pf-consent-dialog h2 { margin: 0; }
 .pf-consent-dialog__cats { display: grid; gap: var(--pf-space-4); }
 .pf-consent-cat { display: grid; gap: var(--pf-space-1); padding-block: var(--pf-space-3); }
@@ -749,9 +793,21 @@ html[data-pf-consent="unbekannt"] .pf-footer { padding-bottom: var(--pf-breathe-
 .pf-center { min-height: 50vh; display: grid; place-content: center; gap: var(--pf-space-5); text-align: center; justify-items: center; }
 
 /* ---------- Utilities ----------------------------------------------------- */
-.pf-grid--services { display: grid; gap: var(--pf-grid-gap); }
+/* Leistungs-Bento (Delta MARAA-15 §19.3): asymmetrisch — Karte 1 (das
+   differenzierende 2K-Thema) spannt ab md volle Breite, die Karten 2–4 je
+   4 von 12 Spalten darunter. Mobil eine Spalte. Kein 3-Gleiche-Kaesten-Grid. */
+.pf-grid--services { display: grid; gap: var(--pf-grid-gap); grid-template-columns: 1fr; }
 @media (min-width: 48rem) {
-  .pf-grid--services { grid-template-columns: repeat(3, 1fr); gap: var(--pf-grid-gap-md); }
+  .pf-grid--services { grid-template-columns: repeat(12, 1fr); gap: var(--pf-grid-gap-md); }
+  .pf-grid--services > .pf-card { grid-column: span 4; }
+  .pf-grid--services > .pf-card--wide {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: stretch;
+  }
+  .pf-grid--services > .pf-card--wide .pf-card__media { height: 100%; }
+  .pf-grid--services > .pf-card--wide .pf-card__media img { aspect-ratio: auto; height: 100%; }
 }
 .pf-mt-7 { margin-block-start: var(--pf-space-7); }
 .pf-mt-9 { margin-block-start: var(--pf-space-9); }
